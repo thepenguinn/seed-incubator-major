@@ -1,0 +1,327 @@
+\documentclass[11pt, a4paper]{report}
+
+\input{preamble.tex}
+
+\begin{document}
+
+\def\calSide{0.12\textwidth}
+\def\calSpace{0.02\textwidth}
+\def\pillLength{0.017\textwidth}
+\def\pillHeight{0.8cm}
+\def\pillRadius{2pt}
+
+\def\tblRadius{7pt}
+\def\tblCellHeight{0.10\textwidth}
+\def\tblCellWidth{0.194\textwidth}
+\def\tblSpace{0.014\textwidth}
+
+%% <name> <corner> <oppCorner>
+\newcommand\innerEnclosureNode[4] {
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$)
+    node (#1) [
+        black,
+        rounded corners = \tblRadius,
+        fill = #4,
+        % draw = black,
+        inner sep = 0,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+    ] {
+        \pgfmathparse{\n{TEMPDIMX} - 0.7cm}
+        \begin{minipage} {\pgfmathresult pt}
+            \color{colorP4Dark}
+            \centering
+            \scriptsize
+            \ttfamily
+            Finish that thing this thing another thing.
+        \end{minipage}
+    }
+    ;
+}
+
+\newcommand\tblDrawRow[1] {
+
+    \fill [
+        #1,
+        very thick,
+        rounded corners = \tblRadius,
+    ]
+
+    (itmp) coordinate (tmp) coordinate (start)
+    (start) ++(\calSide, -\tblCellHeight) coordinate (end)
+    (start) rectangle (end)
+    ++(\tblSpace, \tblCellHeight) coordinate (tmp)
+
+    (end) ++(-\calSide, -\tblSpace) coordinate (itmp)
+
+    ;
+
+    \draw [
+        white,
+    ]
+    ($(start)!0.5!(end)$)
+    node [
+        font = \Large,
+        anchor = center,
+    ]
+    {\texttt{05}}
+    ;
+
+    \tblDrawCell {colorP1}
+    \tblDrawCell {colorP2}
+    \tblDrawCell {colorP3}
+    \tblDrawCell {colorP4}
+}
+
+% date day fg
+\newcommand\tblDrawCell[1] {
+
+    \fill [
+        colorP1,
+        very thick,
+        rounded corners = 14pt,
+    ]
+
+    (tmp) coordinate (start)
+    (start) ++(\tblCellWidth, -\tblCellHeight) coordinate (end)
+    % (start) rectangle (end)
+    ++(\tblSpace, \tblCellHeight) coordinate (tmp)
+
+    ;
+
+    \innerEnclosureNode{hai}{start}{end}{#1}
+
+}
+
+% date day fg bg dayfg p1 p2 p3 p4
+\newcommand\calDrawCell[9] {
+    \fill [
+        #4,
+        very thick,
+        rounded corners = 14pt,
+    ]
+
+    (tmp) coordinate (start)
+    (start) ++(\calSide, -\calSide) coordinate (end)
+    (start) rectangle (end)
+    ++(\calSpace, \calSide) coordinate (tmp)
+
+    ;
+
+    \draw [
+        #3,
+    ]
+    ($(start)!0.5!(end)$)
+    node [
+        font = \Large,
+        anchor = center,
+    ]
+    {\texttt{#1}}
+    ;
+
+    \draw [
+        #5,
+    ]
+    ($(start)!0.5!(end)$) ++(0, \calSide / 2)
+    node [
+        font = \large,
+        anchor = south,
+        above = 6pt,
+    ]
+    {\texttt{#2}}
+    ;
+
+    \draw (start |- end) coordinate (botLeft) ++(0, -10pt) coordinate (pillHori) ;
+
+    \draw ($(botLeft)!0.2!(end)$) coordinate (p1Vert);
+    \draw ($(botLeft)!0.4!(end)$) coordinate (p2Vert);
+    \draw ($(botLeft)!0.6!(end)$) coordinate (p3Vert);
+    \draw ($(botLeft)!0.8!(end)$) coordinate (p4Vert);
+
+    \ifthenelse {#6 = 1} {
+        \fill [
+            colorP1,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p1Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+    \ifthenelse {#7 = 1} {
+        \fill [
+            colorP2,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p2Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+    \ifthenelse {#8 = 1} {
+        \fill [
+            colorP3,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p3Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+    \ifthenelse {#9 = 1} {
+        \fill [
+            colorP4,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p4Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+}
+
+\chapter{Seed Incubation Plant: Weekly Report}
+\vspace{-0.6cm}
+
+% {\color{colorPastelGreen!60!black} \Large\ttfamily WEEK 01 \hfill OCT 05 -- OCT 11}
+% \vspace{1cm}
+%
+% \begin{tikzpicture} [
+%         titleNode/.style = {
+%             % ultra thick,
+%             rectangle,
+%             draw = white,
+%             fill = colorSun,
+%             rounded corners = 0.5cm,
+%             inner sep = 0.75cm,
+%             outer sep = 0cm,
+%             % text width = 7.5cm,
+%             text centered,
+%         },
+%     ]
+%
+%     \draw [white]
+%     node (title) [titleNode, font = \LARGE] {\textsc{Seed Incubation Plant}}
+%     ;
+%
+%     % \draw [colorNonSunDark]
+%     % node (report) [font = \LARGE, right = 1.4cm of title] {\textsc{Weekly Report}}
+%     % ;
+%
+% \end{tikzpicture}
+% \hfill
+% {\color{colorNonSunDark}\LARGE\textsc{Weekly Report}}
+%
+% \vspace{0.75cm}
+
+\begin{center}
+
+    \begin{tikzpicture} [
+        ]
+
+        \draw (0, 0) coordinate (tmp) ;
+
+        \calDrawCell{05}{SUN}{white}{colorSun}{colorSunDark} {1} {1} {1} {1}
+
+        \foreach \x/\y in {06/MON,07/TUE,08/WED,09/THU,10/FRI,11/SAT} {
+            \calDrawCell{\x}{\y}{white}{colorNonSun}{colorNonSunDark} {1} {1} {1} {1}
+        }
+
+    \end{tikzpicture}
+
+    \vspace{1cm}
+
+% \begin{NiceTabular}{cccc}
+% \Block[fill=red!15,rounded-corners]{1-*}{}1 & 22 & 34 & 2346 \\
+% 2346 & 2 & 246  & 2 \\
+% \Block[fill=yellow!50,rounded-corners]{2-2}{0} & & 2346111 & 1 \\
+% & & 34 & 463
+% \end{NiceTabular}
+
+
+    % 19. Anjana Roy \hfill KTE22EC020 \\
+    % \vspace{3pt}
+    % 25. Aswatheertha T T \hfill KTE22EC026 \\
+    % \vspace{3pt}
+    % 26. Athira Madhusoodanan \hfill KTE22EC027 \\
+    % \vspace{3pt}
+    % 28. Daniel V Mathew \hfill KTE22EC029 \\
+
+    \begin{tikzpicture} [
+        ]
+
+        \draw (0, 0) coordinate (itmp) ;
+
+        \tblDrawRow {colorSun}
+        \tblDrawRow {colorNonSun}
+        \tblDrawRow {colorNonSun}
+        \tblDrawRow {colorNonSun}
+        \tblDrawRow {colorNonSun}
+        \tblDrawRow {colorNonSun}
+        \tblDrawRow {colorNonSun}
+
+    \end{tikzpicture}
+
+    % \newcommand\done[0]{
+    %     Finish that thing this thing another thing.
+    % }
+    %
+    % \small
+    % \renewcommand\arraystretch{1.75}
+    %
+    % \begin{tabularx} {\textwidth} [] {
+    %         % >{\columncolor{colorNonSun!40!white} \Large \centering \ttfamily \arraybackslash}m{\calSide}
+    %         % >{\columncolor{colorP1} \ttfamily \color{colorP1Dark} \centering \arraybackslash}X
+    %         % >{\columncolor{colorP2} \ttfamily \color{colorP2Dark} \centering \arraybackslash}X
+    %         % >{\columncolor{colorP3} \ttfamily \color{colorP3Dark} \centering \arraybackslash}X
+    %         % >{\columncolor{colorP4} \ttfamily \color{colorP4Dark} \centering \arraybackslash}X
+    %         %%
+    %         >{\Large \centering \ttfamily \arraybackslash \color{colorNonSunDark}}m{1cm}
+    %         >{\ttfamily \color{colorP1Dark} \centering \arraybackslash}X
+    %         >{\ttfamily \color{colorP2Dark} \centering \arraybackslash}X
+    %         >{\ttfamily \color{colorP3Dark} \centering \arraybackslash}X
+    %         >{\ttfamily \color{colorP4Dark} \centering \arraybackslash}X
+    %     }
+    %     \arrayrulecolor{colorNonSunDark}
+    %     \toprule
+    %
+    %     & {\color{colorP1Dark} \ttfamily \centering Anjana} &
+    %     {\centering Aswatheertha} &
+    %     {\centering Athira} &
+    %     {\centering Daniel} \\
+    %
+    %     \midrule
+    %
+    %     {\color{colorSun} 05} & \done & \done & \done & \done \\ \midrule
+    %     {\color{colorNonSunDark} 06} & \done & \done & \done & \done \\ \midrule
+    %     {\color{colorNonSunDark} 07} & \done & \done & \done & \done \\ \midrule
+    %     {\color{colorNonSunDark} 08} & \done & \done & \done & \done \\ \midrule
+    %     {\color{colorNonSunDark} 09} & \done & \done & \done & \done \\ \midrule
+    %     {\color{colorNonSunDark} 10} & \done & \done & \done & \done \\ \midrule
+    %     {\color{colorNonSunDark} 11} & \done & \done & \done & \done \\
+    %
+    %     \bottomrule
+    %
+    % \end{tabularx}
+
+
+    % \begin{NiceTabularX}{\textwidth}{X X}
+    %     \CodeBefore
+    %     \arrayrulecolor{gray}
+    %     \Body
+    %     First Row Content & Another cell \\
+    %     \Block{1-1}{This row will be taller.} & Second Row Content \\[2cm]
+    %     Third Row Content & Final cell \\
+    % \end{NiceTabularX}
+
+    % \begin{tikzpicture} [
+    %     ]
+    %
+    %
+    % \end{tikzpicture}
+\end{center}
+
+
+\end{document}
