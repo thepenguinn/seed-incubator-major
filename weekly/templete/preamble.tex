@@ -7,9 +7,26 @@
 \usepackage{nicematrix}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{fp}
 
 \usetikzlibrary{calc}
 \usetikzlibrary{positioning}
+\usetikzlibrary{math}
+
+\makeatletter
+\def\calcLength(#1,#2)#3{%
+\pgfpointdiff{\pgfpointanchor{#1}{center}}%
+             {\pgfpointanchor{#2}{center}}%
+\pgf@xa=\pgf@x%
+\pgf@ya=\pgf@y%
+\FPeval\@temp@a{\pgfmath@tonumber{\pgf@xa}}%
+\FPeval\@temp@b{\pgfmath@tonumber{\pgf@ya}}%
+\FPeval\@temp@sum{(\@temp@a*\@temp@a+\@temp@b*\@temp@b)}%
+\FProot{\FPMathLen}{\@temp@sum}{2}%
+\FPround\FPMathLen\FPMathLen5\relax
+\global\expandafter\edef\csname #3\endcsname{\FPMathLen}
+}
+\makeatother
 
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
 

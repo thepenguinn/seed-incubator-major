@@ -11,52 +11,101 @@
 \def\pillRadius{2pt}
 
 \def\tblRadius{7pt}
-\def\tblCellHeight{0.10\textwidth}
+\def\tblCellPaddedHeight{0.100\textwidth}
 \def\tblCellWidth{0.194\textwidth}
 \def\tblSpace{0.014\textwidth}
+\def\tblCellPad{0.4cm}
+
+\pgfmathsetmacro{\tblCellHeight}{\tblCellPaddedHeight - \tblCellPad}
+
+% text width color
+\newcommand\tblDrawCellContent[3] {
+    \begin{minipage} {#2}
+        \color{#3}
+        \centering
+        \scriptsize
+        \ttfamily
+        #1
+    \end{minipage}
+}
+
+\newcommand\tblDrawTestCellHeight[4] {
+    \begin{scope}
+        \clip
+        (0, 0)
+        node (tmpTestCellHeightNode) [anchor = north west, inner sep = 0pt, outer sep = 0pt] {
+            \pgfmathparse{\tblCellWidth - \tblCellPad}
+            \begin{tabular} {
+                    cccc
+                }
+                \tblDrawCellContent{#1}{\pgfmathresult pt}{colorP4Dark} &
+                \tblDrawCellContent{#2}{\pgfmathresult pt}{colorP4Dark} &
+                \tblDrawCellContent{#3}{\pgfmathresult pt}{colorP4Dark} &
+                \tblDrawCellContent{#4}{\pgfmathresult pt}{colorP4Dark}
+                \\
+            \end{tabular}
+        }
+        ;
+        \draw
+        (tmpTestCellHeightNode.north) coordinate (A)
+        (tmpTestCellHeightNode.south) coordinate (B)
+        ;
+    \end{scope}
+    \calcLength(A,B){tblCellTestHeight}
+}
 
 %% <name> <corner> <oppCorner>
 \newcommand\innerEnclosureNode[4] {
+    \filldraw [
+        #4,
+        rounded corners = \tblRadius,
+        fill = #4,
+        % draw = black,
+    ]
+    (#2) rectangle (#3)
+    ;
     \draw
     let \p{TEMPDIMA} = ($(#2)-(#3)$),
     \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
     \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
     in
-    ($(#2)!0.50!(#3)$)
-    node (#1) [
-        black,
-        rounded corners = \tblRadius,
-        fill = #4,
+    ($(#2)!0.50!(#3)$) ++(4pt, 0)
+    node (tmpNode) [
+        % black,
+        % rounded corners = \tblRadius,
+        % fill = #4,
         % draw = black,
-        inner sep = 0,
+        inner sep = 0pt,
+        outer sep = 0pt,
         minimum height = \n{TEMPDIMY},
         minimum width = \n{TEMPDIMX},
         anchor = center,
+        align = center,
     ] {
-        \pgfmathparse{\n{TEMPDIMX} - 0.7cm}
-        \begin{minipage} {\pgfmathresult pt}
-            \color{colorP4Dark}
-            \centering
-            \scriptsize
-            \ttfamily
-            Finish that thing this thing another thing.
-        \end{minipage}
+        \hfill
+        \pgfmathparse{\n{TEMPDIMX} - \tblCellPad}
+        \tblDrawCellContent {#1} {\pgfmathresult pt} {#4Dark}
     }
     ;
 }
 
-\newcommand\tblDrawRow[1] {
+% date dateColor p1Text p2Text p3Text p4Text
+\newcommand\tblDrawRow[6] {
+
+    \tblDrawTestCellHeight{#3} {#4} {#5} {#6}
+
+    \pgfmathsetmacro{\tblCellMaxHeight}{max(\tblCellTestHeight pt, \tblCellHeight)}
 
     \fill [
-        #1,
+        #2,
         very thick,
         rounded corners = \tblRadius,
     ]
 
     (itmp) coordinate (tmp) coordinate (start)
-    (start) ++(\calSide, -\tblCellHeight) coordinate (end)
+    (start) ++(\calSide, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
     (start) rectangle (end)
-    ++(\tblSpace, \tblCellHeight) coordinate (tmp)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
 
     (end) ++(-\calSide, -\tblSpace) coordinate (itmp)
 
@@ -70,17 +119,17 @@
         font = \Large,
         anchor = center,
     ]
-    {\texttt{05}}
+    {\texttt{#1}}
     ;
 
-    \tblDrawCell {colorP1}
-    \tblDrawCell {colorP2}
-    \tblDrawCell {colorP3}
-    \tblDrawCell {colorP4}
+    \tblDrawCell {#3} {colorP1}
+    \tblDrawCell {#4} {colorP2}
+    \tblDrawCell {#5} {colorP3}
+    \tblDrawCell {#6} {colorP4}
 }
 
-% date day fg
-\newcommand\tblDrawCell[1] {
+% text fgcol
+\newcommand\tblDrawCell[2] {
 
     \fill [
         colorP1,
@@ -89,13 +138,13 @@
     ]
 
     (tmp) coordinate (start)
-    (start) ++(\tblCellWidth, -\tblCellHeight) coordinate (end)
+    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
     % (start) rectangle (end)
-    ++(\tblSpace, \tblCellHeight) coordinate (tmp)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
 
     ;
 
-    \innerEnclosureNode{hai}{start}{end}{#1}
+    \innerEnclosureNode{#1}{start}{end}{#2}
 
 }
 
@@ -233,36 +282,34 @@
 
     \vspace{1cm}
 
-% \begin{NiceTabular}{cccc}
-% \Block[fill=red!15,rounded-corners]{1-*}{}1 & 22 & 34 & 2346 \\
-% 2346 & 2 & 246  & 2 \\
-% \Block[fill=yellow!50,rounded-corners]{2-2}{0} & & 2346111 & 1 \\
-% & & 34 & 463
-% \end{NiceTabular}
-
-
-    % 19. Anjana Roy \hfill KTE22EC020 \\
-    % \vspace{3pt}
-    % 25. Aswatheertha T T \hfill KTE22EC026 \\
-    % \vspace{3pt}
-    % 26. Athira Madhusoodanan \hfill KTE22EC027 \\
-    % \vspace{3pt}
-    % 28. Daniel V Mathew \hfill KTE22EC029 \\
-
     \begin{tikzpicture} [
         ]
 
+
+
+        % \node at (3, 0) {\textValue} ;
+
+
         \draw (0, 0) coordinate (itmp) ;
 
-        \tblDrawRow {colorSun}
-        \tblDrawRow {colorNonSun}
-        \tblDrawRow {colorNonSun}
-        \tblDrawRow {colorNonSun}
-        \tblDrawRow {colorNonSun}
-        \tblDrawRow {colorNonSun}
-        \tblDrawRow {colorNonSun}
+        \tblDrawRow {05} {colorSun} {Really } {wowo} {wnop} {hai}
+        \tblDrawRow {06} {colorNonSun} {Finished something that is really really important. Adding another sentence.} {wowo} {wnop} {hai}
+        \tblDrawRow {07} {colorNonSun} {In the end they are all gone.} {wowo} {wnop} {hai}
+        \tblDrawRow {08} {colorNonSun} {Really } {w s d s d s d s d s d d} {wnop} {Haven't done anything.}
+        \tblDrawRow {09} {colorNonSun} {Really } {wowo} {wnop} {hai}
+        \tblDrawRow {10} {colorNonSun} {Really } {wowo} {wnop} {hai}
+        \tblDrawRow {11} {colorNonSun} {Really } {wowo} {wnop} {hai}
+
+        % \tblDrawRow {colorNonSun}
+        % \tblDrawRow {colorNonSun}
+        % \tblDrawRow {colorNonSun}
+        % \tblDrawRow {colorNonSun}
+        % \tblDrawRow {colorNonSun}
+        % \tblDrawRow {colorNonSun}
 
     \end{tikzpicture}
+
+
 
     % \newcommand\done[0]{
     %     Finish that thing this thing another thing.
@@ -321,6 +368,7 @@
     %
     %
     % \end{tikzpicture}
+
 \end{center}
 
 
