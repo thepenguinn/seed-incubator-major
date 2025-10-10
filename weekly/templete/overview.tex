@@ -16,7 +16,77 @@
 \def\tblSpace{0.014\textwidth}
 \def\tblCellPad{0.4cm}
 
+\def\tblTopPad{10pt}
+
 \pgfmathsetmacro{\tblCellHeight}{\tblCellPaddedHeight - \tblCellPad}
+
+\newcommand\tblDrawTop[0] {
+
+    \draw
+    (itmp) coordinate (previtmp)
+    (0, 0) coordinate (itmp)
+    ;
+
+    \footnotesize
+
+    \draw [
+    ]
+
+    (itmp) coordinate (tmp) coordinate (start)
+    (start) ++(\calSide, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    % (start) rectangle (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    (end) ++(-\calSide, -\tblSpace) coordinate (itmp)
+
+    %%
+
+    (tmp) coordinate (start)
+    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    ($(start)!0.5!(start -| end)$)
+    node [
+        above = \tblTopPad,
+        anchor = south,
+    ] {\color{colorP1Dark}\texttt{ANJANA}}
+
+    (tmp) coordinate (start)
+    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    ($(start)!0.5!(start -| end)$)
+    node [
+        above = \tblTopPad,
+        anchor = south,
+    ] {\color{colorP2Dark}\texttt{ASWATHEERTHA}}
+
+    (tmp) coordinate (start)
+    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    ($(start)!0.5!(start -| end)$)
+    node [
+        above = \tblTopPad,
+        anchor = south,
+    ] {\color{colorP3Dark}\texttt{ATHIRA}}
+
+    (tmp) coordinate (start)
+    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    ($(start)!0.5!(start -| end)$)
+    node [
+        above = \tblTopPad,
+        anchor = south,
+    ] {\color{colorP4Dark}\texttt{DANIEL}}
+
+    ;
+
+    \draw
+    (previtmp) coordinate (itmp)
+    ;
+}
 
 % text width color
 \newcommand\tblDrawCellContent[3] {
@@ -139,7 +209,6 @@
 
     (tmp) coordinate (start)
     (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
-    % (start) rectangle (end)
     ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
 
     ;
@@ -231,39 +300,10 @@
 
 }
 
+\input{gsheet_data.tex}
+
 \chapter{Seed Incubation Plant: Weekly Report}
 \vspace{-0.6cm}
-
-% {\color{colorPastelGreen!60!black} \Large\ttfamily WEEK 01 \hfill OCT 05 -- OCT 11}
-% \vspace{1cm}
-%
-% \begin{tikzpicture} [
-%         titleNode/.style = {
-%             % ultra thick,
-%             rectangle,
-%             draw = white,
-%             fill = colorSun,
-%             rounded corners = 0.5cm,
-%             inner sep = 0.75cm,
-%             outer sep = 0cm,
-%             % text width = 7.5cm,
-%             text centered,
-%         },
-%     ]
-%
-%     \draw [white]
-%     node (title) [titleNode, font = \LARGE] {\textsc{Seed Incubation Plant}}
-%     ;
-%
-%     % \draw [colorNonSunDark]
-%     % node (report) [font = \LARGE, right = 1.4cm of title] {\textsc{Weekly Report}}
-%     % ;
-%
-% \end{tikzpicture}
-% \hfill
-% {\color{colorNonSunDark}\LARGE\textsc{Weekly Report}}
-%
-% \vspace{0.75cm}
 
 \begin{center}
 
@@ -272,102 +312,43 @@
 
         \draw (0, 0) coordinate (tmp) ;
 
-        \calDrawCell{05}{SUN}{white}{colorSun}{colorSunDark} {1} {1} {1} {1}
-
-        \foreach \x/\y in {06/MON,07/TUE,08/WED,09/THU,10/FRI,11/SAT} {
-            \calDrawCell{\x}{\y}{white}{colorNonSun}{colorNonSunDark} {1} {1} {1} {1}
+        \foreach \date/\day/\holiday/\pOne/\pTwo/\pThree/\pFour in \calData {
+            \ifthenelse{\holiday = 1} {
+                \calDrawCell{\date}{\day}{white}{colorSun}{colorSun} {\pOne} {\pTwo} {\pThree} {\pFour}
+            } {
+                \calDrawCell{\date}{\day}{white}{colorNonSun}{colorNonSunDark} {\pOne} {\pTwo} {\pThree} {\pFour}
+            }
         }
 
     \end{tikzpicture}
 
-    \vspace{1cm}
+    \vspace{0.6cm}
+
+    \vfill
 
     \begin{tikzpicture} [
         ]
 
-
-
-        % \node at (3, 0) {\textValue} ;
-
-
         \draw (0, 0) coordinate (itmp) ;
 
-        \tblDrawRow {05} {colorSun} {Really } {wowo} {wnop} {hai}
-        \tblDrawRow {06} {colorNonSun} {Finished something that is really really important. Adding another sentence.} {wowo} {wnop} {hai}
-        \tblDrawRow {07} {colorNonSun} {In the end they are all gone.} {wowo} {wnop} {hai}
-        \tblDrawRow {08} {colorNonSun} {Really } {w s d s d s d s d s d d} {wnop} {Haven't done anything.}
-        \tblDrawRow {09} {colorNonSun} {Really } {wowo} {wnop} {hai}
-        \tblDrawRow {10} {colorNonSun} {Really } {wowo} {wnop} {hai}
-        \tblDrawRow {11} {colorNonSun} {Really } {wowo} {wnop} {hai}
+        \def\tblTopDrawn{0}
 
-        % \tblDrawRow {colorNonSun}
-        % \tblDrawRow {colorNonSun}
-        % \tblDrawRow {colorNonSun}
-        % \tblDrawRow {colorNonSun}
-        % \tblDrawRow {colorNonSun}
-        % \tblDrawRow {colorNonSun}
+        \foreach \date/\holiday/\pOne/\pTwo/\pThree/\pFour in \tblData {
+            \ifthenelse{\holiday = 1} {
+                \tblDrawRow {\date} {colorSun} {\pOne} {\pTwo} {\pThree} {\pFour}
+            } {
+                \tblDrawRow {\date} {colorNonSun} {\pOne} {\pTwo} {\pThree} {\pFour}
+            }
+            \ifthenelse{\tblTopDrawn = 0} {
+                \tblDrawTop
+                \gdef\tblTopDrawn{1}
+            } {
+            }
+        }
 
     \end{tikzpicture}
 
-
-
-    % \newcommand\done[0]{
-    %     Finish that thing this thing another thing.
-    % }
-    %
-    % \small
-    % \renewcommand\arraystretch{1.75}
-    %
-    % \begin{tabularx} {\textwidth} [] {
-    %         % >{\columncolor{colorNonSun!40!white} \Large \centering \ttfamily \arraybackslash}m{\calSide}
-    %         % >{\columncolor{colorP1} \ttfamily \color{colorP1Dark} \centering \arraybackslash}X
-    %         % >{\columncolor{colorP2} \ttfamily \color{colorP2Dark} \centering \arraybackslash}X
-    %         % >{\columncolor{colorP3} \ttfamily \color{colorP3Dark} \centering \arraybackslash}X
-    %         % >{\columncolor{colorP4} \ttfamily \color{colorP4Dark} \centering \arraybackslash}X
-    %         %%
-    %         >{\Large \centering \ttfamily \arraybackslash \color{colorNonSunDark}}m{1cm}
-    %         >{\ttfamily \color{colorP1Dark} \centering \arraybackslash}X
-    %         >{\ttfamily \color{colorP2Dark} \centering \arraybackslash}X
-    %         >{\ttfamily \color{colorP3Dark} \centering \arraybackslash}X
-    %         >{\ttfamily \color{colorP4Dark} \centering \arraybackslash}X
-    %     }
-    %     \arrayrulecolor{colorNonSunDark}
-    %     \toprule
-    %
-    %     & {\color{colorP1Dark} \ttfamily \centering Anjana} &
-    %     {\centering Aswatheertha} &
-    %     {\centering Athira} &
-    %     {\centering Daniel} \\
-    %
-    %     \midrule
-    %
-    %     {\color{colorSun} 05} & \done & \done & \done & \done \\ \midrule
-    %     {\color{colorNonSunDark} 06} & \done & \done & \done & \done \\ \midrule
-    %     {\color{colorNonSunDark} 07} & \done & \done & \done & \done \\ \midrule
-    %     {\color{colorNonSunDark} 08} & \done & \done & \done & \done \\ \midrule
-    %     {\color{colorNonSunDark} 09} & \done & \done & \done & \done \\ \midrule
-    %     {\color{colorNonSunDark} 10} & \done & \done & \done & \done \\ \midrule
-    %     {\color{colorNonSunDark} 11} & \done & \done & \done & \done \\
-    %
-    %     \bottomrule
-    %
-    % \end{tabularx}
-
-
-    % \begin{NiceTabularX}{\textwidth}{X X}
-    %     \CodeBefore
-    %     \arrayrulecolor{gray}
-    %     \Body
-    %     First Row Content & Another cell \\
-    %     \Block{1-1}{This row will be taller.} & Second Row Content \\[2cm]
-    %     Third Row Content & Final cell \\
-    % \end{NiceTabularX}
-
-    % \begin{tikzpicture} [
-    %     ]
-    %
-    %
-    % \end{tikzpicture}
+    \vfill
 
 \end{center}
 
