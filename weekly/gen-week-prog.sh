@@ -5,8 +5,25 @@ Sheet_Range="Sheet1"
 
 Empty_String="Haven't done anything."
 
-# echo "Fetching gsheet..."
-# gsheet csv --read --id "$Sheet_Id" --range "$Sheet_Range" > tmp.csv
+Week_Dir=""
+
+Refined=""
+
+declare -a Anjana
+declare -a Aswatheertha
+declare -a Athira
+declare -a Daniel
+
+declare -a Week_Dates
+declare -a Week_Days=( "SUN" "MON" "TUE" "WED" "THU" "FRI" "SAT" )
+declare -a Week_Holidays=( 1 0 0 0 0 0 0 )
+
+Week_Data=""
+
+echo "Fetching gsheet..."
+if ! gsheet csv --read --id "$Sheet_Id" --range "$Sheet_Range" > tmp.csv ; then
+    echo "Failed to fetch gsheet. Exiting..."
+fi
 
 # $1 -> file name
 replace_comma() {
@@ -42,73 +59,54 @@ replace_comma() {
     done < $1
 }
 
-Refined=$(replace_comma tmp.csv)
-
-declare -a Anjana
-declare -a Aswatheertha
-declare -a Athira
-declare -a Daniel
-
-declare -a Week_Dates
-declare -a Week_Days=( "SUN" "MON" "TUE" "WED" "THU" "FRI" "SAT" )
-declare -a Week_Holidays=( 1 0 0 0 0 0 0 )
-
-Week_Data=""
-
 # $1 -> refined csv data
 fill_week_data() {
 
     local i
     local date_string
+    local tmp
 
     for i in $(seq 0 $(date "+%w") | sort -r)
     do
         date_string="@$(date -d "$((24 * $i)) hours ago" "+%d-%m-%g")"
         Week_Dates+=("$(date -d "$((24 * $i)) hours ago" "+%d")")
-        Week_Data="$Week_Data$(grep "$date_string" <<<"$1")\n"
+        tmp=$(grep "$date_string" <<<"$1")
+        if [[ "$tmp" == "" ]]; then
+            echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Exiting..."
+            exit 1
+        fi
+        Week_Data="$Week_Data$tmp\n"
     done
 
     for i in $(seq $(($(date "+%w") + 1)) 6 | sort -r)
     do
         date_string="@$(date -d "+$((24 * (7 - $i))) hours" "+%d-%m-%g")"
         Week_Dates+=("$(date -d "+$((24 * (7 - $i))) hours" "+%d")")
-        Week_Data="$Week_Data$(grep "$date_string" <<<"$1")\n"
+        tmp=$(grep "$date_string" <<<"$1")
+        if [[ "$tmp" == "" ]]; then
+            echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Exiting..."
+            exit 1
+        fi
+        Week_Data="$Week_Data$tmp\n"
     done
 
     Week_Data=$(printf "${Week_Data}")
 
 }
 
-fill_week_data "$Refined"
-
-while read line
-do
-    Anjana+=("$line")
-done <<<"$(cut -d"@" -f4 <<<"$Week_Data" | sed s/^$/@/g)"
-
-while read line
-do
-    Aswatheertha+=("$line")
-done <<<"$(cut -d"@" -f5 <<<"$Week_Data" | sed s/^$/@/g)"
-
-while read line
-do
-    Athira+=("$line")
-done <<<"$(cut -d"@" -f6 <<<"$Week_Data" | sed s/^$/@/g)"
-
-while read line
-do
-    Daniel+=("$line")
-done <<<"$(cut -d"@" -f7 <<<"$Week_Data" | sed s/^$/@/g)"
-
 gen_gsheet_data() {
 
-    printf "\\def\\week{$(grep -o "@Week [0-9][0-9]@" <<<"$Week_Data" | tr -d "@" | tr '[:lower:]' '[:upper:]')}\n"
+    local i
+
+    printf "\\def\\week{$(tr '[:lower:]' '[:upper:]' <<<"$Week_Dir" | tr "_" " ")}\n"
 
     Start_Month="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%b" | tr '[:lower:]' '[:upper:]')"
     End_Month="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%b" | tr '[:lower:]' '[:upper:]')"
 
-    printf "\\def\\weekRange{${Start_Month} ${Week_Dates[0]} -- ${End_Month} ${Week_Dates[6]}}\n\n"
+    Start_Year="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%G")"
+    End_Year="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%G")"
+
+    printf "\\def\\weekRange{${Start_Month} ${Week_Dates[0]} ${Start_Year} -- ${End_Month} ${Week_Dates[6]} ${End_Year}}\n\n"
 
     printf "\\\newcommand\\calData {\n"
 
@@ -190,4 +188,42 @@ gen_gsheet_data() {
     printf "}\n\n"
 }
 
-gen_gsheet_data > gsheet_data.tex
+Refined=$(replace_comma tmp.csv)
+
+fill_week_data "$Refined"
+
+Week_Dir="$(grep -o "@Week [0-9][0-9]@" <<<"$Week_Data" | tr -d "@" | tr '[:upper:]' '[:lower:]' | tr " " "_")"
+
+mkdir "${Week_Dir}" > /dev/null 2>&1
+
+cp "templete/overview.tex" "${Week_Dir}/"
+cp "templete/preamble.tex" "${Week_Dir}/"
+cp "templete/weekly.tex" "${Week_Dir}/"
+cp "templete/Makefile" "${Week_Dir}/"
+
+while read line
+do
+    Anjana+=("$line")
+done <<<"$(cut -d"@" -f4 <<<"$Week_Data" | sed s/^$/@/g)"
+
+while read line
+do
+    Aswatheertha+=("$line")
+done <<<"$(cut -d"@" -f5 <<<"$Week_Data" | sed s/^$/@/g)"
+
+while read line
+do
+    Athira+=("$line")
+done <<<"$(cut -d"@" -f6 <<<"$Week_Data" | sed s/^$/@/g)"
+
+while read line
+do
+    Daniel+=("$line")
+done <<<"$(cut -d"@" -f7 <<<"$Week_Data" | sed s/^$/@/g)"
+
+gen_gsheet_data > "${Week_Dir}/gsheet_data.tex"
+
+cp tmp.csv "${Week_Dir}/gsheet.csv"
+
+cd "${Week_Dir}" && make
+cd ../
