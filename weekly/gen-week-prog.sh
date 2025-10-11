@@ -241,11 +241,11 @@ add_cmp_status() {
     do
         i=${i##+([[:space:]])}
         i=${i%%+([[:space:]])}
-        idx=${i%:*}
+        idx=${i%-*}
         [[ ! "$idx" == [0-9]* ]] && continue
         idx=$((idx + 0))
         cmp=$(sed "s/^[0-9]*//" <<<"$i")
-        [[ "$cmp" == "" ]] && cmp=100 || cmp=${cmp#:}
+        [[ "$cmp" == "" ]] && cmp=100 || cmp=${cmp#-}
         [[ ! "$cmp" == [0-9]* ]] && cmp=100
         idx=$((idx - 1))
 
