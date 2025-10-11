@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s extglob
+
 Sheet_Id="1BGm3614htXhX2BDocnOUPSdyQIvPXxcwbZQEq4nDHJU"
 Sheet_Range="Sheet1"
 
@@ -18,7 +20,29 @@ declare -a Week_Dates
 declare -a Week_Days=( "SUN" "MON" "TUE" "WED" "THU" "FRI" "SAT" )
 declare -a Week_Holidays=( 1 0 0 0 0 0 0 )
 
+declare -a P1_Week
+declare -a P2_Week
+declare -a P3_Week
+declare -a P4_Week
+
+P1_Cmp_Percent=0
+P2_Cmp_Percent=0
+P3_Cmp_Percent=0
+P4_Cmp_Percent=0
+
+Week_Obj=""
+Week_Cmp=""
+
 Week_Data=""
+
+Start_Month_Num=0
+End_Month_Num=0
+
+Start_Month=""
+End_Month=""
+
+Start_Year=""
+End_Year=""
 
 echo "Fetching gsheet..."
 if ! gsheet csv --read --id "$Sheet_Id" --range "$Sheet_Range" > tmp.csv ; then
@@ -54,7 +78,7 @@ replace_comma() {
             fi
 
         done
-        printf "$refined\n"@ | sed 's/@$//'
+        echo "$refined" | sed 's/@$//'
 
     done < $1
 }
@@ -102,6 +126,9 @@ gen_gsheet_data() {
 
     Start_Month="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%b" | tr '[:lower:]' '[:upper:]')"
     End_Month="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%b" | tr '[:lower:]' '[:upper:]')"
+
+    Start_Month_Num="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%m")"
+    End_Month_Num="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%m")"
 
     Start_Year="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%G")"
     End_Year="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%G")"
@@ -154,27 +181,27 @@ gen_gsheet_data() {
         printf "    ${Week_Dates[$i]}/${Week_Holidays[$i]}"
 
         if [[ ${Anjana[$i]} == "@" ]]; then
-            printf "/$Empty_String"
+            echo -n "/{$Empty_String}"
         else
-            printf "/${Anjana[$i]}"
+            echo -n "/{${Anjana[$i]}}"
         fi
 
         if [[ ${Aswatheertha[$i]} == "@" ]]; then
-            printf "/$Empty_String"
+            echo -n "/{$Empty_String}"
         else
-            printf "/${Aswatheertha[$i]}"
+            echo -n "/{${Aswatheertha[$i]}}"
         fi
 
         if [[ ${Athira[$i]} == "@" ]]; then
-            printf "/$Empty_String"
+            echo -n "/{$Empty_String}"
         else
-            printf "/${Athira[$i]}"
+            echo -n "/{${Athira[$i]}}"
         fi
 
         if [[ ${Daniel[$i]} == "@" ]]; then
-            printf "/$Empty_String"
+            echo -n "/{$Empty_String}"
         else
-            printf "/${Daniel[$i]}"
+            echo -n "/{${Daniel[$i]}}"
         fi
 
         if [[ $i == $((${#Week_Days[@]} - 1)) ]] ; then
@@ -186,6 +213,104 @@ gen_gsheet_data() {
     done
 
     printf "}\n\n"
+}
+
+# array_name obj_str cmp_str percent
+add_cmp_status() {
+
+    declare -n arr="$1"
+    declare -n per="$4"
+    local obj_str="$2"
+    local cmp_str="$3"
+    local IFS="|"
+    local i
+    local idx
+    local cmp
+
+    IFS="|"
+    for i in $obj_str
+    do
+        i=${i##+([[:space:]])}
+        i=${i%%+([[:space:]])}
+        [[ ! ${i} =~ .*\.$ ]] && i="${i}."
+        arr+=($i)
+    done
+
+    IFS=","
+    for i in $cmp_str
+    do
+        i=${i##+([[:space:]])}
+        i=${i%%+([[:space:]])}
+        idx=${i%:*}
+        [[ ! "$idx" == [0-9]* ]] && continue
+        idx=$((idx + 0))
+        cmp=$(sed "s/^[0-9]*//" <<<"$i")
+        [[ "$cmp" == "" ]] && cmp=100 || cmp=${cmp#:}
+        [[ ! "$cmp" == [0-9]* ]] && cmp=100
+        idx=$((idx - 1))
+
+        if [[ ${arr[$idx]} != "" ]]; then
+            arr[$idx]="${arr[$idx]}@$cmp"
+        fi
+    done
+
+    IFS="$"
+    while read i
+    do
+        if [[ ! ${arr[$i]} =~ @[0-9]* ]]; then
+            arr[$i]="${arr[$i]}@0"
+        else
+            per=$((${arr[$i]#*@} + per))
+        fi
+    done <<<"$(seq 0 $((${#arr[@]} - 1)))"
+
+    per=$((per / ${#arr[@]}))
+
+}
+
+# cmd_name array
+gen_p_cmp_data() {
+
+    local cmd=$1
+    declare -n arr=$2
+    local str
+    local cmp
+
+    unset IFS
+
+    printf "\\\newcommand\\$cmd{\n"
+
+    for i in $(seq 0 $((${#arr[@]} - 1)))
+    do
+        str=$(sed "s/%/\\\%/g" <<<"${arr[$i]%@*}")
+        cmp=${arr[$i]#*@}
+        echo -n "    {$str}/$cmp"
+
+        if [[ $i == $((${#arr[@]} - 1)) ]] ; then
+            printf "\n"
+        else
+            printf ",\n"
+        fi
+    done
+
+    printf "}\n\n"
+
+}
+
+gen_completion_data() {
+
+    printf "\\def\pOneProgress{$P2_Cmp_Percent}\n"
+    printf "\\def\pTwoProgress{$P1_Cmp_Percent}\n"
+    printf "\\def\pThreeProgress{$P3_Cmp_Percent}\n"
+    printf "\\def\pFourProgress{$P4_Cmp_Percent}\n"
+
+    printf "\n"
+
+    gen_p_cmp_data pOneCmpData P1_Week
+    gen_p_cmp_data pTwoCmpData P2_Week
+    gen_p_cmp_data pThreeCmpData P3_Week
+    gen_p_cmp_data pFourCmpData P4_Week
+
 }
 
 Refined=$(replace_comma tmp.csv)
@@ -200,6 +325,7 @@ cp "templete/overview.tex" "${Week_Dir}/"
 cp "templete/preamble.tex" "${Week_Dir}/"
 cp "templete/weekly.tex" "${Week_Dir}/"
 cp "templete/Makefile" "${Week_Dir}/"
+cp "templete/completion.tex" "${Week_Dir}/"
 
 while read line
 do
@@ -224,6 +350,17 @@ done <<<"$(cut -d"@" -f7 <<<"$Week_Data" | sed s/^$/@/g)"
 gen_gsheet_data > "${Week_Dir}/gsheet_data.tex"
 
 cp tmp.csv "${Week_Dir}/gsheet.csv"
+
+Week_Obj=$(grep -A 2 "${Week_Dates[6]}-${End_Month_Num}-${End_Year#[0-9][0-9]}" <<<"$Refined" | tail -n 2)
+Week_Cmp=$(tail -n 1 <<<"$Week_Obj")
+Week_Obj=$(head -n 1 <<<"$Week_Obj")
+
+add_cmp_status P2_Week "$(cut -d"@" -f5 <<<"$Week_Obj")" "$(cut -d"@" -f5 <<<"$Week_Cmp")" P2_Cmp_Percent
+add_cmp_status P1_Week "$(cut -d"@" -f4 <<<"$Week_Obj")" "$(cut -d"@" -f4 <<<"$Week_Cmp")" P1_Cmp_Percent
+add_cmp_status P3_Week "$(cut -d"@" -f6 <<<"$Week_Obj")" "$(cut -d"@" -f6 <<<"$Week_Cmp")" P3_Cmp_Percent
+add_cmp_status P4_Week "$(cut -d"@" -f7 <<<"$Week_Obj")" "$(cut -d"@" -f7 <<<"$Week_Cmp")" P4_Cmp_Percent
+
+gen_completion_data > "${Week_Dir}/completion_data.tex"
 
 cd "${Week_Dir}" && make
 cd ../
