@@ -18,6 +18,11 @@ report/*.pdf
 *.bcf
 *.bbl
 *.blg
+*.snm
+*.out
+*.nav
+*.zip
+present.pdf
 *.run.xml
 *.o
 emcu/test/emcu
