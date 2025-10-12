@@ -1,0 +1,82 @@
+\usepackage[margin = 0.7in]{geometry}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{siunitx}
+\usepackage[table]{xcolor}
+\usepackage{ifthen}
+\usepackage{nicematrix}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fp}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{math}
+
+\makeatletter
+\def\calcLength(#1,#2)#3{%
+\pgfpointdiff{\pgfpointanchor{#1}{center}}%
+             {\pgfpointanchor{#2}{center}}%
+\pgf@xa=\pgf@x%
+\pgf@ya=\pgf@y%
+\FPeval\@temp@a{\pgfmath@tonumber{\pgf@xa}}%
+\FPeval\@temp@b{\pgfmath@tonumber{\pgf@ya}}%
+\FPeval\@temp@sum{(\@temp@a*\@temp@a+\@temp@b*\@temp@b)}%
+\FProot{\FPMathLen}{\@temp@sum}{2}%
+\FPround\FPMathLen\FPMathLen5\relax
+\global\expandafter\edef\csname #3\endcsname{\FPMathLen}
+}
+\makeatother
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\definecolor{colorRed} {HTML} {E44E54}
+\colorlet{colorLightRed}{colorRed!70!white}
+
+\colorlet{colorPill}{black!30!white}
+
+\definecolor{colorPastelGreen} {HTML} {97B3AE}
+
+\colorlet{colorNonSun}{white!15!colorPastelGreen}
+\colorlet{colorNonSunDark}{black!30!colorNonSun}
+
+\colorlet{colorSun}{colorLightRed}
+\colorlet{colorSunDark}{black!30!colorSun}
+
+\definecolor{colorP1} {HTML} {D2E0D3}
+\definecolor{colorP2} {HTML} {F0DDD6}
+\definecolor{colorP3} {HTML} {F2C3B9}
+\definecolor{colorP4} {HTML} {D6CBBF}
+
+\colorlet{colorP1Dark}{black!60!colorP1}
+\colorlet{colorP2Dark}{black!60!colorP2}
+\colorlet{colorP3Dark}{black!60!colorP3}
+\colorlet{colorP4Dark}{black!60!colorP4}
+
+\colorlet{colorP1LightDark}{black!10!colorP1}
+\colorlet{colorP2LightDark}{black!10!colorP2}
+\colorlet{colorP3LightDark}{black!10!colorP3}
+\colorlet{colorP4LightDark}{black!10!colorP4}
+
+\titleformat{\chapter} [display]
+{\bfseries\normalfont\huge\filright\sffamily\vspace{-2cm}}
+{\color{colorNonSunDark} \Large\texttt{{\week} \hfill \weekRange} \vspace{1em}}
+{1pc}
+{\color{colorNonSunDark}\titlerule\vspace{1.0em}\scshape\centering\color{colorNonSunDark}}
+[\color{colorNonSunDark}\vspace{0.65em}{\titlerule[1pt]}]
+
+\titleformat{\section}
+{\vspace{-0.35em}\bfseries\normalfont\large\filright\sffamily}
+{\thesection}
+{8pt}
+{\scshape}
+{}
+
+\titleformat{\subsection}
+{\vspace{-0.35em}\bfseries\normalfont\filright\sffamily}
+% {}
+% {0pt}
+{\thesubsection}
+{8pt}
+{\scshape}
+{}
