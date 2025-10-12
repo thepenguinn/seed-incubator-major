@@ -2,10 +2,20 @@
 
 shopt -s extglob
 
+## Const
+
 Sheet_Id="1BGm3614htXhX2BDocnOUPSdyQIvPXxcwbZQEq4nDHJU"
 Sheet_Range="Sheet1"
 
-Empty_String="Haven't done anything."
+declare -a Week_Days=( "SUN" "MON" "TUE" "WED" "THU" "FRI" "SAT" )
+declare -a Week_Holidays=( 1 0 0 0 0 0 0 )
+
+Empty_String=""
+
+## Vars
+
+Week_Offset=0
+Hour_Offset=0
 
 Week_Dir=""
 
@@ -17,8 +27,6 @@ declare -a Athira
 declare -a Daniel
 
 declare -a Week_Dates
-declare -a Week_Days=( "SUN" "MON" "TUE" "WED" "THU" "FRI" "SAT" )
-declare -a Week_Holidays=( 1 0 0 0 0 0 0 )
 
 declare -a P1_Week
 declare -a P2_Week
@@ -87,24 +95,24 @@ fill_week_data() {
 
     for i in $(seq 0 $(date "+%w") | sort -r)
     do
-        date_string="@$(date -d "$((24 * $i)) hours ago" "+%d-%m-%g")"
-        Week_Dates+=("$(date -d "$((24 * $i)) hours ago" "+%d")")
+        date_string="@$(date -d "$((24 * $i + $Hour_Offset)) hours" "+%d-%m-%g")"
+        Week_Dates+=("$(date -d "$((24 * $i + $Hour_Offset)) hours" "+%d")")
         tmp=$(grep "$date_string" <<<"$1")
         if [[ "$tmp" == "" ]]; then
-            echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Exiting..."
-            exit 1
+            echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Returning..."
+            return 1
         fi
         Week_Data="$Week_Data$tmp\n"
     done
 
     for i in $(seq $(($(date "+%w") + 1)) 6 | sort -r)
     do
-        date_string="@$(date -d "+$((24 * (7 - $i))) hours" "+%d-%m-%g")"
-        Week_Dates+=("$(date -d "+$((24 * (7 - $i))) hours" "+%d")")
+        date_string="@$(date -d "$((24 * (7 - $i) + $Hour_Offset)) hours" "+%d-%m-%g")"
+        Week_Dates+=("$(date -d "$((24 * (7 - $i) + $Hour_Offset)) hours" "+%d")")
         tmp=$(grep "$date_string" <<<"$1")
         if [[ "$tmp" == "" ]]; then
-            echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Exiting..."
-            exit 1
+            echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Returning..."
+            return 1
         fi
         Week_Data="$Week_Data$tmp\n"
     done
@@ -119,14 +127,14 @@ gen_gsheet_data() {
 
     printf "\\def\\week{$(tr '[:lower:]' '[:upper:]' <<<"$Week_Dir" | tr "_" " ")}\n"
 
-    Start_Month="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%b" | tr '[:lower:]' '[:upper:]')"
-    End_Month="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%b" | tr '[:lower:]' '[:upper:]')"
+    Start_Month="$(date -d "$((-24 * $(date "+%w") + $Hour_Offset)) hours" "+%b" | tr '[:lower:]' '[:upper:]')"
+    End_Month="$(date -d "$((24 * (6 - $(date "+%w")) + $Hour_Offset)) hours" "+%b" | tr '[:lower:]' '[:upper:]')"
 
-    Start_Month_Num="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%m")"
-    End_Month_Num="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%m")"
+    Start_Month_Num="$(date -d "$((-24 * $(date "+%w") + $Hour_Offset)) hours" "+%m")"
+    End_Month_Num="$(date -d "$((24 * (6 - $(date "+%w")) + $Hour_Offset)) hours" "+%m")"
 
-    Start_Year="$(date -d "$((24 * $(date "+%w"))) hours ago" "+%G")"
-    End_Year="$(date -d "+$((24 * (6 - $(date "+%w")))) hours" "+%G")"
+    Start_Year="$(date -d "$((-24 * $(date "+%w") + $Hour_Offset)) hours" "+%G")"
+    End_Year="$(date -d "$((24 * (6 - $(date "+%w")) + $Hour_Offset)) hours" "+%G")"
 
     printf "\\def\\weekRange{${Start_Month} ${Week_Dates[0]} ${Start_Year} -- ${End_Month} ${Week_Dates[6]} ${End_Year}}\n\n"
 
@@ -237,11 +245,30 @@ add_cmp_status() {
         i=${i##+([[:space:]])}
         i=${i%%+([[:space:]])}
         idx=${i%-*}
-        [[ ! "$idx" == [0-9]* ]] && continue
+
+        if [[ ! "$idx" == [0-9]* ]]; then
+            continue
+        fi
+
         idx=$((idx + 0))
         cmp=$(sed "s/^[0-9]*//" <<<"$i")
-        [[ "$cmp" == "" ]] && cmp=100 || cmp=${cmp#-}
-        [[ ! "$cmp" == [0-9]* ]] && cmp=100
+
+        if [[ "$cmp" == "" ]]; then
+            cmp=100
+        else
+            cmp=${cmp#-}
+        fi
+
+        if [[ ! "$cmp" == [0-9]* ]]; then
+            cmp=100
+        fi
+
+        if [[ $cmp -gt 100 ]]; then
+            cmp=100
+        elif [[ $cmp -lt 0 ]]; then
+            cmp=0
+        fi
+
         idx=$((idx - 1))
 
         if [[ ${arr[$idx]} != "" ]]; then
@@ -279,11 +306,6 @@ gen_p_cmp_data() {
     do
         str=$(sed "s/%/\\\%/g" <<<"${arr[$i]%@*}")
         cmp=${arr[$i]#*@}
-        if [[ $cmp -gt 100 ]]; then
-            cmp=100
-        elif [[ $cmp -lt 0 ]]; then
-            cmp=0
-        fi
         echo -n "    {$str}/$cmp"
 
         if [[ $i == $((${#arr[@]} - 1)) ]] ; then
@@ -313,59 +335,133 @@ gen_completion_data() {
 
 }
 
+# arr field
+fill_weekly_work() {
+
+    declare -n arr=$1
+    local field=$2
+    local line
+    unset IFS
+
+    while read line
+    do
+        arr+=("$line")
+    done <<<"$(cut -d"@" -f$field <<<"$Week_Data" | sed s/^$/@/g)"
+
+}
+
+gen_weekly_report() {
+
+    Hour_Offset=$((Week_Offset * 7 * 24))
+
+    Refined=$(replace_comma tmp.csv)
+
+    if ! fill_week_data "$Refined"; then
+        return 1
+    fi
+
+    Week_Dir="$(grep -o "@Week [0-9][0-9]@" <<<"$Week_Data" | tr -d "@" | tr '[:upper:]' '[:lower:]' | tr " " "_")"
+
+    echo Generating files for $Week_Dir
+
+    mkdir "${Week_Dir}" > /dev/null 2>&1
+
+    cp "templete/overview.tex" "${Week_Dir}/"
+    cp "templete/preamble.tex" "${Week_Dir}/"
+    cp "templete/weekly.tex" "${Week_Dir}/"
+    cp "templete/Makefile" "${Week_Dir}/"
+    cp "templete/completion.tex" "${Week_Dir}/"
+
+    fill_weekly_work Anjana 4
+    fill_weekly_work Aswatheertha 5
+    fill_weekly_work Athira 6
+    fill_weekly_work Daniel 7
+
+    gen_gsheet_data > "${Week_Dir}/gsheet_data.tex"
+
+    cp tmp.csv "${Week_Dir}/gsheet.csv"
+
+    Week_Obj=$(grep -A 2 "${Week_Dates[6]}-${End_Month_Num}-${End_Year#[0-9][0-9]}" <<<"$Refined" | tail -n 2)
+    Week_Cmp=$(tail -n 1 <<<"$Week_Obj")
+    Week_Obj=$(head -n 1 <<<"$Week_Obj")
+
+    add_cmp_status P2_Week "$(cut -d"@" -f5 <<<"$Week_Obj")" "$(cut -d"@" -f5 <<<"$Week_Cmp")" P2_Cmp_Percent
+    add_cmp_status P1_Week "$(cut -d"@" -f4 <<<"$Week_Obj")" "$(cut -d"@" -f4 <<<"$Week_Cmp")" P1_Cmp_Percent
+    add_cmp_status P3_Week "$(cut -d"@" -f6 <<<"$Week_Obj")" "$(cut -d"@" -f6 <<<"$Week_Cmp")" P3_Cmp_Percent
+    add_cmp_status P4_Week "$(cut -d"@" -f7 <<<"$Week_Obj")" "$(cut -d"@" -f7 <<<"$Week_Cmp")" P4_Cmp_Percent
+
+    gen_completion_data > "${Week_Dir}/completion_data.tex"
+
+    cd "${Week_Dir}" && make
+    cd ../
+
+}
+
+Week_Start=0
+Week_End=0
+
+if [[ $1 == "-w" || $1 == "--week" ]]; then
+    if [[ ! -z $2 ]]; then
+        Week_Start=$2
+    fi
+    if [[ ! -z $3 ]]; then
+        if [[ $3 -gt $Week_Start ]]; then
+            Week_End=$3
+        else
+            Week_End=$Week_Start
+        fi
+    else
+        Week_End=$Week_Start
+    fi
+fi
+
 echo "Fetching gsheet..."
 if ! gsheet csv --read --id "$Sheet_Id" --range "$Sheet_Range" > tmp.csv ; then
     echo "Failed to fetch gsheet. Exiting..."
 fi
 
-Refined=$(replace_comma tmp.csv)
-
-fill_week_data "$Refined"
-
-Week_Dir="$(grep -o "@Week [0-9][0-9]@" <<<"$Week_Data" | tr -d "@" | tr '[:upper:]' '[:lower:]' | tr " " "_")"
-
-mkdir "${Week_Dir}" > /dev/null 2>&1
-
-cp "templete/overview.tex" "${Week_Dir}/"
-cp "templete/preamble.tex" "${Week_Dir}/"
-cp "templete/weekly.tex" "${Week_Dir}/"
-cp "templete/Makefile" "${Week_Dir}/"
-cp "templete/completion.tex" "${Week_Dir}/"
-
-while read line
+for i in $(seq $Week_Start $Week_End)
 do
-    Anjana+=("$line")
-done <<<"$(cut -d"@" -f4 <<<"$Week_Data" | sed s/^$/@/g)"
 
-while read line
-do
-    Aswatheertha+=("$line")
-done <<<"$(cut -d"@" -f5 <<<"$Week_Data" | sed s/^$/@/g)"
+    Week_Offset=$i
 
-while read line
-do
-    Athira+=("$line")
-done <<<"$(cut -d"@" -f6 <<<"$Week_Data" | sed s/^$/@/g)"
+    Week_Dir=""
 
-while read line
-do
-    Daniel+=("$line")
-done <<<"$(cut -d"@" -f7 <<<"$Week_Data" | sed s/^$/@/g)"
+    Refined=""
 
-gen_gsheet_data > "${Week_Dir}/gsheet_data.tex"
+    unset Anjana
+    unset Aswatheertha
+    unset Athira
+    unset Daniel
 
-cp tmp.csv "${Week_Dir}/gsheet.csv"
+    unset Week_Dates
 
-Week_Obj=$(grep -A 2 "${Week_Dates[6]}-${End_Month_Num}-${End_Year#[0-9][0-9]}" <<<"$Refined" | tail -n 2)
-Week_Cmp=$(tail -n 1 <<<"$Week_Obj")
-Week_Obj=$(head -n 1 <<<"$Week_Obj")
+    unset P2_Week
+    unset P1_Week
+    unset P3_Week
+    unset P4_Week
 
-add_cmp_status P2_Week "$(cut -d"@" -f5 <<<"$Week_Obj")" "$(cut -d"@" -f5 <<<"$Week_Cmp")" P2_Cmp_Percent
-add_cmp_status P1_Week "$(cut -d"@" -f4 <<<"$Week_Obj")" "$(cut -d"@" -f4 <<<"$Week_Cmp")" P1_Cmp_Percent
-add_cmp_status P3_Week "$(cut -d"@" -f6 <<<"$Week_Obj")" "$(cut -d"@" -f6 <<<"$Week_Cmp")" P3_Cmp_Percent
-add_cmp_status P4_Week "$(cut -d"@" -f7 <<<"$Week_Obj")" "$(cut -d"@" -f7 <<<"$Week_Cmp")" P4_Cmp_Percent
+    P1_Cmp_Percent=0
+    P2_Cmp_Percent=0
+    P3_Cmp_Percent=0
+    P4_Cmp_Percent=0
 
-gen_completion_data > "${Week_Dir}/completion_data.tex"
+    Week_Obj=""
+    Week_Cmp=""
 
-cd "${Week_Dir}" && make
-cd ../
+    Week_Data=""
+
+    Start_Month_Num=0
+    End_Month_Num=0
+
+    Start_Month=""
+    End_Month=""
+
+    Start_Year=""
+    End_Year=""
+
+    gen_weekly_report
+
+done
+
+exit 0
