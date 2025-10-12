@@ -44,11 +44,6 @@ End_Month=""
 Start_Year=""
 End_Year=""
 
-echo "Fetching gsheet..."
-if ! gsheet csv --read --id "$Sheet_Id" --range "$Sheet_Range" > tmp.csv ; then
-    echo "Failed to fetch gsheet. Exiting..."
-fi
-
 # $1 -> file name
 replace_comma() {
     local word
@@ -284,6 +279,11 @@ gen_p_cmp_data() {
     do
         str=$(sed "s/%/\\\%/g" <<<"${arr[$i]%@*}")
         cmp=${arr[$i]#*@}
+        if [[ $cmp -gt 100 ]]; then
+            cmp=100
+        elif [[ $cmp -lt 0 ]]; then
+            cmp=0
+        fi
         echo -n "    {$str}/$cmp"
 
         if [[ $i == $((${#arr[@]} - 1)) ]] ; then
@@ -312,6 +312,11 @@ gen_completion_data() {
     gen_p_cmp_data pFourCmpData P4_Week
 
 }
+
+echo "Fetching gsheet..."
+if ! gsheet csv --read --id "$Sheet_Id" --range "$Sheet_Range" > tmp.csv ; then
+    echo "Failed to fetch gsheet. Exiting..."
+fi
 
 Refined=$(replace_comma tmp.csv)
 
