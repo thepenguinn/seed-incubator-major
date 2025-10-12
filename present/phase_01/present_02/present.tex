@@ -1,0 +1,1163 @@
+\documentclass{beamer}
+
+% \input{../preamble.tex}
+
+% \usepackage{minted}
+
+\usepackage[size=custom,width=16,height=9,scale=0.35]{beamerposter}
+
+\usepackage[T1]{fontenc}
+% \usepackage[a4paper, margin = 1in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tabularx}
+% \usepackage{ebgaramond}
+\usepackage{tikz}
+\usepackage{blindtext}
+\usepackage{tcolorbox}
+\usepackage{svg}
+% \usepackage{fontspec}
+\usepackage{fontspec}
+\usepackage{booktabs}
+
+\usepackage[style = ieee]{biblatex}
+
+% \setmonofont{Vaulto-ExtraBold.ttf}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta, positioning}
+
+
+% \usefonttheme{serif}
+% \usepackage{beamercolorthemedracula}
+
+\addbibresource{abstract.bib} %Import the bibliography file
+
+\usetheme{metropolis}
+\usecolortheme{seedinc}
+
+\definecolor{forestbg}      {RGB} {31, 30, 24}
+
+\title{Seed Incubation Plant}
+\date{\today}
+\def\author{
+    19. Anjana Roy \hfill KTE22EC020 \\
+    \vspace{3pt}
+    25. Aswatheertha T T \hfill KTE22EC026 \\
+    \vspace{3pt}
+    26. Athira Madhusoodanan \hfill KTE22EC027 \\
+    \vspace{3pt}
+    28. Daniel V Mathew \hfill KTE22EC029 \\
+}
+
+\def\supervisor{
+    Prof. David Solomon George
+}
+
+\def\leafColorPrimaryName{Sage}
+\def\leafColorPrimaryRGB{138, 184, 114}
+\def\leafColorPrimaryHex{\#8AB872}
+\definecolor{leafColorPrimary} {RGB} {\leafColorPrimaryRGB}
+%%
+\def\leafColorSecondaryName{Cactus Spike}
+\def\leafColorSecondaryRGB{204, 224, 153}
+\def\leafColorSecondaryHex{\#CCE099}
+\definecolor{leafColorSecondary} {RGB} {\leafColorSecondaryRGB}
+
+
+\newcommand\tableBox[2] {
+    \begin{tcolorbox}[
+            coltitle = leafColorPrimary,
+            colbacktitle = leafColorSecondary,
+            colback = leafColorSecondary,
+            colframe = leafColorSecondary,
+            title=#1,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.1\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.9\textwidth}
+            #2
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\setbeamertemplate{background} {
+    \begin{tikzpicture} [remember picture, overlay]
+        \draw [opacity = 0.15, black]
+        (current page.south east) ++(-3.5, 1)
+        node (logo) [black, inner sep = 0pt, anchor = center] {
+            \begin{minipage}{11cm}
+                \includegraphics[width = 11cm]{icon_line.pdf}
+            \end{minipage}
+        }
+        ;
+    \end{tikzpicture}
+}
+
+% \institute{RIT, Kottayam}
+
+\renewcommand{\maketitle} {
+
+    \vfill
+
+    \begin{tikzpicture} [remember picture, overlay]
+
+        \draw
+        (current page.north) ++(0, -1cm)
+        node (title) [inner sep = 0pt, anchor = north] {
+
+            \begin{minipage} {\textwidth}
+                {
+                    {\color{leafColorSecondary} \rule{\textwidth}{0.5pt}}
+                    \vspace{3pt}
+
+                    {\huge \scshape Seed Incubation Plant}
+
+                    \vspace{3pt}
+                    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+                }
+
+            \end{minipage}
+
+        }
+        ;
+
+        \draw
+
+        (title.south)
+        node (group) [inner sep = 0pt, anchor = north] {
+
+            \begin{minipage} {\textwidth}
+                {\scshape group 10}
+            \end{minipage}
+
+        }
+        ;
+
+        \draw
+
+        (current page.south) ++(0, 1cm)
+
+        node (something) [inner sep = 0pt, anchor = south] {
+
+            \begin{minipage}[b] {\textwidth}
+
+                \small
+                Team Members
+                \hfill
+                Guide Name \& signature
+
+                \vspace{8pt}
+
+                \noindent
+                {\begin{minipage}[b] {0.375\textwidth}
+                    \vfill
+                    \raggedright
+                    {\linespread{1.2} \bfseries \author}
+                \end{minipage}
+                \hfill
+                \begin{minipage}[b] {0.4\textwidth}
+                    \vfill
+                    \raggedleft
+                    {\linespread{1.2} \bfseries \supervisor}
+                \end{minipage}}
+
+            \end{minipage}
+        }
+
+        ;
+
+    \end{tikzpicture}
+
+    \vfill
+
+}
+
+\def\objImageRadius{1.75cm}
+\def\objImageWidth{2.625cm}
+
+\newcommand\includeObjImage[4]{
+    \begin{tikzpicture} [
+            transform shape,
+            scale = 1,
+        ]
+
+        \draw
+        (0, 0) coordinate (botLeftCorner)
+        (botLeftCorner) ++(#2, #2) coordinate (topRightCorner)
+
+        (botLeftCorner |- topRightCorner) coordinate (topLeftCorner)
+        (botLeftCorner -| topRightCorner) coordinate (botRightCorner)
+        ;
+
+        \filldraw [
+            leafColorSecondary,
+            rounded corners = #4,
+        ]
+        (botLeftCorner) rectangle (topRightCorner)
+        % circle (\objImageRadius)
+        ;
+
+        \draw [
+            ultra thick,
+            leafColorPrimary,
+            rounded corners = #4,
+        ]
+        (botLeftCorner) rectangle (topRightCorner)
+        % circle (\objImageRadius)
+        ;
+
+        \draw
+
+        ($(botLeftCorner)!0.5!(topRightCorner)$)
+        node [
+            anchor = center,
+        ] {
+            \includegraphics[width = #3]{#1}
+        }
+        ;
+
+    \end{tikzpicture}
+
+    \thispagestyle{empty}
+}
+
+\tikzset{
+    block/.style={
+        rectangle,
+        draw,
+        rounded corners=0.1cm,
+        minimum width=4cm,
+        minimum height=0.75cm,
+        % outer sep = 0.15cm,
+        align=center
+    },
+    arrow/.style={
+        -{Latex},
+        thick
+    }
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame} {Introduction}
+
+    {
+        \begin{minipage} {0.415\textwidth}
+            \begin{center}
+                \includeObjImage{ext_right.png}{5}{4.5cm}{0.5cm}
+            \end{center}
+        \end{minipage}
+        \begin{minipage} {0.55\textwidth}
+
+            \begin{itemize}
+                \item \textbf{Seed Incubation Plant} aims to optimize the germination and
+                    growth process of seeds by providing a controlled and
+                    monitored environment.
+
+                \item \textbf{Environment Monitoring and Control Unit} (EMCU) part of the
+                    incubator takes care of environmental factors such as temperature,
+                    humidity, lighting, $\mbox{O}_2$, etc.
+
+                \item \textbf{Growth Monitoring Unit} (GMU) closely monitors and collects growth related
+                    information from each of the germinating saplings.
+
+                \item With the help of \textbf{SINC}, a companion app, the status of the incubator
+                    can be closely watched.
+            \end{itemize}
+
+        \end{minipage}
+    }
+
+\end{frame}
+
+\begin{frame} {Objectives}
+
+    \begin{center}
+        \begin{tabularx} {\textwidth} {
+                *{3}{>{\centering \arraybackslash}X}
+            }
+
+            \includeObjImage{enclosure.png}{4}{2.825cm}{0.5cm}
+            &
+            \includeObjImage{growth.png}{4}{2.625cm}{0.5cm}
+            &
+            \includeObjImage{sinc.png}{4}{3.025cm}{0.5cm}
+            \\
+
+            \begin{itemize}
+                \item Implement the sensor and actuator sides of the EMCU, thus
+                    driving it into a cohesive system.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item Implement an ESP32 CAM based Growth Monitoring Unit (GMU) powered by
+                    a TinyML model.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item Take the development of SINC, a companion app, to the alpha
+                    stage.
+            \end{itemize}
+            \\
+
+        \end{tabularx}
+    \end{center}
+
+
+\end{frame}
+
+\begin{frame} {Block Diagram: Overall}
+
+    \begin{minipage} {0.29\textwidth}
+        \textbf{Major Components}
+        \vspace{0.25cm}
+        \renewcommand\arraystretch{1.5}
+        \begin{itemize}
+            \item EMCU
+            \item SINC
+            \item GMU
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage} {0.7\textwidth}
+        \begin{center}
+            \includegraphics[width = \textwidth]{overall_block_diagram.pdf}
+        \end{center}
+    \end{minipage}
+
+
+\end{frame}
+
+\begin{frame}{Block Diagram: Sinc App}
+    \centering
+    \vspace{0.75cm}
+
+    \begin{tikzpicture}[
+            scale = 0.6,
+            transform shape,
+            node distance=1.4cm and 2cm
+        ]
+
+        % Top Layer
+        \node[block] (app) {SINC App};
+        \node[block, below=1.0cm of app] (ui) {User Interface};
+
+        % Second Layer
+        \node[block, below left=1.5cm and 2.0cm of ui] (home) {Home / Overview Page};
+        \node[block, below=of ui] (controlcenter) {Control Center};
+        \node[block, below right=1.5cm and 6.5cm of ui] (incsettings) {Incubator Settings};
+
+        % Third Layer
+        \node[block, below=1.0cm of home] (overview) {Overview of the Incubator};
+        \node[block, below=of controlcenter] (widgets) {List of Widgets};
+        \node[block, below=1.0cm of incsettings] (rawcontrols) {Raw Controls};
+
+        % Fourth Layer
+        \node[block, below left=1.8cm and 0.5cm of widgets] (temphum) {Temperature and Humidity};
+        \node[block, below right=1.8cm and 0.5cm of widgets] (lighting) {Lighting};
+        \node[block, below=1.0cm of rawcontrols] (actuator) {Actuator Control};
+
+        % Fifth Layer
+        \node[block, below left=3.8cm and -1.5cm of widgets] (peltier) {Peltier Control};
+        \node[block, below right=3.8cm and -1.5cm of widgets] (humidifier) {Humidifier Control};
+        \node[block, below left=1.4cm and -1.1cm of actuator] (panelmotors) {Panel Motors Control};
+        \node[block, below right=1.4cm and -0.8cm of actuator] (hatchmotors) {Hatch Motors Control};
+
+        % Connections
+        \draw[arrow] (app) -- (ui);
+        \draw[arrow] (ui) -- (home);
+        \draw[arrow] (ui) -- (controlcenter);
+        \draw[arrow] (ui) -- (incsettings);
+
+        \draw[arrow] (home) -- (overview);
+        \draw[arrow] (controlcenter) -- (widgets);
+        \draw[arrow] (incsettings) -- (rawcontrols);
+
+        \draw[arrow] (widgets) -- (temphum);
+        \draw[arrow] (widgets) -- (lighting);
+        \draw[arrow] (rawcontrols) -- (actuator);
+
+        \draw[arrow] (widgets) -- (peltier);
+        \draw[arrow] (widgets) -- (humidifier);
+        \draw[arrow] (actuator) -- (panelmotors);
+        \draw[arrow] (actuator) -- (hatchmotors);
+
+    \end{tikzpicture}
+
+
+    % \resizebox{1.0\textwidth}{0.8\textheight}{
+    % } % end resizebox
+
+\end{frame}
+
+\begin{frame} {Block Diagram: EMCU}
+
+    \begin{center}
+
+        \includegraphics[width = 0.9\textwidth]{emcu_block_diagram.pdf}
+
+    \end{center}
+
+\end{frame}
+
+\begin{frame} {Block Diagram: GMU - TinyML}
+
+    \begin{center}
+
+        \includegraphics[width = \textwidth]{tinyml.png}
+
+    \end{center}
+
+
+\end{frame}
+
+\begin{frame}{Block Diagram: GMU - Rail System Architecture}
+
+    % \begin{center}
+    %
+    % \end{center}
+
+    \begin{figure}
+        \centering
+        \includegraphics[
+            height = 0.8\textheight,
+            width=0.8\textwidth,
+            keepaspectratio,
+        ]{gmu/rail3.drawio.png}
+        % \textbf{GMU Rail System Architecture}
+    \end{figure}
+\end{frame}
+
+% \begin{frame} {Block Diagram: GMU - Hardware}
+%
+%     \texttt{TODO:}
+%
+% \end{frame}
+
+\begin{frame} {Literature Review: Paper 1}
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries}m{2.0cm}X
+        }
+
+        Title: & \textbf{Internet of Things (IoT) Based Greenhouse Monitoring and Controlling System Using ESP-32}
+        \\
+
+        Authors: & J. Seetaram, A. Bhavya, C. Tarun and V. Sameera
+        \\
+
+        DOI: & \texttt{10.17148/IJARCCE.2024.13605}
+
+        \\
+
+        Publisher: & \textit{International Journal of Advanced Research in Computer and Communication Engineering} \vfill
+        \\
+
+        Result: &
+        The system successfully performed real-time monitoring and automated environmental control.
+        Demonstrated fully autonomous and remote operation, reducing human intervention.
+
+        \\
+
+    \end{tabularx}
+
+    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+
+    \textbf{Relevant Features \& Insights:}
+
+    \begin{itemize}
+        \item IoT-enabled remote control with real-time sensor data visuals.
+
+        \item User-friendly UI designed on Blynk for farmers.
+
+        \item Focus on sustainability, resource optimization, and precision agriculture.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame} {Literature Review: Paper 2}
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries}m{2.0cm}X
+        }
+
+        Title: & \textbf{Non Plant Specific Smart Greenhouse with Convective Drying Unit}
+        \\
+
+        Authors: & J. Mukherjee et al.
+        \\
+
+        DOI: & \texttt{10.1109/TQCEBT59414.2024.10545221}
+
+        \\
+
+        Publisher: & \textit{International Conference on Trends in Quantum Computing and Emerging Business Technologies (TQCEBT), 2024} \vfill
+        \\
+
+        Result: &
+        Developed a smart greenhouse that included an integrated convective drying system, supporting a variety
+        of plant types and optimizing both growth and post-harvest processing.
+
+        \\
+
+    \end{tabularx}
+
+    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+
+    \textbf{Relevant Features \& Insights:}
+
+    \begin{itemize}
+
+        \item Unique addition of convective drying unit supporting post-harvest processing within the smart greenhouse.
+
+        \item Designed for versatility—accommodates diverse crops beyond plant-specific solutions.
+
+        \item Included a comprehensive control mechanism for climate and drying, with IoT-based user monitoring.
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame} {Literature Review: Paper 3}
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries}m{2.0cm}X
+        }
+
+        Title: & \textbf{Real-Time Environmental Monitoring in Smart Agriculture Using TinyML and Machine Learning}
+        \\
+
+        Authors: & D. S. Kulkarni and S. Bhudhwale
+        \\
+
+        DOI: & \texttt{10.1109/ICISAA62385.2024.10829307}
+
+        \\
+
+        Publisher: & \textit{2024 International Conference on Intelligent Systems and Advanced Applications (ICISAA), 2024} \vfill
+        \\
+
+        Result: &
+        Implemented real-time environmental monitoring in smart agriculture using TinyML, enabling local data
+        processing and actionable insights directly on microcontroller hardware for improved responsiveness and minimized latency.
+
+        \\
+
+    \end{tabularx}
+
+    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+
+    \textbf{Relevant Features \& Insights:}
+
+    \begin{itemize}
+
+        \item Leveraged TinyML models on edge devices for on-site data analysis (no constant cloud dependence).
+
+        \item Enhanced detection and immediate response to abnormal environmental conditions, aiding in automation and safety.
+
+        \item Demonstrated practical benefits in water and resource optimization, supporting sustainable agricultural practice.
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame} {Literature Review: Paper 4}
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries}m{2.0cm}X
+        }
+
+        Title: & \textbf{TinyML for Smart Agriculture: Comparative Analysis of TinyML Platforms and Practical Deployment for Maize Leaf Disease Identification}
+        \\
+
+        Authors: & Dan Gookyi et al.
+        \\
+
+        DOI: & \texttt{10.1016/j.atech.2024.100490}
+
+        \\
+
+        Publisher: & \textit{SSRN (Preprint), April 2024} \vfill
+        \\
+
+        Result: &
+        Achieved high-accuracy (94.6\%) real-time crop disease identification by deploying optimized
+        CNN models on Arduino BLE 33 Sense, validating feasibility of TinyML-based field diagnosis
+        with fast inference and minimal resources.
+
+        \\
+
+    \end{tabularx}
+
+    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+
+    \textbf{Relevant Features \& Insights:}
+
+    \begin{itemize}
+
+        \item Direct comparison of Edge Impulse and TensorFlow Lite for TinyML, with Edge Impulse offering better usability and memory, TensorFlow higher accuracy.
+
+        \item Large image dataset, rapid 7.6ms inference on microcontrollers.
+
+        \item Demands no cloud or high-power resources—enabling rich, offline field use, especially in resource-limited areas.
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame} {Literature Review: Paper 5}
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries}m{2.0cm}X
+        }
+
+        Title: & \textbf{TinyML for the Detection of Plant Diseases in Resource-Constrained Areas within West Africa}
+        \\
+
+        Authors: & Chinwe Ibegbu and G. Ayorkor Korsah
+        \\
+
+        DOI: & \texttt{10.1109/ICAST61769.2024.10856464}
+
+        \\
+
+        Publisher: & \textit{IEEE 9th International Conference on Adaptive Science and Technology (ICAST), 2024} \vfill
+        \\
+
+        Result: &
+
+        Developed and field-tested a TinyML-based plant disease detection system for
+        rural West African farmers, enabling offline, low-cost inference. While
+        slightly less accurate than cloud solutions, it outperformed them in
+        accessibility and usability within local constraints.
+
+        \\
+
+    \end{tabularx}
+
+    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+
+    \textbf{Relevant Features \& Insights:}
+
+    \begin{itemize}
+
+        \item  Used ESP32-CAM, Edge Impulse, and a Cassava leaf image dataset for on-device ML.
+        \item  Compared TinyML system against Plantix cloud app and human experts; recommended cloud-trained/offline-inferred hybrid for best balance.
+        \item  Addressed cost, internet inaccessibility, language, user experience, and dataset sourcing—key for real-world adoption in Ghana and similar contexts.
+
+    \end{itemize}
+
+\end{frame}
+
+% \begin{frame} {Work Plan}
+%
+%     \renewcommand\arraystretch{1.75}
+%     \renewcommand\midrule{{\color{leafColorSecondary} \vspace{-8pt}\rule{\textwidth}{0.75pt}\vspace{8pt}}}
+%
+%
+%     \begin{tabularx} {\textwidth} {
+%             >{\bfseries \raggedright \arraybackslash}m{2cm} >{\raggedright \arraybackslash}X
+%         }
+%
+%         Week 01 - 02
+%         &
+%         Refinement of Enclosure design, data collection for TinyML model, and setting up
+%         the specification for the communication protocol and UI of SINC.
+%         \\ \midrule
+%
+%         Week 03 - 04
+%         &
+%         Reimplement the Electronics Bay, including the connections that binds Multiplexer and
+%         Relay boards. Implement the outer frame of the Enclosure. Starts developing GMU and
+%         SINC app.
+%         \\ \midrule
+%
+%         Week 05 - 06
+%         &
+%         Implement Thermal / Exhaust system along with the Top and Side Hatches. Testing
+%         the User Interface of SINC app.
+%         \\ \midrule
+%
+%         Week 07 - 08
+%         &
+%         Implement Air Moisture and Lighting systems along with the Rail Mechanism for GMU. Testing
+%         of TinyML model on ESP32 CAM module. Testing of SINC app to its full specification.
+%         \\ \midrule
+%
+%         Week 09
+%         &
+%         Integration of subsystems and further testing. Report preparation and documentation.
+%
+%         \\
+%
+%     \end{tabularx}
+%
+% \end{frame}
+
+%Budget:EMCU
+\begin{frame} {Budget: EMCU}
+
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}m{5cm}
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            % >{\bfseries \raggedright \arraybackslash}m{2cm} >{\raggedright \arraybackslash}X
+        }
+
+        \toprule
+
+        Item   & Count & Price Per Item & Total Price \\
+        \midrule
+
+        Plywood 4x6ft 9mm & 1 & 1190 & 1190 \\
+        Wood Glue / Fasteners / Nails &  &  & 418 \\
+        Waterproof Plywood Coating & 1 & 350 & 350 \\
+        2x4ft 5mm Foam Board & 7 & 250 & 1750 \\
+        2x4ft 3mm Foam Board & 1 & 180 & 180 \\
+        Flex Kwik & 6 & 55 & 330 \\
+        Limit Switch & 22 & 12 & 264 \\
+        12V DC Fan & 8 & 65 & 520 \\
+        Peltier Module & 2 & 271 & 542 \\
+        Peltier Cooling System & 2 & 400 & 800 \\
+        Humidifier & 1 & 300 & 300 \\
+        Ultrasonic Sensors & 2 & 59 & 118 \\
+        Grow Light 5V Strip & 1 & 1263 & 1263 \\
+        CO2 Sensor & 1 & 2708 & 2708 \\
+
+        % 400W Power Supply & 1 & 1505 & 1505 \\
+        % Buck Converters & 4 & 58 & 116 \\
+        % Stepper Motor & 2 & 102 & 204 \\
+        % Stepper Motor Driver & 2 & 94 & 188 \\
+        % Timing Belt & 2 & 92 & 184 \\
+        % Timing Belt Pully & 2 & 125 & 250 \\
+        % Rail Roller & 8 & 100 & 800 \\
+        % PETG Filament & 1 & 999 & 999 \\
+        % Perf Board & 1 & 80 & 80 \\
+        % Analog Mux & 1 & 100 & 100 \\
+        % Wiring &  &  & 500 \\
+        % Driving Circuits &  &  & 500 \\
+        % Miscellaneous &  &  & 1500 \\
+
+
+        % \midrule
+        %
+        % Total & & & 700 \\
+
+        \bottomrule
+
+    \end{tabularx}
+
+\end{frame}
+
+
+\begin{frame} {Budget: EMCU}
+
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}m{5cm}
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            % >{\bfseries \raggedright \arraybackslash}m{2cm} >{\raggedright \arraybackslash}X
+        }
+
+        \toprule
+
+        Item   & Count & Price Per Item & Total Price \\
+        \midrule
+
+        % Plywood 4x6ft 9mm & 1 & 1190 & 1190 \\
+        % Wood Glue / Fasteners / Nails &  &  & 418 \\
+        % Waterproof Plywood Coating & 1 & 350 & 350 \\
+        % 2x4ft 5mm Foam Board & 7 & 250 & 1750 \\
+        % 2x4ft 3mm Foam Board & 1 & 180 & 180 \\
+        % Flex Kwik & 6 & 55 & 330 \\
+        % Limit Switch & 22 & 12 & 264 \\
+        % 12V DC Fan & 8 & 65 & 520 \\
+        % Peltier Module & 2 & 271 & 542 \\
+        % Peltier Cooling System & 2 & 400 & 800 \\
+        % Humidifier & 1 & 300 & 300 \\
+        % Ultrasonic Sensors & 2 & 59 & 118 \\
+        % Grow Light 5V Strip & 1 & 1263 & 1263 \\
+        % CO2 Sensor & 1 & 2708 & 2708 \\
+
+        400W Power Supply & 1 & 1505 & 1505 \\
+        Buck Converters & 4 & 58 & 116 \\
+        Stepper Motor & 2 & 102 & 204 \\
+        Stepper Motor Driver & 2 & 94 & 188 \\
+        Timing Belt & 2 & 92 & 184 \\
+        Timing Belt Pully & 2 & 125 & 250 \\
+        Rail Roller & 8 & 100 & 800 \\
+        PETG Filament & 1 & 999 & 999 \\
+        Perf Board & 1 & 80 & 80 \\
+        Analog Mux & 1 & 100 & 100 \\
+        Wiring &  &  & 500 \\
+        Driving Circuits &  &  & 500 \\
+        Miscellaneous &  &  & 1500 \\
+
+        \midrule
+
+        \textbf{Total: EMCU} & & & \textbf{17,659} \\
+
+        \bottomrule
+
+    \end{tabularx}
+
+\end{frame}
+
+
+\begin{frame} {Budget: GMU}
+
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}m{5cm}
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            % >{\bfseries \raggedright \arraybackslash}m{2cm} >{\raggedright \arraybackslash}X
+        }
+
+        \toprule
+
+        Item   & Count & Price Per Item & Total Price \\
+        \midrule
+
+        ESPCAM & 1 & 750 & 750 \\
+        ESPCAM Programmer & 1 & 91 & 91 \\
+        SD Card & 1 & 480 & 480 \\
+        17HS3401S NEMA17 Stepper Motor & 2 & 544 & 1088 \\
+        DRV8825 stepper driver module & 2 & 94 & 188 \\
+        GT2 6mm Belt Width 20 Teeth 5mm Bore Timing Pulley & 2 & 42 & 84 \\
+        Linear Rail & 3 & 1504 & 4512 \\
+        Limit switch & 2 & 23 & 46 \\
+        Belt tensioner & 1 & 52 & 52 \\
+        Rail mounting brackets & 4 & 69 & 276 \\
+
+        \midrule
+
+        \textbf{Total: GMU} & & & \textbf{7,567} \\
+
+        \bottomrule
+
+    \end{tabularx}
+
+    \textbf{Total Estimated Budget: 25,226}
+
+\end{frame}
+
+\begin{frame} {Components Purchased in Phase One: EMCU and GMU}
+
+    % \begin{center}
+    % \end{center}
+
+    \renewcommand\arraystretch{1.75}
+    \begin{tabularx} {\textwidth} {
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+        }
+
+        \toprule
+
+        \textbf{EMCU} & \textbf{GMU} \\
+        \midrule
+
+        Plywood 4x6ft 9mm.
+        &
+        ESP 32 CAM Module.
+        \\
+
+        Wood Glue.
+        &
+        ESP 32 CAM Programmer.
+        \\
+
+        Nails and Fasteners.
+        &
+        32 GB SD Card.
+        \\
+
+        \bottomrule
+
+    \end{tabularx}
+
+
+\end{frame}
+
+\begin{frame} {Output Obtained: EMCU Frame CAD}
+
+    \begin{center}
+        \vspace{0.25cm}
+        \begin{minipage} {0.49\textwidth}
+            \begin{center}
+                \includegraphics[width = 0.9\textwidth]{frame_explode.pdf}
+            \end{center}
+        \end{minipage}
+        \begin{minipage} {0.45\textwidth}
+            \vspace{0.5cm}
+            \begin{center}
+                \includegraphics[width = 0.9\textwidth]{frame_views.pdf}
+            \end{center}
+        \end{minipage}
+
+        \vspace{0.25cm}
+
+        \begin{minipage} {0.49\textwidth}
+            \centering
+            \textbf{Exploded View of Incubator Frame}
+        \end{minipage}
+        \hfill
+        \begin{minipage} {0.45\textwidth}
+            \centering
+            \textbf{Side, Front, Top and Orthographic Views}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
+\begin{frame} {Output Obtained: EMCU Base Frame}
+
+    % \begin{center}
+    %     \vspace{0.5cm}
+    %     \begin{minipage} {0.39\textwidth}
+    %         \vspace{0.5cm}
+    %         \begin{center}
+    %             \includegraphics[height = 0.35\textheight]{daniel/base2.jpg}
+    %         \end{center}
+    %         \begin{center}
+    %             \includegraphics[height = 0.35\textheight]{daniel/base1.jpg}
+    %         \end{center}
+    %     \end{minipage}
+    %     \begin{minipage} {0.6\textwidth}
+    %         \begin{center}
+    %             \includegraphics[
+    %                 trim = {0cm 2cm 0cm 2cm},
+    %                 width = 0.9\textwidth,
+    %                 clip,
+    %             ]{daniel/frame_cad.png}
+    %         \end{center}
+    %     \end{minipage}
+    % \end{center}
+
+    % \begin{center}
+    %     \vspace{0.5cm}
+    %     \begin{minipage} {0.48\textwidth}
+    %         \vspace{0.15cm}
+    %         \begin{center}
+    %             \includegraphics[width = 0.9\textwidth]{daniel/base1.jpg}
+    %         \end{center}
+    %     \end{minipage}
+    %     \hfill
+    %     \begin{minipage} {0.46\textwidth}
+    %         \begin{center}
+    %             \includegraphics[
+    %                 trim = {7cm 7cm 7cm 7cm},
+    %                 width = 1.0\textwidth,
+    %                 clip,
+    %             ]{daniel/frame_cad.png}
+    %         \end{center}
+    %     \end{minipage}
+    % \end{center}
+
+    \begin{center}
+        \vspace{0.5cm}
+        \begin{minipage} {0.48\textwidth}
+            \vspace{0.15cm}
+            \begin{center}
+                \includegraphics[width = 0.9\textwidth]{daniel/base.jpg}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage} {0.46\textwidth}
+            \begin{center}
+                \includegraphics[
+                    trim = {7cm 7cm 7cm 7cm},
+                    width = 1.0\textwidth,
+                    clip,
+                ]{daniel/frame_cad.png}
+            \end{center}
+        \end{minipage}
+        \begin{minipage} {0.48\textwidth}
+            \centering
+            \textbf{Front and Back Bases Attached}
+        \end{minipage}
+        \hfill
+        \begin{minipage} {0.46\textwidth}
+            \centering
+            \textbf{Frame with Electronics Bay}
+        \end{minipage}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}{Output Obtained: GMU - CNN Model Architecture}
+    \begin{figure}
+        \centering
+        \includegraphics[
+            width=0.8\textwidth,
+            height=0.8\textheight,
+            keepaspectratio,
+        ]{gmu/modelrender.png}
+    \end{figure}
+    \begin{center}
+        \textbf{CNN Model Architecture}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Output Obtained: GMU - Accuracy, Loss Graphs, and Confusion Matrix}
+    \begin{figure}
+        \centering
+        \includegraphics[
+            width=0.8\textwidth,
+            height=0.8\textheight,
+            keepaspectratio,
+        ]{gmu/tinyml_results_slide.png}
+    \end{figure}
+    \begin{center}
+        \textbf{Accuracy, Loss Graphs, and Confusion Matrix}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Output Obtained: SINC App UI}
+    \centering
+    \begin{tabular}{cccc}
+        \vspace{0.5cm}
+        \includegraphics[width=0.22\textwidth]{athira/app4.jpeg} &
+        \includegraphics[width=0.22\textwidth]{athira/app5.jpeg} &
+        \includegraphics[width=0.22\textwidth]{athira/app2.jpeg}&
+        \includegraphics[width=0.22\textwidth]{athira/app6.jpeg}\\
+        \textbf{Home} & \textbf{Status} & \textbf{Settings} &\textbf{Alerts}\\
+    \end{tabular}
+\end{frame}
+
+\begin{frame} {Work Plan: Completion Status}
+
+    \renewcommand\arraystretch{1.75}
+    \renewcommand\midrule{{\color{leafColorSecondary} \vspace{-8pt}\rule{\textwidth}{0.75pt}\vspace{8pt}}}
+
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries \raggedright \arraybackslash}m{2cm} >{\raggedright \arraybackslash}X
+        }
+
+        Week 01 - 02
+        &
+        \vspace{-0.35cm}
+        \begin{itemize}
+            \item Refined Enclosure design.
+            \item Data collection for TinyML - Done.
+            \item Purchased components for GMU: ESP32 CAM, SD Card, Programmer Board.
+            \item SINC UI specification done, protocol specification in progress.
+        \end{itemize}
+
+        % Refinement of Enclosure design, data collection for TinyML model, and setting up
+        % the specification for the communication protocol and UI of SINC.
+        \\ \midrule
+
+        Week 03 - 04
+        &
+        \vspace{-0.35cm}
+        \begin{itemize}
+            \item Reimplementation of Electronics Bay in progress.
+            \item Completed frame designing.
+            \item Started developing SINC App and GMU.
+        \end{itemize}
+        % Reimplement the Electronics Bay, including the connections that binds Multiplexer and
+        % Relay boards. Implement the outer frame of the Enclosure. Starts developing GMU and
+        % SINC app.
+        \\ \midrule
+
+        Week 05 - 06
+        &
+        \vspace{-0.35cm}
+        \begin{itemize}
+            \item Purchased materials for outer frame: PlyWood, Glue, Fasteners.
+            \item Completed Enclosure Front Base.
+        \end{itemize}
+        % Implement Thermal / Exhaust system along with the Top and Side Hatches. Testing
+        % the User Interface of SINC app.
+        \\ \midrule
+
+        Week 07 - 08
+        &
+        \vspace{-0.35cm}
+        \begin{itemize}
+            \item Completed Enclosure Back Base.
+            \item App UI using Flutter is Done.
+            \item Started Developing GMU Rail Mechanism.
+        \end{itemize}
+        % Implement Air Moisture and Lighting systems along with the Rail Mechanism for GMU. Testing
+        % of TinyML model on ESP32 CAM module. Testing of SINC app to its full specification.
+
+        % Integration of subsystems and further testing. Report preparation and documentation.
+        %
+        \\
+
+    \end{tabularx}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks] {References}
+
+    \nocite{interEsp, ieeeComp, ieeeGreenAI, tinymlEnv, ieee01africa, microclimate, fruitfly, espGreen, ieee02, tinyml2}
+
+    \nopagebreak
+
+    \begingroup \let\clearpage\relax
+    \printbibliography[heading = none] %Prints bibliography
+    \endgroup
+
+\end{frame}
+
+\begin{frame} {}
+
+    \begin{tikzpicture} [remember picture, overlay]
+
+        \draw [
+            leafColorSecondary,
+            thick,
+            line cap = round,
+        ]
+        (current page.center) ++(1.75, 0) coordinate (lineEnd)
+        (current page.center) ++(-1.75, 0) coordinate (lineStart)
+        (current page.center) coordinate (line)
+
+        (lineStart) -- (lineEnd)
+        ;
+
+        \draw
+        (line.north)
+        node (logo) [inner sep = 0pt, anchor = south] {
+            \begin{minipage} {10cm}
+                \centering
+                \includegraphics[width = 1cm]{icon_line.pdf}
+                \vspace{10pt}
+            \end{minipage}
+        }
+        ;
+
+        \draw
+        (line.south)
+        node (ty) [inner sep = 0pt, anchor = north] {
+            \begin{minipage} {10cm}
+                \centering
+                \vspace{10pt}
+                \color{forestbg}
+                \scshape
+                Thank You
+
+            \end{minipage}
+        }
+        ;
+
+    \end{tikzpicture}
+
+\end{frame}
+
+
+\end{document}

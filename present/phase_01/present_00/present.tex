@@ -1,0 +1,437 @@
+\documentclass{beamer}
+
+% \input{../preamble.tex}
+
+% \usepackage{minted}
+
+\usepackage[size=custom,width=16,height=9,scale=0.35]{beamerposter}
+
+\usepackage[T1]{fontenc}
+% \usepackage[a4paper, margin = 1in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{tabularx}
+% \usepackage{ebgaramond}
+\usepackage{tikz}
+\usepackage{blindtext}
+\usepackage{tcolorbox}
+\usepackage{svg}
+% \usepackage{fontspec}
+\usepackage{fontspec}
+\usepackage{booktabs}
+
+\usepackage[style = ieee]{biblatex}
+
+% \setmonofont{Vaulto-ExtraBold.ttf}
+
+\usetikzlibrary{calc}
+
+% \usefonttheme{serif}
+% \usepackage{beamercolorthemedracula}
+
+\addbibresource{abstract.bib} %Import the bibliography file
+
+\usetheme{metropolis}
+\usecolortheme{seedinc}
+
+\definecolor{forestbg}      {RGB} {31, 30, 24}
+
+\title{Seed Incubation Plant}
+\date{\today}
+\def\author{
+    19. Anjana Roy \hfill KTE22EC020 \\
+    \vspace{3pt}
+    25. Aswatheertha T T \hfill KTE22EC026 \\
+    \vspace{3pt}
+    26. Athira Madhusoodanan \hfill KTE22EC027 \\
+    \vspace{3pt}
+    28. Daniel V Mathew \hfill KTE22EC029 \\
+}
+
+\def\supervisor{
+    Prof. David Solomon George
+}
+
+\def\leafColorPrimaryName{Sage}
+\def\leafColorPrimaryRGB{138, 184, 114}
+\def\leafColorPrimaryHex{\#8AB872}
+\definecolor{leafColorPrimary} {RGB} {\leafColorPrimaryRGB}
+%%
+\def\leafColorSecondaryName{Cactus Spike}
+\def\leafColorSecondaryRGB{204, 224, 153}
+\def\leafColorSecondaryHex{\#CCE099}
+\definecolor{leafColorSecondary} {RGB} {\leafColorSecondaryRGB}
+
+
+\newcommand\tableBox[2] {
+    \begin{tcolorbox}[
+            coltitle = leafColorPrimary,
+            colbacktitle = leafColorSecondary,
+            colback = leafColorSecondary,
+            colframe = leafColorSecondary,
+            title=#1,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.1\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.9\textwidth}
+            #2
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\setbeamertemplate{background} {
+    \begin{tikzpicture} [remember picture, overlay]
+        \draw [opacity = 0.15, black]
+        (current page.south east) ++(-3.5, 1)
+        node (logo) [black, inner sep = 0pt, anchor = center] {
+            \begin{minipage}{11cm}
+                \includegraphics[width = 11cm]{icon_line.pdf}
+            \end{minipage}
+        }
+        ;
+    \end{tikzpicture}
+}
+
+% \institute{RIT, Kottayam}
+
+\renewcommand{\maketitle} {
+
+    \vfill
+
+    \begin{tikzpicture} [remember picture, overlay]
+
+        \draw
+        (current page.north) ++(0, -1cm)
+        node (title) [inner sep = 0pt, anchor = north] {
+
+            \begin{minipage} {\textwidth}
+                {
+                    {\color{leafColorSecondary} \rule{\textwidth}{0.5pt}}
+                    \vspace{3pt}
+
+                    {\huge \scshape Seed Incubation Plant}
+
+                    \vspace{3pt}
+                    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+                }
+
+            \end{minipage}
+
+        }
+        ;
+
+        \draw
+
+        (title.south)
+        node (group) [inner sep = 0pt, anchor = north] {
+
+            \begin{minipage} {\textwidth}
+                {\scshape group 10}
+            \end{minipage}
+
+        }
+        ;
+
+        \draw
+
+        (current page.south) ++(0, 1cm)
+
+        node (something) [inner sep = 0pt, anchor = south] {
+
+            \begin{minipage}[b] {\textwidth}
+
+                \small
+                Team Members
+                \hfill
+                Guide Name \& signature
+
+                \vspace{8pt}
+
+                \noindent
+                {\begin{minipage}[b] {0.375\textwidth}
+                    \vfill
+                    \raggedright
+                    {\linespread{1.2} \bfseries \author}
+                \end{minipage}
+                \hfill
+                \begin{minipage}[b] {0.4\textwidth}
+                    \vfill
+                    \raggedleft
+                    {\linespread{1.2} \bfseries \supervisor}
+                \end{minipage}}
+
+            \end{minipage}
+        }
+
+        ;
+
+    \end{tikzpicture}
+
+    \vfill
+
+}
+
+\def\objImageRadius{1.75cm}
+\def\objImageWidth{2.625cm}
+
+\newcommand\includeObjImage[4]{
+    \begin{tikzpicture} [
+            transform shape,
+            scale = 1,
+        ]
+
+        \draw
+        (0, 0) coordinate (botLeftCorner)
+        (botLeftCorner) ++(#2, #2) coordinate (topRightCorner)
+
+        (botLeftCorner |- topRightCorner) coordinate (topLeftCorner)
+        (botLeftCorner -| topRightCorner) coordinate (botRightCorner)
+        ;
+
+        \filldraw [
+            leafColorSecondary,
+            rounded corners = #4,
+        ]
+        (botLeftCorner) rectangle (topRightCorner)
+        % circle (\objImageRadius)
+        ;
+
+        \draw [
+            ultra thick,
+            leafColorPrimary,
+            rounded corners = #4,
+        ]
+        (botLeftCorner) rectangle (topRightCorner)
+        % circle (\objImageRadius)
+        ;
+
+        \draw
+
+        ($(botLeftCorner)!0.5!(topRightCorner)$)
+        node [
+            anchor = center,
+        ] {
+            \includegraphics[width = #3]{#1}
+        }
+        ;
+
+    \end{tikzpicture}
+
+    \thispagestyle{empty}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame} {Introduction}
+
+    {
+        \begin{minipage} {0.415\textwidth}
+            \begin{center}
+                \includeObjImage{ext_right.png}{5}{4.5cm}{0.5cm}
+            \end{center}
+        \end{minipage}
+        \begin{minipage} {0.55\textwidth}
+            \textbf{Seed Incubation Plant} aims to optimize the germination and
+            growth process of seeds by providing a controlled and
+            monitored environment.
+            While the \textbf{Environment Monitoring and Control Unit} (EMCU) part of the
+            incubator takes care of environmental factors such as temperature,
+            humidity, lighting, $\mbox{O}_2$, etc, the
+            \textbf{Growth Monitoring Unit} (GMU) closely monitors and collects growth related
+            information from each of the germinating saplings.
+            By the help of \textbf{SINC}, a companion app, the status of the incubator
+            can be closely watched.
+
+        \end{minipage}
+    }
+
+\end{frame}
+
+\begin{frame} {Objectives}
+
+    \begin{center}
+        \begin{tabularx} {\textwidth} {
+                *{3}{>{\centering \arraybackslash}X}
+            }
+
+            \includeObjImage{enclosure.png}{4}{2.825cm}{0.5cm}
+            &
+            \includeObjImage{growth.png}{4}{2.625cm}{0.5cm}
+            &
+            \includeObjImage{sinc.png}{4}{3.025cm}{0.5cm}
+            \\
+
+            \begin{itemize}
+                \item Implement the sensor and actuator sides of the EMCU, thus
+                    driving it into a cohesive system.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item Implement an ESP32 CAM based Growth Monitoring Unit (GMU) powered by
+                    a TinyML model.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item Take the development of SINC, a companion app, to the alpha
+                    stage.
+            \end{itemize}
+            \\
+
+        \end{tabularx}
+    \end{center}
+
+
+\end{frame}
+
+\begin{frame} {Literature Review}
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries}m{2.0cm}X
+        }
+
+        Title: & \textbf{Internet of Things (IoT) Based Greenhouse Monitoring and Controlling System Using ESP-32}
+        \\
+
+        Authors: & J. Seetaram, A. Bhavya, C. Tarun and V. Sameera
+        \\
+
+        DOI: & \texttt{10.17148/IJARCCE.2024.13605}
+
+        \\
+
+        Publisher: & \textit{International Journal of Advanced Research in Computer and Communication Engineering} \vfill
+        \\
+
+        Result: &
+        The system successfully performed real-time monitoring and automated environmental control.
+        Demonstrated fully autonomous and remote operation, reducing human intervention.
+
+        \\
+
+    \end{tabularx}
+
+    {\color{leafColorSecondary} \rule{\textwidth}{0.75pt}}
+
+    \textbf{Relevant Features \& Insights:}
+
+    \begin{itemize}
+        \item IoT-enabled remote control with real-time sensor data visuals.
+
+        \item User-friendly UI designed on Blynk for farmers.
+
+        \item Focus on sustainability, resource optimization, and precision agriculture.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame} {Work Plan}
+
+    \renewcommand\arraystretch{1.75}
+    \renewcommand\midrule{{\color{leafColorSecondary} \vspace{-8pt}\rule{\textwidth}{0.75pt}\vspace{8pt}}}
+
+
+    \begin{tabularx} {\textwidth} {
+            >{\bfseries \raggedright \arraybackslash}m{2cm} >{\raggedright \arraybackslash}X
+        }
+
+        Week 01 - 02
+        &
+        Refinement of Enclosure design, data collection for TinyML model, and setting up
+        the specification for the communication protocol and UI of SINC.
+        \\ \midrule
+
+        Week 03 - 04
+        &
+        Reimplement the Electronics Bay, including the connections that binds Multiplexer and
+        Relay boards. Implement the outer frame of the Enclosure. Starts developing GMU and
+        SINC app.
+        \\ \midrule
+
+        Week 05 - 06
+        &
+        Implement Thermal / Exhaust system along with the Top and Side Hatches. Testing
+        the User Interface of SINC app.
+        \\ \midrule
+
+        Week 07 - 08
+        &
+        Implement Air Moisture and Lighting systems along with the Rail Mechanism for GMU. Testing
+        of TinyML model on ESP32 CAM module. Testing of SINC app to its full specification.
+        \\ \midrule
+
+        Week 09
+        &
+        Integration of subsystems and further testing. Report preparation and documentation.
+
+        \\
+
+    \end{tabularx}
+
+\end{frame}
+
+\begin{frame} {References}
+
+    \nocite{interEsp, ieeeComp, ieeeGreenAI, tinymlEnv}
+
+    \nopagebreak
+
+    \begingroup \let\clearpage\relax
+    \printbibliography[heading = none] %Prints bibliography
+    \endgroup
+
+\end{frame}
+
+\begin{frame} {}
+
+    \begin{tikzpicture} [remember picture, overlay]
+
+        \draw [
+            leafColorSecondary,
+            thick,
+            line cap = round,
+        ]
+        (current page.center) ++(1.75, 0) coordinate (lineEnd)
+        (current page.center) ++(-1.75, 0) coordinate (lineStart)
+        (current page.center) coordinate (line)
+
+        (lineStart) -- (lineEnd)
+        ;
+
+        \draw
+        (line.north)
+        node (logo) [inner sep = 0pt, anchor = south] {
+            \begin{minipage} {10cm}
+                \centering
+                \includegraphics[width = 1cm]{icon_line.pdf}
+                \vspace{10pt}
+            \end{minipage}
+        }
+        ;
+
+        \draw
+        (line.south)
+        node (ty) [inner sep = 0pt, anchor = north] {
+            \begin{minipage} {10cm}
+                \centering
+                \vspace{10pt}
+                \color{forestbg}
+                \scshape
+                Thank You
+
+            \end{minipage}
+        }
+        ;
+
+    \end{tikzpicture}
+
+\end{frame}
+
+\end{document}
