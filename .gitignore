@@ -39,3 +39,6 @@ report/sig
 *_standalone_*.tex
 weekly/tmp.csv
 weekly/templete/*.pdf
+*.nav
+*.out
+*.snm
