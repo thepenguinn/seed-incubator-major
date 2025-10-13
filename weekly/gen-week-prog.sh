@@ -95,8 +95,8 @@ fill_week_data() {
 
     for i in $(seq 0 $(date "+%w") | sort -r)
     do
-        date_string="@$(date -d "$((24 * $i + $Hour_Offset)) hours" "+%d-%m-%g")"
-        Week_Dates+=("$(date -d "$((24 * $i + $Hour_Offset)) hours" "+%d")")
+        date_string="@$(date -d "$((-24 * $i + $Hour_Offset)) hours" "+%d-%m-%g")"
+        Week_Dates+=("$(date -d "$((-24 * $i + $Hour_Offset)) hours" "+%d")")
         tmp=$(grep "$date_string" <<<"$1")
         if [[ "$tmp" == "" ]]; then
             echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Returning..."
