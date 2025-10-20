@@ -4,10 +4,44 @@
 
 \begin{document}
 
-\input{overview.tex}
+\IfFileExists{overview.tex} {
+    \input{overview.tex}
+} {
+}
 
 \pagebreak
 
-\input{completion.tex}
+\newgeometry{margin = 1in}
+
+\IfFileExists{completion.tex} {
+    \input{completion.tex}
+} {
+}
+
+%% common
+\IfFileExists{week/weekly.tex} {
+    \subfile{week/weekly.tex}
+} {
+}
+
+\IfFileExists{anjana/weekly.tex} {
+    \subfile{anjana/weekly.tex}
+} {
+}
+
+\IfFileExists{aswatheertha/weekly.tex} {
+    \subfile{aswatheertha/weekly.tex}
+} {
+}
+
+\IfFileExists{athira/weekly.tex} {
+    \subfile{athira/weekly.tex}
+} {
+}
+
+\IfFileExists{daniel/weekly.tex} {
+    \subfile{daniel/weekly.tex}
+} {
+}
 
 \end{document}
