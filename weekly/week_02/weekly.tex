@@ -1,0 +1,56 @@
+\documentclass[11pt, a4paper]{report}
+
+\input{preamble.tex}
+
+\begin{document}
+
+\IfFileExists{overview.tex} {
+    \input{overview.tex}
+} {
+}
+
+\pagebreak
+
+\newgeometry{margin = 1in}
+
+\IfFileExists{completion.tex} {
+    \input{completion.tex}
+} {
+}
+
+%% common
+\IfFileExists{week/weekly.tex} {
+    \subfile{week/weekly.tex}
+} {
+}
+
+\IfFileExists{anjana/weekly.tex} {
+    \subfile{anjana/weekly.tex}
+} {
+    \letAnjana
+}
+
+\IfFileExists{aswatheertha/weekly.tex} {
+    \subfile{aswatheertha/weekly.tex}
+} {
+    \letAswatheertha
+}
+
+\IfFileExists{athira/weekly.tex} {
+    \subfile{athira/weekly.tex}
+} {
+    \letAthira
+}
+
+\IfFileExists{daniel/weekly.tex} {
+    \subfile{daniel/weekly.tex}
+} {
+    \letDaniel
+}
+
+\IfFileExists{signature.tex} {
+    \subfile{signature.tex}
+} {
+}
+
+\end{document}
