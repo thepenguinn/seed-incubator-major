@@ -371,6 +371,7 @@ gen_weekly_report() {
     cp "templete/weekly.tex" "${Week_Dir}/"
     cp "templete/Makefile" "${Week_Dir}/"
     cp "templete/completion.tex" "${Week_Dir}/"
+    cp "templete/signature.tex" "${Week_Dir}/"
 
     fill_weekly_work Anjana 4
     fill_weekly_work Aswatheertha 5
