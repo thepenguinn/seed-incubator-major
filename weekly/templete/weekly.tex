@@ -27,20 +27,29 @@
 \IfFileExists{anjana/weekly.tex} {
     \subfile{anjana/weekly.tex}
 } {
+    \letAnjana
 }
 
 \IfFileExists{aswatheertha/weekly.tex} {
     \subfile{aswatheertha/weekly.tex}
 } {
+    \letAswatheertha
 }
 
 \IfFileExists{athira/weekly.tex} {
     \subfile{athira/weekly.tex}
 } {
+    \letAthira
 }
 
 \IfFileExists{daniel/weekly.tex} {
     \subfile{daniel/weekly.tex}
+} {
+    \letDaniel
+}
+
+\IfFileExists{signature.tex} {
+    \input{signature.tex}
 } {
 }
 
