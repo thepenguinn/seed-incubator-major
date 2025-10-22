@@ -12,74 +12,39 @@
 
 \def\tblTopPad{10pt}
 
-\pgfmathsetmacro{\tblCellHeight}{\tblCellPaddedHeight - \tblCellPad}
+% \pgfmathsetmacro{\tblCellHeight}{\tblCellPaddedHeight - \tblCellPad}
 
 \newcommand\tblDrawTop[0] {
 
     \draw
-    (itmp) coordinate (previtmp)
-    (0, 0) coordinate (itmp)
+    (origin) coordinate (tmp)
+    (tmp) ++(\calSide + \tblSpace, 0) coordinate (tmp)
     ;
 
     \footnotesize
 
-    \draw [
-    ]
+    \foreach \pName/\pColor in {
+        ANJANA/colorP1Dark,
+        ASWATHEERTHA/colorP2Dark,
+        ATHIRA/colorP3Dark,
+        DANIEL/colorP4Dark%
+    } {
+        \draw
 
-    (itmp) coordinate (tmp) coordinate (start)
-    (start) ++(\calSide, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
-    % (start) rectangle (end)
-    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+        (tmp) coordinate (start)
+        (start) ++(\tblCellWidth, 0) coordinate (end)
+        ++(\tblSpace, 0) coordinate (tmp)
 
-    (end) ++(-\calSide, -\tblSpace) coordinate (itmp)
+        ($(start)!0.5!(end)$)
+        node (tmpNameNode) [
+            inner sep = 0pt,
+            outer sep = 0pt,
+            above = \tblTopPad,
+            anchor = south,
+        ] {\color{\pColor}\texttt{\pName}}
+        ;
+    }
 
-    %%
-
-    (tmp) coordinate (start)
-    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
-    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
-
-    ($(start)!0.5!(start -| end)$)
-    node [
-        above = \tblTopPad,
-        anchor = south,
-    ] {\color{colorP1Dark}\texttt{ANJANA}}
-
-    (tmp) coordinate (start)
-    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
-    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
-
-    ($(start)!0.5!(start -| end)$)
-    node [
-        above = \tblTopPad,
-        anchor = south,
-    ] {\color{colorP2Dark}\texttt{ASWATHEERTHA}}
-
-    (tmp) coordinate (start)
-    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
-    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
-
-    ($(start)!0.5!(start -| end)$)
-    node [
-        above = \tblTopPad,
-        anchor = south,
-    ] {\color{colorP3Dark}\texttt{ATHIRA}}
-
-    (tmp) coordinate (start)
-    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
-    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
-
-    ($(start)!0.5!(start -| end)$)
-    node [
-        above = \tblTopPad,
-        anchor = south,
-    ] {\color{colorP4Dark}\texttt{DANIEL}}
-
-    ;
-
-    \draw
-    (previtmp) coordinate (itmp)
-    ;
 }
 
 % text width color
@@ -190,13 +155,13 @@
     \tblDrawCell {#4} {colorP2}
     \tblDrawCell {#5} {colorP3}
     \tblDrawCell {#6} {colorP4}
+
 }
 
 % text fgcol
 \newcommand\tblDrawCell[2] {
 
     \fill [
-        colorP1,
         very thick,
         rounded corners = 14pt,
     ]
@@ -294,6 +259,43 @@
 
 }
 
+\newcommand\fillTblCellHeight[0] {
+    \draw
+    (tmpNameNode.north |- origin) coordinate (end)
+    (tmpNameNode.north) coordinate (start)
+    ;
+
+    \calcLength(start,end) {tblNameHeight}
+
+    \pgfmathsetmacro{\tmp}{\spaceLeft - \tblNameHeight - (7 * \tblSpace) - (7 * \tblCellPad)}
+    \xdef\spaceLeft{\tmp}
+
+    \pgfmathsetmacro{\tblCellIdealHeight}{\spaceLeft / 7}
+
+    \xdef\dayCount{7}
+
+    \foreach \date/\holiday/\pOne/\pTwo/\pThree/\pFour in \tblData {
+        \tblDrawTestCellHeight{\pOne} {\pTwo} {\pThree} {\pFour}
+
+        \ifthenelse{\lengthtest{\tblCellTestHeight pt > \tblCellIdealHeight pt}} {
+
+            \pgfmathsetmacro{\tmp}{\spaceLeft - \tblCellTestHeight}
+            \xdef\spaceLeft{\tmp}
+            \pgfmathsetmacro{\tmp}{\dayCount - 1}
+            \xdef\dayCount{\tmp}
+
+            \pgfmathsetmacro{\tmp}{\spaceLeft / \dayCount}
+            \xdef\tblCellIdealHeight{\tmp}
+
+        } {
+        }
+    }
+
+    \pgfmathsetmacro{\tmp}{\spaceLeft / \dayCount}
+    \xdef\tblCellHeight{\tmp}
+}
+
+
 \input{gsheet_data.tex}
 
 \chapter{Seed Incubation Plant: Weekly Report}
@@ -318,25 +320,27 @@
 
     \vspace{0.6cm}
 
-    \vfill
+    \newdimen\tblHeight
+    \tblHeight=\dimexpr\textheight-\pagetotal\relax
+
+    \def\spaceLeft{\the\tblHeight}
+    \pgfmathsetmacro{\tmp}{\spaceLeft - 3pt}
+    \xdef\spaceLeft{\tmp}
 
     \begin{tikzpicture} [
         ]
 
-        \draw (0, 0) coordinate (itmp) ;
+        \draw (0, 0) coordinate (origin) coordinate (itmp) ;
 
-        \def\tblTopDrawn{0}
+        \tblDrawTop
+
+        \fillTblCellHeight
 
         \foreach \date/\holiday/\pOne/\pTwo/\pThree/\pFour in \tblData {
             \ifthenelse{\holiday = 1} {
                 \tblDrawRow {\date} {colorSun} {\pOne} {\pTwo} {\pThree} {\pFour}
             } {
                 \tblDrawRow {\date} {colorNonSun} {\pOne} {\pTwo} {\pThree} {\pFour}
-            }
-            \ifthenelse{\tblTopDrawn = 0} {
-                \tblDrawTop
-                \gdef\tblTopDrawn{1}
-            } {
             }
         }
 

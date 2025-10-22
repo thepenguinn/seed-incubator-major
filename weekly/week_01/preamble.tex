@@ -8,6 +8,17 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{fp}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{subfiles}
+
+\usepackage{blindtext}
 
 \usetikzlibrary{calc}
 \usetikzlibrary{positioning}
@@ -40,6 +51,9 @@
 \colorlet{colorNonSun}{white!15!colorPastelGreen}
 \colorlet{colorNonSunDark}{black!30!colorNonSun}
 
+\colorlet{colorGuideSign}{white!30!colorNonSun}
+\colorlet{colorGuideSignDark}{black!30!colorNonSunDark}
+
 \colorlet{colorSun}{colorLightRed}
 \colorlet{colorSunDark}{black!30!colorSun}
 
@@ -66,17 +80,182 @@
 [\color{colorNonSunDark}\vspace{0.65em}{\titlerule[1pt]}]
 
 \titleformat{\section}
-{\vspace{-0.35em}\bfseries\normalfont\large\filright\sffamily}
+{\vspace{-0.35em}\bfseries\normalfont\Large\filright\sffamily}
 {\thesection}
 {8pt}
 {\scshape}
 {}
 
 \titleformat{\subsection}
-{\vspace{-0.35em}\bfseries\normalfont\filright\sffamily}
+{\vspace{-0.35em}\bfseries\normalfont\filright\sffamily\large}
 % {}
 % {0pt}
 {\thesubsection}
 {8pt}
 {\scshape}
 {}
+
+%%
+
+% alerts
+
+\colorlet{colorAccent}{colorP1}
+\colorlet{colorAccentDark}{colorP1Dark}
+
+\newcommand\alertCaution[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAccentDark,
+            colbacktitle = colorAccent,
+            colback = colorAccent,
+            colframe = colorAccent,
+            title=Caution,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \color{colorAccentDark}
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertWarning[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAccentDark,
+            colbacktitle = colorAccent,
+            colback = colorAccent,
+            colframe = colorAccent,
+            title=Warning,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \color{colorAccentDark}
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertImportant[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAccentDark,
+            colbacktitle = colorAccent,
+            colback = colorAccent,
+            colframe = colorAccent,
+            title=Important,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \color{colorAccentDark}
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertTip[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAccentDark,
+            colbacktitle = colorAccent,
+            colback = colorAccent,
+            colframe = colorAccent,
+            title=Tip,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \color{colorAccentDark}
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertNote[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAccentDark,
+            colbacktitle = colorAccent,
+            colback = colorAccent,
+            colframe = colorAccent,
+            title=Note,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \color{colorAccentDark}
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+%% let
+
+\newcommand\createSection[2] {
+    \newdimen\tmpHeight
+    \tmpHeight=\dimexpr\textheight-\pagetotal\relax
+
+    \def\spaceLeft{\the\tmpHeight}
+    \pgfmathsetmacro{\tmp}{\spaceLeft - 0pt}
+    \xdef\spaceLeft{\tmp}
+
+    \ifthenelse{\lengthtest{\spaceLeft pt < 75pt}}
+    {\pagebreak}
+    {}
+
+    \colorlet{colorAccent}{colorP#1}
+    \colorlet{colorAccentDark}{colorP#1Dark}
+    \color{colorP#1Dark}
+    \section{#2}
+    \vspace{-0.85cm}
+    \begin{center}
+        \color{colorP#1}
+        \begin{tikzpicture}
+            \filldraw [
+                colorP#1,
+                rounded corners = 0.5pt,
+            ]
+            (0, 0) rectangle ++(\textwidth, -1.25pt)
+            ;
+        \end{tikzpicture}
+    \end{center}
+}
+
+\newcommand\letAnjana[0] {
+    \createSection{1}{Anjana}
+}
+
+\newcommand\letAswatheertha[0] {
+    \createSection{2}{Aswatheertha}
+}
+
+\newcommand\letAthira[0] {
+    \createSection{3}{Athira}
+}
+
+\newcommand\letDaniel[0] {
+    \createSection{4}{Daniel}
+}
