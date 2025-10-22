@@ -8,7 +8,6 @@ Sheet_Id="1BGm3614htXhX2BDocnOUPSdyQIvPXxcwbZQEq4nDHJU"
 Sheet_Range="Sheet1"
 
 declare -a Week_Days=( "SUN" "MON" "TUE" "WED" "THU" "FRI" "SAT" )
-declare -a Week_Holidays=( 1 0 0 0 0 0 0 )
 
 Empty_String=""
 
@@ -27,11 +26,15 @@ declare -a Athira
 declare -a Daniel
 
 declare -a Week_Dates
+declare -a Week_Months
+declare -a Week_Years
 
 declare -a P1_Week
 declare -a P2_Week
 declare -a P3_Week
 declare -a P4_Week
+
+declare -a Week_Holidays
 
 P1_Cmp_Percent=0
 P2_Cmp_Percent=0
@@ -97,6 +100,8 @@ fill_week_data() {
     do
         date_string="@$(date -d "$((-24 * $i + $Hour_Offset)) hours" "+%d-%m-%g")"
         Week_Dates+=("$(date -d "$((-24 * $i + $Hour_Offset)) hours" "+%d")")
+        Week_Months+=("$(date -d "$((-24 * $i + $Hour_Offset)) hours" "+%m")")
+        Week_Years+=("$(date -d "$((-24 * $i + $Hour_Offset)) hours" "+%G")")
         tmp=$(grep "$date_string" <<<"$1")
         if [[ "$tmp" == "" ]]; then
             echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Returning..."
@@ -109,6 +114,8 @@ fill_week_data() {
     do
         date_string="@$(date -d "$((24 * (7 - $i) + $Hour_Offset)) hours" "+%d-%m-%g")"
         Week_Dates+=("$(date -d "$((24 * (7 - $i) + $Hour_Offset)) hours" "+%d")")
+        Week_Months+=("$(date -d "$((24 * (7 - $i) + $Hour_Offset)) hours" "+%m")")
+        Week_Years+=("$(date -d "$((24 * (7 - $i) + $Hour_Offset)) hours" "+%G")")
         tmp=$(grep "$date_string" <<<"$1")
         if [[ "$tmp" == "" ]]; then
             echo "Couldn't find data for $date_string from the csv file. This shouldn't have happened. Returning..."
@@ -350,6 +357,21 @@ fill_weekly_work() {
 
 }
 
+fill_week_holidays() {
+
+    local i
+
+    for i in $(seq 0 $((${#Week_Dates[@]} - 1)))
+    do
+        if grep "${Week_Dates[$i]}-${Week_Months[$i]}-${Week_Years[$i]}" holidays.txt > /dev/null 2>&1 ; then
+            Week_Holidays+=(1)
+        else
+            Week_Holidays+=(0)
+        fi
+    done
+
+}
+
 gen_weekly_report() {
 
     Hour_Offset=$((Week_Offset * 7 * 24))
@@ -372,6 +394,8 @@ gen_weekly_report() {
     cp "templete/Makefile" "${Week_Dir}/"
     cp "templete/completion.tex" "${Week_Dir}/"
     cp "templete/signature.tex" "${Week_Dir}/"
+
+    fill_week_holidays
 
     fill_weekly_work Anjana 4
     fill_weekly_work Aswatheertha 5
@@ -436,11 +460,15 @@ do
     unset Daniel
 
     unset Week_Dates
+    unset Week_Months
+    unset Week_Years
 
     unset P2_Week
     unset P1_Week
     unset P3_Week
     unset P4_Week
+
+    unset Week_Holidays
 
     P1_Cmp_Percent=0
     P2_Cmp_Percent=0
