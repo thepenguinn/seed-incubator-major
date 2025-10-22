@@ -109,8 +109,8 @@
 
 }
 
-% <box node name> <color>
-\newcommand\sigDrawPSign[2] {
+% <box node name> <color> <sig file> <width>
+\newcommand\sigDrawPSign[4] {
     \draw [
         #2Dark,
         thick,
@@ -128,6 +128,16 @@
         SIGNATURE
     }
     (#1.west |- sig.north) -- (#1.east |- sig.north)
+
+    ;
+    \draw
+    ($(#1.north)!0.5!(sig.north)$)
+    node (pic) {
+        \IfFileExists{../templete/sig/#3} {
+            \includegraphics[width = #4] {../templete/sig/#3}
+        } {
+        }
+    }
     ;
 
 }
@@ -203,10 +213,11 @@
         (end) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (end)
         ;
 
-        \sigDrawPSign{anjana}{colorP1}
-        \sigDrawPSign{aswatheertha}{colorP2}
-        \sigDrawPSign{athira}{colorP3}
-        \sigDrawPSign{daniel}{colorP4}
+
+        \sigDrawPSign{anjana}{colorP1} {ajn.png} {1.1cm}
+        \sigDrawPSign{aswatheertha}{colorP2} {ast.png} {1.05cm}
+        \sigDrawPSign{athira}{colorP3} {ata.png} {1.2cm}
+        \sigDrawPSign{daniel}{colorP4} {dnl.png} {1.3cm}
 
         \innerSignNode{guide}{start}{end}{colorGuideSign}
 
