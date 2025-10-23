@@ -388,12 +388,12 @@ gen_weekly_report() {
 
     mkdir "${Week_Dir}" > /dev/null 2>&1
 
-    cp "templete/overview.tex" "${Week_Dir}/"
-    cp "templete/preamble.tex" "${Week_Dir}/"
-    cp "templete/weekly.tex" "${Week_Dir}/"
-    cp "templete/Makefile" "${Week_Dir}/"
-    cp "templete/completion.tex" "${Week_Dir}/"
-    cp "templete/signature.tex" "${Week_Dir}/"
+    cp "template/overview.tex" "${Week_Dir}/"
+    cp "template/preamble.tex" "${Week_Dir}/"
+    cp "template/weekly.tex" "${Week_Dir}/"
+    cp "template/Makefile" "${Week_Dir}/"
+    cp "template/completion.tex" "${Week_Dir}/"
+    cp "template/signature.tex" "${Week_Dir}/"
 
     fill_week_holidays
 
