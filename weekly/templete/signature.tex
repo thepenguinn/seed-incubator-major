@@ -206,6 +206,7 @@
 
 % \vspace{86pt}
 
+
 \newdimen\sigTotalHeight
 
 \newdimen\spaceleft
@@ -255,17 +256,31 @@
 
 \sigTotalHeight=\ht0
 
-% \ifthenelse{\lengthtest{\spaceLeft pt > -22pt}} {
-%     \ifthenelse{\lengthtest{\the\sigTotalHeight > \spaceLeft pt}}
-%     {\pagebreak \strut}
-%     {}
-% } {}
 
-\pagebreak \strut
 
-\begin{figure} [b!]
+
+
+\ifthenelse{\lengthtest{\spaceLeft pt > 0pt}} {
+    \vspace{\spaceLeft pt}
+    \ifthenelse{\lengthtest{\the\sigTotalHeight > \spaceLeft pt}} {
+        \pagetotal=\textheight
+        % \pagebreak
+        % \strut%
+    } {
+    }
+} {
+    % \pagebreak
+    % \strut%
+}
+% \mbox{}
+% \vfill
+
+\begin{center}
     \usebox{0}
-\end{figure}
+\end{center}
+
+% \begin{figure} [b!]
+% \end{figure}
 
 % \the\sigTotalHeight and \the\spaceleft \\
 % \the\pagetotal and \the\textheight
