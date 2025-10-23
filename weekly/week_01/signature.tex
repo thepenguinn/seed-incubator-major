@@ -192,36 +192,97 @@
     ;
 }
 
-\vfill
+% \pagebreak
+
+% \blindtext
+%
+% \vspace{1pt}
+
+% \blindtext
+
+% \pagebreak
+
+%%%
+
+% \vspace{86pt}
+
+
+\newdimen\sigTotalHeight
+
+\newdimen\spaceleft
+\spaceleft=\dimexpr\textheight-\pagetotal\relax
+
+\def\spaceLeft{\the\spaceleft}
+\pgfmathsetmacro{\tmp}{\spaceLeft - 0pt}
+\xdef\spaceLeft{\tmp}
+
+\setbox0=\vbox{\hbox{%
+    % \begin{center}
+        \begin{tikzpicture}
+
+            \draw
+            (0, 0) coordinate (origin)
+            ;
+
+            \sigDrawTop
+
+            \sigDrawRow
+
+            \fill [
+                very thick,
+                rounded corners = 14pt,
+            ]
+            (origin) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (start)
+            (end) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (end)
+            ;
+
+
+            \sigDrawPSign{anjana}{colorP1} {ajn.png} {1.1cm}
+            \sigDrawPSign{aswatheertha}{colorP2} {ast.png} {1.05cm}
+            \sigDrawPSign{athira}{colorP3} {ata.png} {1.2cm}
+            \sigDrawPSign{daniel}{colorP4} {dnl.png} {1.5cm}
+
+            \innerSignNode{guide}{start}{end}{colorGuideSign}
+
+            \signDrawGuideContent
+
+            \draw
+            (guide.south) ++(0, \spaceLeft pt) coordinate (makeUpHeight)
+            ;
+
+        \end{tikzpicture}%
+    % \end{center}%
+}}
+
+\sigTotalHeight=\ht0
+
+
+
+
+
+\ifthenelse{\lengthtest{\spaceLeft pt > 0pt}} {
+    \vspace{\spaceLeft pt}
+    \ifthenelse{\lengthtest{\the\sigTotalHeight > \spaceLeft pt}} {
+        \pagetotal=\textheight
+        % \pagebreak
+        % \strut%
+    } {
+    }
+} {
+    % \pagebreak
+    % \strut%
+}
+% \mbox{}
+% \vfill
 
 \begin{center}
-    \begin{tikzpicture}
-
-        \draw
-        (0, 0) coordinate (origin)
-        ;
-
-        \sigDrawTop
-
-        \sigDrawRow {3} {3} {3} {2}
-
-        \fill [
-            very thick,
-            rounded corners = 14pt,
-        ]
-        (origin) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (start)
-        (end) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (end)
-        ;
-
-
-        \sigDrawPSign{anjana}{colorP1} {ajn.png} {1.1cm}
-        \sigDrawPSign{aswatheertha}{colorP2} {ast.png} {1.05cm}
-        \sigDrawPSign{athira}{colorP3} {ata.png} {1.2cm}
-        \sigDrawPSign{daniel}{colorP4} {dnl.png} {1.3cm}
-
-        \innerSignNode{guide}{start}{end}{colorGuideSign}
-
-        \signDrawGuideContent
-
-    \end{tikzpicture}
+    \usebox{0}
 \end{center}
+
+% \begin{figure} [b!]
+% \end{figure}
+
+% \the\sigTotalHeight and \the\spaceleft \\
+% \the\pagetotal and \the\textheight
+
+%%%
