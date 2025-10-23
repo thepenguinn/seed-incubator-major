@@ -328,8 +328,8 @@ gen_p_cmp_data() {
 
 gen_completion_data() {
 
-    printf "\\def\pOneProgress{$P2_Cmp_Percent}\n"
-    printf "\\def\pTwoProgress{$P1_Cmp_Percent}\n"
+    printf "\\def\pOneProgress{$P1_Cmp_Percent}\n"
+    printf "\\def\pTwoProgress{$P2_Cmp_Percent}\n"
     printf "\\def\pThreeProgress{$P3_Cmp_Percent}\n"
     printf "\\def\pFourProgress{$P4_Cmp_Percent}\n"
 
