@@ -4,6 +4,11 @@
 
 \def\AddSignature{0}
 
+\IfFileExists{signthis} {
+    \def\AddSignature{1}
+} {
+}
+
 \begin{document}
 
 \IfFileExists{overview.tex} {
