@@ -133,8 +133,11 @@
     \draw
     ($(#1.north)!0.5!(sig.north)$)
     node (pic) {
-        \IfFileExists{../template/sig/#3} {
-            \includegraphics[width = #4] {../template/sig/#3}
+        \ifthenelse {\AddSignature = 1} {
+            \IfFileExists{../template/sig/#3} {
+                \includegraphics[width = #4] {../template/sig/#3}
+            } {
+            }
         } {
         }
     }
