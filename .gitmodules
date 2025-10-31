@@ -4,3 +4,6 @@
 [submodule "gmu"]
 	path = gmu
 	url = https://github.com/Aswatheertha/gmu
+[submodule "emcu"]
+	path = emcu
+	url = https://github.com/thepenguinn/seed-incubator-emcu
