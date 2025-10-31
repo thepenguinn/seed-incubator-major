@@ -1,3 +1,6 @@
 [submodule "report"]
 	path = report
 	url = https://github.com/thepenguinn/seed-incubator-report
+[submodule "gmu"]
+	path = gmu
+	url = https://github.com/Aswatheertha/gmu
