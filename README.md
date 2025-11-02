@@ -54,6 +54,162 @@ And it also helps the user to control different aspects of the Incubator.
 
 ## EMCU
 
+- [ ] Frame
+    - [x] Incubator area CAD design
+    - [x] Electronics bay CAD design
+    - [ ] Reservoir CAD design
+    - [ ] Top hatch CAD design
+    - [ ] Core block mount CAD design
+    - [ ] Exhaust branches mount CAD design
+    - [x] Incubator area
+        - [x] Front base
+        - [x] Back base
+        - [x] Front panel
+        - [x] Front side panel 1
+        - [x] Front side panel 2
+        - [x] Back side panel
+        - [x] Back side hatch
+        - [x] Back panel
+    - [ ] Electronics bay
+        - [ ] Base
+        - [ ] Side panel 1
+        - [ ] Side panel 2
+    - [ ] Reservoir
+        - [ ] Base
+        - [ ] Side panel 1
+        - [ ] Side panel 2
+        - [ ] Front panel
+        - [ ] Back panel
+    - [ ] Top hatch frame
+    - [ ] Vertical panel connectors
+    - [ ] Attach different frame pieces
+    - [ ] Core block mount
+    - [ ] Exhaust branches mount
+    - [ ] Waterproof the frame
+
+---
+
+- [ ] Mid layers
+    - [ ] Insulating layer for incubator area
+        - [ ] CAD design
+        - [ ] Frame connectors
+        - [ ] Cut all the foam pieces
+        - [ ] Assemble
+    - [ ] Water tight layer for Reservoir
+        - [ ] Pick a suitable material
+        - [ ] Cut all the pieces
+        - [ ] Attach them to the frame
+        - [ ] Make the joints waterproof
+    - [ ] Electronics bay board mounting surface
+        - [ ] Decide where different components will roughly go
+        - [ ] Cut foam
+        - [ ] Assemble / attach pieces
+
+---
+
+- [ ] Thermal / Exhaust
+    - [x] Core block functional CAD design
+    - [ ] Core block implementable CAD design
+    - [ ] Exhaust branch CAD design
+    - [ ] Exhaust inlet CAD design
+    - [ ] Finalize panel control (using gears or pulley)
+    - [ ] Decide where to place DHT22 sensors
+    - [ ] Decide wiring routes
+        - [ ] For core block mid panels
+        - [ ] For core block side panels
+        - [ ] For core block bottom panels
+        - [ ] For exhaust branch fans
+        - [ ] For inlet panels
+    - [ ] Core block
+        - [ ] Panels
+            - [ ] Cut foam pieces for mid panels
+            - [ ] Assemble mid panels
+            - [ ] Cut foam pieces for side panels
+            - [ ] Assemble side panels
+            - [ ] Cut foam pieces for bottom panels
+            - [ ] Assemble bottom panels
+        - [ ] Chambers
+            - [ ] Cut foam pieces for heating chamber
+            - [ ] Assemble heating chamber
+            - [ ] Cut foam pieces for cooling chamber
+            - [ ] Assemble cooling chamber
+            - [ ] Cut foam pieces for common chamber
+            - [ ] Assemble common chamber
+    - [ ] Exhaust branches
+        - [ ] Build or 3D print fan mounts
+            - [ ] For left branch
+            - [ ] For right branch
+        - [ ] Cut foam pieces for left branches
+        - [ ] Assemble left branches
+        - [ ] Cut foam pieces for right branches
+        - [ ] Assemble right branches
+    - [ ] Exhaust inlets
+        - [ ] Design inlet port mode switching mechanism
+        - [ ] Cut foam pieces for inlet panels
+        - [ ] Assemble inlet panels
+            - [ ] For Inlet 1
+            - [ ] For Inlet 2
+        - [ ] 3D print parts if needed
+            - [ ] For Inlet 1
+            - [ ] For Inlet 2
+        - [ ] Assemble inlet mode switcher
+            - [ ] For Inlet 1
+            - [ ] For Inlet 2
+    - [ ] Dedicated coolers
+        - [ ] Finalize placement
+        - [ ] Design cooling side fan mount with air redirection
+        - [ ] 3D print or foam build the cooling side fan mounts
+            - [ ] For Cooler 1
+            - [ ] For Cooler 2
+            - [ ] For Cooler 3
+            - [ ] For Cooler 4
+        - [ ] Design mount for peltier and heat sink module
+        - [ ] Build peltier mount from foam
+            - [ ] For Cooler 1
+            - [ ] For Cooler 2
+            - [ ] For Cooler 3
+            - [ ] For Cooler 4
+
+---
+
+- [ ] Air moisture
+    - [ ] Finalize placement of humidifiers
+    - [ ] Design mount for humidifiers
+    - [ ] Build humidifier reservoir and mount from foam
+        - [ ] For humidifier 1
+        - [ ] For humidifier 2
+    - [ ] Design water transport mechanism
+          (from dedicated coolers to reservoir and reservoir to humidifiers)
+    - [ ] Build water transport mechanism
+        - [ ] For humidifier 1
+        - [ ] For humidifier 2
+    - [ ] Decide wiring routes
+        - [ ] For water transport mechanism actuators
+        - [ ] For humidifiers
+        - [ ] For reservoir level detectors (ultrasonic sensors)
+
+---
+
+- [ ] Lighting
+    - [ ] Decide placement
+        - [ ] For grow lights
+        - [ ] For GMU lights
+    - [ ] Decide wiring routes
+        - [ ] For grow lights
+        - [ ] For GMU lights
+    - [ ] Mounts for lights
+    - [ ] Attach / assemble lights
+
+---
+
+- [ ] Water and fertilizer
+    - TODO: List out all the things to do
+
+---
+
+- [ ] Auxiliary system
+    - TODO: List out all the things to do
+
 ## GMU
 
 ## SINC
