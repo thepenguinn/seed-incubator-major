@@ -183,6 +183,10 @@ And it also helps the user to control different aspects of the Incubator.
     - [ ] Build water transport mechanism
         - [ ] For humidifier 1
         - [ ] For humidifier 2
+    - [ ] Mount design for ultrasonic sensors
+    - [ ] 3D print or foam build the ultrasonic sensor mount
+        - [ ] For humidifier 1
+        - [ ] For humidifier 2
     - [ ] Decide wiring routes
         - [ ] For water transport mechanism actuators
         - [ ] For humidifiers
@@ -203,12 +207,64 @@ And it also helps the user to control different aspects of the Incubator.
 ---
 
 - [ ] Water and fertilizer
-    - TODO: List out all the things to do
+    - [ ] Decide whether to use robotic arm or channels to deliver water
+    - [ ] Mount design for ultrasonic sensors
+    - [ ] 3D print or foam build the ultrasonic sensor mount
+        - [ ] For water reservoir
+        - [ ] For fertilizer reservoir
+    - [ ] Design outside drain ports
+    - [ ] Build outside drain ports
+        - [ ] For water reservoir
+        - [ ] For fertilizer reservoir
+    - [ ] Design intake port and mechanism
+    - [ ] Build intake ports
+        - [ ] For water reservoir
+        - [ ] For fertilizer reservoir
+    - [ ] Design refill port and mechanism
+    - [ ] Build refill ports
+        - [ ] For water reservoir
+        - [ ] For fertilizer reservoir
+    - [ ] Decide wiring routes
+        - [ ] For intake port
+        - [ ] For refill port
+        - [ ] For ultrasonic sensor
+
+---
+
+- [ ] Hatches
+    - [ ] Decide which board controls the motors
+    - [ ] Custom linear potentiometers
+        - [ ] For top hatch
+        - [ ] For side hatch
+    - [ ] Design hatch panels
+        - [ ] For top hatch
+        - [ ] For side hatch
+    - [ ] Build hatch panels
+        - [ ] For top hatch
+        - [ ] For side hatch
 
 ---
 
 - [ ] Auxiliary system
-    - TODO: List out all the things to do
+    - [ ] Extract coils from relay and test them to be used as an actuator
+          for water transport mechanism
+    - [ ] Build the other half of multiplexer board
+    - [ ] Build 2nd relay daughter board
+    - [ ] Add pin headers to relay boards
+    - [ ] Build main boards
+        - [ ] Main board 1
+        - [ ] Main board 2
+        - [ ] Main board 3
+    - [ ] Mother board design
+    - [ ] Build mother board
+    - [ ] Decide placement of different components
+        - [ ] Multiplexer board
+        - [ ] Relay boards
+        - [ ] Main boards
+        - [ ] Cooling fans
+        - [ ] Power supply
+
+- [ ] Software
 
 ## GMU
 
