@@ -268,4 +268,63 @@ And it also helps the user to control different aspects of the Incubator.
 
 ## GMU
 
+- [ ] Rail System
+    - [ ] Mechanical Design
+        - [ ] Frame base and rail supports
+        - [ ] Rail path layout (X-Y movement)
+        - [ ] Carriage design for ESP32-CAM mount
+        - [ ] Design pulley or linear screw mechanism
+        - [ ] Limit switch mounts
+        - [ ] 3D print or fabricate structural parts
+        - [ ] Assemble mechanical frame and rail path
+    - [ ] Actuation System
+        - [ ] Design motor mount brackets
+        - [ ] Wire routing and motor connection
+        - [ ] Install limit switches
+        - [ ] Calibrate home position
+        - [ ] Test manual movement via controller
+    - [ ] Electronics & Control
+        - [ ] Motor driver circuit setup
+        - [ ] Motor control via ESP32
+        - [ ] Limit switch interface with microcontroller
+        - [ ] Power supply wiring
+    - [ ] Software / Firmware
+        - [ ] Develop basic motion control code
+        - [ ] Implement stepper movement commands
+        - [ ] Add position feedback (limit switches or encoder)
+        - [ ] Test rail movement from SINC
+    - [ ] Integration & Testing
+        - [ ] Mount ESP32-CAM on carriage
+        - [ ] Capture and stream images while moving
+        - [ ] Synchronize camera capture with rail position
+        - [ ] Calibrate travel range and accuracy
+        - [ ] Test full automated scan of incubator area
+
+---
+
+- [ ] TinyML Modeling
+    - [ ] Dataset Preparation
+        - [ ] Collect plant growth images from espcam
+        - [ ] Categorize- sprout, germination, early stage , mature
+        - [ ] Clean and augment dataset (crop, resize, normalize)
+        - [ ] Store dataset in local or cloud storage
+    - [ ] Model Training
+        - [ ] Model confirmation
+        - [ ] Train using tensorflow/TFLite
+        - [ ] Optimize model for ESP32-CAM
+        - [ ] Validate accuracy and confusion matrix
+    - [ ] Deployment
+        - [ ] Convert model to TFLite format
+        - [ ] Integrate model into ESP32 firmware
+        - [ ] Test inference with live camera images
+        - [ ] Optimize memory and performance
+    - [ ] System Integration
+        - [ ] Link model output to app (growth stage display)
+        - [ ] Send inference results to SINC
+    - [ ] Evaluation
+        - [ ] Compare predictions with manual observation
+        - [ ] Adjust dataset or retrain model
+        - [ ] Document model accuracy and reliability
+
+
 ## SINC
