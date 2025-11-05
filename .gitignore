@@ -48,3 +48,4 @@ weekly/*/sig
 */**/weekly.pdf
 .DS_Store
 */**/.DS_Store
+present/**/zeroth_presentation.pdf
