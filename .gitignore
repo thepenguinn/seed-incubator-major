@@ -45,3 +45,6 @@ weekly/*/sig
 *.nav
 *.out
 *.snm
+*/**/weekly.pdf
+.DS_Store
+*/**/.DS_Store
