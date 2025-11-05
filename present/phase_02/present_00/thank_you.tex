@@ -1,0 +1,44 @@
+\begin{frame} {}
+
+    \begin{tikzpicture} [remember picture, overlay]
+
+        \draw [
+            leafColorSecondary,
+            thick,
+            line cap = round,
+        ]
+        (current page.center) ++(1.75, 0) coordinate (lineEnd)
+        (current page.center) ++(-1.75, 0) coordinate (lineStart)
+        (current page.center) coordinate (line)
+
+        (lineStart) -- (lineEnd)
+        ;
+
+        \draw
+        (line.north)
+        node (logo) [inner sep = 0pt, anchor = south] {
+            \begin{minipage} {10cm}
+                \centering
+                \includegraphics[width = 1cm]{icon_line.pdf}
+                \vspace{10pt}
+            \end{minipage}
+        }
+        ;
+
+        \draw
+        (line.south)
+        node (ty) [inner sep = 0pt, anchor = north] {
+            \begin{minipage} {10cm}
+                \centering
+                \vspace{10pt}
+                \color{forestbg}
+                \scshape
+                Thank You
+
+            \end{minipage}
+        }
+        ;
+
+    \end{tikzpicture}
+
+\end{frame}
