@@ -57,7 +57,7 @@ And it also helps the user to control different aspects of the Incubator.
 - [ ] Frame
     - [x] Incubator area CAD design
     - [x] Electronics bay CAD design
-    - [ ] Reservoir CAD design
+    - [x] Reservoir CAD design
     - [ ] Top hatch CAD design
     - [ ] Core block mount CAD design
     - [ ] Exhaust branches mount CAD design
@@ -71,7 +71,7 @@ And it also helps the user to control different aspects of the Incubator.
         - [x] Back side hatch
         - [x] Back panel
     - [ ] Electronics bay
-        - [ ] Base
+        - [x] Base
         - [ ] Side panel 1
         - [ ] Side panel 2
     - [ ] Reservoir
@@ -81,11 +81,12 @@ And it also helps the user to control different aspects of the Incubator.
         - [ ] Front panel
         - [ ] Back panel
     - [ ] Top hatch frame
-    - [ ] Vertical panel connectors
-    - [ ] Attach different frame pieces
+    - [x] Vertical panel connectors
+    - [x] Attach different frame pieces
     - [ ] Core block mount
     - [ ] Exhaust branches mount
     - [ ] Waterproof the frame
+    - [ ] Black paint the frame
 
 ---
 
@@ -331,7 +332,7 @@ And it also helps the user to control different aspects of the Incubator.
 
 - [ ] Foundation
 
-    - [ ] App initialization in Flutter 
+    - [ ] App initialization in Flutter
     - [ ] App branding (Logo, Splash screen, Color theme)
     - [ ] Authentication & onboarding (User login / setup screen)
     - [ ] Basic navigation setup (Home, Controls, Monitoring, Settings)
@@ -383,26 +384,26 @@ And it also helps the user to control different aspects of the Incubator.
     - [ ] Capture and display images within the app
     - [ ] Growth stage indicator (TinyML output from GMU)
     - [ ] Gallery for time-lapse images
-    - [ ] Manual camera control from app 
+    - [ ] Manual camera control from app
 
 ---
 
 - [ ] Data Storage and Analytics
 
-    - [ ] Local data caching 
-    - [ ] Cloud sync support 
-    - [ ] Data export 
+    - [ ] Local data caching
+    - [ ] Cloud sync support
+    - [ ] Data export
     - [ ] Analytics dashboard for growth trends
 
 ---
 
 - [ ] UX & Testing
 
-    - [ ] Final UI/UX polish 
+    - [ ] Final UI/UX polish
     - [ ] App walkthrough and user guide
     - [ ] Beta testing and feedback collection
     - [ ] Performance optimization
-    - [ ] App packaging and deployment 
+    - [ ] App packaging and deployment
 
 ---
 
