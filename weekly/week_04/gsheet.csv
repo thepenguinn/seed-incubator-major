@@ -29,7 +29,7 @@ Stage 02,Week 03,19-10-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,Week's Progress,1-20,2-30,"1-75, 2-20, 3","1,2-75,3-70,6-30"
 ,Week 04,26-10-25 (SUNDAY),,,,Front panel done. 
 ,,27-10-25 (MONDAY),,,,Cut and marked all the pieces for front side panels. 
-,,28-10-25 (TUESDAY),,Setup seed-incubator-plant-cl repo,,80 percent assembled front side panels. Cut pieces for back side panels. 
+,,28-10-25 (TUESDAY),,Forked seed-incubator-major,,80 percent assembled front side panels. Cut pieces for back side panels. 
 ,,29-10-25 (WEDNESDAY),,"Setup github gmu repo, cloned seed-incubator-major",,Assembled back side panel and back side hatch. Cut pieces for back panel. 
 ,,30-10-25 (THURSDAY),,Created tinyml repo and added model training code,,Assembled front side panels and back panel. 
 ,,31-10-25 (FRIDAY),Created git repo,Setup Miktex
@@ -38,13 +38,13 @@ Stage 02,Week 03,19-10-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,Week's Progress,,1,,"1,2,3,8,9,10"
 Stage 03,Week 05,02-11-25 (SUNDAY)
 ,,03-11-25 (MONDAY)
-,,04-11-25 (TUESDAY),,"Report subfolder created in git, constructed and integrated gmu roadmap"
+,,04-11-25 (TUESDAY),,"Report subfolder created in git, constructed and integrated gmu roadmap",,Vertical panel connectors done. Assembled incubator area frame. 
 ,,05-11-25 (WEDNESDAY)
-,,06-11-25 (THURSDAY)
-,,07-11-25 (FRIDAY)
-,,08-11-25 (SATURDAY)
+,,06-11-25 (THURSDAY),,,Started working on the UI.,Elec bay base done. 
+,,07-11-25 (FRIDAY),,,Partially developed code for connecting to both esp32.,Marked and cut pieces for elec bay side panels. 
+,,08-11-25 (SATURDAY),,,Worked on the partially developed code.,Reservoir CAD design done. 
 ,,Week's Objective,Start linear rail design. |Create components list.,Circuit design completion of Rail system ,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Frame CAD. | Reservoir Front Panel. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches.
-,,Week's Progress
+,,Week's Progress,,,,"1,2,3-50,4-50,5"
 ,Week 06,09-11-25 (SUNDAY)
 ,,10-11-25 (MONDAY)
 ,,11-11-25 (TUESDAY)
