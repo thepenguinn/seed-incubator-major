@@ -1,6 +1,6 @@
 Stage,Week,Day,Progress,,,,Stage's Objective,Stage's Progress
 ,,,Anjana Roy,Aswatheertha T T,Athira Madhusoodanan,Daniel V Mathew
-Stage 01,Week 01,05-10-25 (SUNDAY),,,,,"Project Report Phase One, Sinc: Finalize overall UI design, Live feed from ESP Cam, Connect Sinc with EMCU, CAD design of Rail Mechanism, Electronics Bay, Front panels. "
+Stage 01,Week 01,05-10-25 (SUNDAY),,,,,"Project Report Phase One, Sinc: Finalize overall UI design, Live feed from ESP Cam, Connect Sinc with EMCU, CAD design of Rail Mechanism, Electronics Bay, Front panels. ",Project Phase One Report
 ,,06-10-25 (MONDAY),,,,Started Exhaust CAD Design.
 ,,07-10-25 (TUESDAY),,,Putting together information for an improved UI.,Exhaust core block CAD done. 
 ,,08-10-25 (WEDNESDAY),,,Redesigning UI of SINC.
@@ -18,7 +18,7 @@ Stage 01,Week 01,05-10-25 (SUNDAY),,,,,"Project Report Phase One, Sinc: Finalize
 ,,18-10-25 (SATURDAY),,Report: Block diagram,,Report: updated content here and there. 
 ,,Week's Objective,Block diagram of rail mechanism. | Cad design of components for rail mechanism .,Phase 1 report | Rail mechanism actuation | Cad design of Rail system,Phase 1 report | Live feed from esp cam.,Phase 1 report - Figure | Phase 1 report - Content | Front Panel | Front Side Panel 1 | Front Side Panel 2 | Electronics Bay Base | Electronics Bay Side Panel 1 | Electronics Bay Side Panel 2
 ,,Week's Progress,,1,"1, 2-50","1-80,2-80"
-Stage 02,Week 03,19-10-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live feed from ESP CAM in SINC app. Connect SINC with EMCU. CAD design of Rail Mechanism. Finalize components / items needed for Rail Mechanism. Realize circuit level design of GMU Rail and Lighting control system. Depth analysis from ESP CAM images. Implement Electronics Bay Frame, Front Side Panels, Front Panel, Back Side Panels, Back Panel. "
+Stage 02,Week 03,19-10-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live feed from ESP CAM in SINC app. Connect SINC with EMCU. CAD design of Rail Mechanism. Finalize components / items needed for Rail Mechanism. Realize circuit level design of GMU Rail and Lighting control system. Depth analysis from ESP CAM images. Implement Electronics Bay Frame, Front Side Panels, Front Panel, Back Side Panels, Back Panel. ",Front Panel. Front Side Panel 1. Front Side Panel 2. Back Side Panel 1. Back Side Panel 2. Back Panel.
 ,,20-10-25 (MONDAY),Done block diagram of Rail Mechanism. ,Report: Added the block diagram ,Redoing the UI for live feed.,Report: Added air quality and hatches. Updated some figures. 
 ,,21-10-25 (TUESDAY),,Finalized content in report,Implemented code for live feed.,"Finalized report, tweaked things here and there. "
 ,,22-10-25 (WEDNESDAY),Learn cad Fundamentals.,Rail system specification analysis,Implemented code for live feed. Started working on weekly report.,Weekly report: Added signature template. 
@@ -32,9 +32,9 @@ Stage 02,Week 03,19-10-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,28-10-25 (TUESDAY),,Forked seed-incubator-major,,80 percent assembled front side panels. Cut pieces for back side panels. 
 ,,29-10-25 (WEDNESDAY),,"Setup github gmu repo, cloned seed-incubator-major",,Assembled back side panel and back side hatch. Cut pieces for back panel. 
 ,,30-10-25 (THURSDAY),,Created tinyml repo and added model training code,,Assembled front side panels and back panel. 
-,,31-10-25 (FRIDAY),Created git repo,Setup Miktex
-,,01-11-25 (SATURDAY),,Study of pinout diagrams of components ,,Circuit diagram of 32 bit mux done.
-,,Week's Objective,Create git repo. | Learn cad. | Create components list.,Git setup and Circuit design of Rail System,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Front Panel. | Front Side Panel 1. | Front Side Panel 2. | Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Back Side Panel 1. | Back Side Panel 2. | Back Panel. | Water Reservoir Frame CAD. 
+,,31-10-25 (FRIDAY),Created git repo,Setup Miktex,Cloned git repo.
+,,01-11-25 (SATURDAY),,Study of pinout diagrams of components ,Weekly report created.,Circuit diagram of 32 bit mux done.
+,,Week's Objective,Create git repo. | Learn cad. | Create components list.,Git setup. | Circuit design of Rail System.,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Front Panel. | Front Side Panel 1. | Front Side Panel 2. | Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Back Side Panel 1. | Back Side Panel 2. | Back Panel. | Water Reservoir Frame CAD. 
 ,,Week's Progress,,1,,"1,2,3,8,9,10"
 Stage 03,Week 05,02-11-25 (SUNDAY)
 ,,03-11-25 (MONDAY)
