@@ -328,3 +328,86 @@ And it also helps the user to control different aspects of the Incubator.
 
 
 ## SINC
+
+- [ ] Foundation
+
+    - [ ] App initialization in Flutter 
+    - [ ] App branding (Logo, Splash screen, Color theme)
+    - [ ] Authentication & onboarding (User login / setup screen)
+    - [ ] Basic navigation setup (Home, Controls, Monitoring, Settings)
+
+---
+
+- [ ] Network Communication
+
+    - [ ] TCP client implementation in Flutter
+        - [ ] Establish connection with EMCU and GMU ESP32 modules
+        - [ ] Define data packet structure
+        - [ ] Implement connect/disconnect and auto-reconnect features
+    - [ ] Secure connection layer
+        - [ ] Local network discovery
+        - [ ] Connection timeout handling
+        - [ ] Connection status indicator in UI
+        - [ ] Debug console for raw data logs
+
+---
+
+- [ ] Sensor Monitoring Dashboard
+
+    - [ ] Design live data dashboard
+        - [ ] Temperature
+        - [ ] Humidity
+        - [ ] Soil moisture
+        - [ ] Water/fertilizer levels
+    - [ ] Real-time data updates
+    - [ ] Historical data visualization (using charts)
+    - [ ] Alert and threshold notifications
+
+---
+
+- [ ] Actuator Control Panel
+
+    - [ ] Control switches and sliders for actuators:
+        - [ ] Fan
+        - [ ] Heater
+        - [ ] Humidifier
+        - [ ] Light
+    - [ ] Command feedback from EMCU
+    - [ ] Safe override feature for manual control
+
+---
+
+- [ ] Camera and Image Interface
+
+    - [ ] Integrate ESP32-CAM live stream
+    - [ ] Capture and display images within the app
+    - [ ] Growth stage indicator (TinyML output from GMU)
+    - [ ] Gallery for time-lapse images
+    - [ ] Manual camera control from app 
+
+---
+
+- [ ] Data Storage and Analytics
+
+    - [ ] Local data caching 
+    - [ ] Cloud sync support 
+    - [ ] Data export 
+    - [ ] Analytics dashboard for growth trends
+
+---
+
+- [ ] UX & Testing
+
+    - [ ] Final UI/UX polish 
+    - [ ] App walkthrough and user guide
+    - [ ] Beta testing and feedback collection
+    - [ ] Performance optimization
+    - [ ] App packaging and deployment 
+
+---
+
+- [ ] Integration & Maintenanance
+
+    - [ ] Integrate with EMCU and GMU final firmware
+    - [ ] Routine maintenance and updates
+    - [ ] Documentation and versioning
