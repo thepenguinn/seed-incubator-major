@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper]{report}
+
+\input{preamble.tex}
+
+\def\AddSignature{0}
+
+\IfFileExists{signthis} {
+    \def\AddSignature{1}
+} {
+}
+
+\begin{document}
+
+\IfFileExists{overview.tex} {
+    \input{overview.tex}
+} {
+}
+
+\newgeometry{margin = 1in}
+
+\IfFileExists{completion.tex} {
+    \input{completion.tex}
+} {
+}
+
+%% common
+\IfFileExists{week/weekly.tex} {
+    \subfile{week/weekly.tex}
+} {
+}
+
+\IfFileExists{anjana/weekly.tex} {
+    \subfile{anjana/weekly.tex}
+} {
+    \letAnjana
+    \texttt{TODO: ADD WEEKLY WORK DONE.}
+}
+
+\IfFileExists{aswatheertha/weekly.tex} {
+    \subfile{aswatheertha/weekly.tex}
+} {
+    \letAswatheertha
+    \texttt{TODO: ADD WEEKLY WORK DONE.}
+}
+
+\IfFileExists{athira/weekly.tex} {
+    \subfile{athira/weekly.tex}
+} {
+    \letAthira
+    \texttt{TODO: ADD WEEKLY WORK DONE.}
+}
+
+\IfFileExists{daniel/weekly.tex} {
+    \subfile{daniel/weekly.tex}
+} {
+    \letDaniel
+    \texttt{TODO: ADD WEEKLY WORK DONE.}
+}
+
+\IfFileExists{signature.tex} {
+    \input{signature.tex}
+} {
+}
+
+\end{document}
