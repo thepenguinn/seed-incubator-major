@@ -58,7 +58,7 @@ And it also helps the user to control different aspects of the Incubator.
     - [x] Incubator area CAD design
     - [x] Electronics bay CAD design
     - [x] Reservoir CAD design
-    - [ ] Top hatch CAD design
+    - [x] Top hatch CAD design
     - [ ] Core block mount CAD design
     - [ ] Exhaust branches mount CAD design
     - [x] Incubator area
