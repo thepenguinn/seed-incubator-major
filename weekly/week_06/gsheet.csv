@@ -40,21 +40,20 @@ Stage 03,Week 05,02-11-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,03-11-25 (MONDAY)
 ,,04-11-25 (TUESDAY),,"Report subfolder created in git, constructed and integrated gmu roadmap",,Vertical panel connectors done. Assembled incubator area frame. 
 ,,05-11-25 (WEDNESDAY)
-,,06-11-25 (THURSDAY),,,Started working on the UI.,Elec bay base done. 
+,,06-11-25 (THURSDAY),Cloned git repo.,,Started working on the UI.,Elec bay base done. 
 ,,07-11-25 (FRIDAY),,,Partially developed code for connecting to both esp32.,Marked and cut pieces for elec bay side panels. 
-,,08-11-25 (SATURDAY),,,Worked on the partially developed code.,Reservoir CAD design done. 
+,,08-11-25 (SATURDAY),Researched about the components for linear rail mechanism.,,Worked on the partially developed code.,Reservoir CAD design done. 
 ,,Week's Objective,Start linear rail design. |Create components list.,Circuit design completion of Rail system ,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Frame CAD. | Reservoir Front Panel. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches.
-,,Week's Progress,,,,"1,2,3-50,4-50,5"
-,Week 06,09-11-25 (SUNDAY)
+,,Week's Progress,2-30,,,"1,2,3-50,4-50,5"
+,Week 06,09-11-25 (SUNDAY),,,,CAD design of top hatch frame done. 
 ,,10-11-25 (MONDAY)
 ,,11-11-25 (TUESDAY)
 ,,12-11-25 (WEDNESDAY)
 ,,13-11-25 (THURSDAY)
 ,,14-11-25 (FRIDAY)
 ,,15-11-25 (SATURDAY)
-,,Week's Objective,,,,"Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | CAD Design of Top Hatch Frame.
-"
-,,Week's Progress
+,,Week's Objective,Create complete components list.| Install fusion 360.|,,,Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | CAD Design of Top Hatch Frame.
+,,Week's Progress,,,,9
 Stage 04,Week 07,16-11-25 (SUNDAY)
 ,,17-11-25 (MONDAY)
 ,,18-11-25 (TUESDAY)
