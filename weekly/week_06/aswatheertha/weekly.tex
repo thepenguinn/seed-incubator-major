@@ -20,7 +20,7 @@
     
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{pics/atmegapinout.jpg}
+    \includegraphics[width=0.75\textwidth]{pics/atmegapinout.png}
     \caption{ATmega328P Pinout Reference}
     \end{figure}
 
@@ -67,18 +67,13 @@
 
     \item \textbf{Connection Summary:}
     \begin{itemize}
-        \item \textbf{DRV8825(each):} STEP → D2(X) \&  D5(Y), DIR → D3(X) \&  D6(Y), SLEEP + RESET →10kohm → 5V(pin 7), VMOT → 12V (power) with 100μF capacitor.
-        \item \textbf{Limit Switches:} D8 (X), D9 (Y) → Switch → GND, with pull-up enabled.
-        \item \textbf{LEDs:} Nano digital pin → Gate/Base → Transistor → LED → 12V.
-        \item \textbf{Serial:} Nano TX/RX(pin 2,3) ↔ ESP32-CAM RX/TX, common GND required.
+        \item \textbf{DRV8825(each):} STEP $\rightarrow$ D2(X) \&  D5(Y), DIR $\rightarrow$ D3(X) \&  D6(Y), SLEEP + RESET $\rightarrow$ 10kohm → 5V(pin 7), VMOT $\rightarrow$ 12V (power) with 100 $\mu$ F capacitor.
+        \item \textbf{Limit Switches:} D8 (X), D9 (Y) $\rightarrow$ Switch $\rightarrow$ GND, with pull-up enabled.
+        \item \textbf{LEDs:} Nano digital pin $\rightarrow$ Gate/Base $\rightarrow$ Transistor $\rightarrow$ LED $\rightarrow$ 12V.
+        \item \textbf{Serial:} Nano TX/RX(pin 2,3) $\leftrightarrow$  ESP32-CAM RX/TX, common GND required.
         \item \textbf{Power:} 12V supply for motors and LEDs; 5V regulated for Nano + ESP32.
     \end{itemize}
 
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{pics/wiring_block_diagram.jpg}
-    \caption{Block-Level Wiring Overview for Rail System}
-    \end{figure}
 
 \end{enumerate}
 
