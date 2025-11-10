@@ -1,0 +1,85 @@
+\documentclass[../weekly]{subfiles}
+
+\begin{document}
+\letAswatheertha
+
+\noindent This week's focus was on researching and planning the rail-based motion system for plant imaging. The study mainly involved stepper motor control, driver selection, and microcontroller interfacing. A detailed wiring structure was reviewed and drafted for implementation.
+
+\subsection{Rail System Circuit Research}
+\begin{enumerate}
+    \item \textbf{Pin expansion setup:}
+    \begin{itemize}
+        \item Decided to use \textbf{ATmega328P} (Nano form) to control the rail movement.
+        \item Considered alternatives like \textbf{I2C expanders} and \textbf{shift registers}, but the Nano was preferred because it:
+        \begin{itemize}
+            \item Provides direct hardware control of stepper pulses (better timing precision).
+            \item I2C only gives simple on/off mechanisms like for Leds.
+            \item Gives enough GPIO pins for step, direction, limit switches, LEDs, and serial communication- total 14 pins in atmega.
+        \end{itemize}
+    \end{itemize}
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{pics/atmegapinout.jpg}
+    \caption{ATmega328P Pinout Reference}
+    \end{figure}
+
+    \item \textbf{Wiring Setup Draft:}
+    \begin{itemize}
+        \item Two DRV8825 drivers are used for X and Y stepper motors.
+        \item Each driver receives STEP and DIR signals from the Atmega controller.
+        \item Limit switches are connected to the Atmega controller digital input pins with internal/ external pull-ups.
+        \item LEDs for lighting are driven through BJT switching to handle higher current.
+        \item Serial communication (UART:Most probably) is established between Atmega controller and ESP32-CAM for sending movement or capture commands.
+    \end{itemize}
+    
+    \begin{figure}[h!]
+\centering
+\begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{pics/notes1.jpg}
+    \caption*{(a)}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{pics/notes2.jpg}
+    \caption*{(b)}
+\end{minipage}
+
+\vspace{8pt}
+
+\begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{pics/notes3.jpg}
+    \caption*{(c)}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{pics/notes4.jpg}
+    \caption*{(d)}
+\end{minipage}
+
+\caption{ notes and wiring sketches for rail system design.}
+\end{figure}
+
+
+    \item \textbf{Connection Summary:}
+    \begin{itemize}
+        \item \textbf{DRV8825(each):} STEP → D2(X) \&  D5(Y), DIR → D3(X) \&  D6(Y), SLEEP + RESET →10kohm → 5V(pin 7), VMOT → 12V (power) with 100μF capacitor.
+        \item \textbf{Limit Switches:} D8 (X), D9 (Y) → Switch → GND, with pull-up enabled.
+        \item \textbf{LEDs:} Nano digital pin → Gate/Base → Transistor → LED → 12V.
+        \item \textbf{Serial:} Nano TX/RX(pin 2,3) ↔ ESP32-CAM RX/TX, common GND required.
+        \item \textbf{Power:} 12V supply for motors and LEDs; 5V regulated for Nano + ESP32.
+    \end{itemize}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{pics/wiring_block_diagram.jpg}
+    \caption{Block-Level Wiring Overview for Rail System}
+    \end{figure}
+
+\end{enumerate}
+
+\end{document}
