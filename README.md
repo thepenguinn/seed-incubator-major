@@ -57,6 +57,7 @@ And it also helps the user to control different aspects of the Incubator.
 - [ ] Frame
     - [x] Incubator area CAD design
     - [x] Electronics bay CAD design
+    - [ ] Electronics bay: Update connector CAD design
     - [x] Reservoir CAD design
     - [x] Top hatch CAD design
     - [ ] Core block mount CAD design
@@ -72,14 +73,16 @@ And it also helps the user to control different aspects of the Incubator.
         - [x] Back panel
     - [ ] Electronics bay
         - [x] Base
-        - [ ] Side panel 1
-        - [ ] Side panel 2
+        - [x] Side panel 1
+        - [x] Side panel 2
+        - [ ] Back top connector
+        - [ ] Back bottom connector
     - [ ] Reservoir
         - [ ] Base
         - [ ] Side panel 1
         - [ ] Side panel 2
-        - [ ] Front panel
         - [ ] Back panel
+        - [ ] Connectors
     - [ ] Top hatch frame
     - [x] Vertical panel connectors
     - [x] Attach different frame pieces
