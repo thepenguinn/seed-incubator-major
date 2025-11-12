@@ -17,8 +17,8 @@
             \item Gives enough GPIO pins for step, direction, limit switches, LEDs, and serial communication- total 14 pins in atmega.
         \end{itemize}
     \end{itemize}
-    
-    \begin{figure}[H]
+
+    \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{pics/atmegapinout.png}
     \caption{ATmega328P Pinout Reference}
@@ -32,8 +32,17 @@
         \item LEDs for lighting are driven through BJT switching to handle higher current.
         \item Serial communication (UART:Most probably) is established between Atmega controller and ESP32-CAM for sending movement or capture commands.
     \end{itemize}
-    
-    \begin{figure}[h!]
+
+    \item \textbf{Connection Summary:}
+    \begin{itemize}
+        \item \textbf{DRV8825(each):} STEP $\rightarrow$ D2(X) \&  D5(Y), DIR $\rightarrow$ D3(X) \&  D6(Y), SLEEP + RESET $\rightarrow$ 10kohm → 5V(pin 7), VMOT $\rightarrow$ 12V (power) with 100 $\mu$ F capacitor.
+        \item \textbf{Limit Switches:} D8 (X), D9 (Y) $\rightarrow$ Switch $\rightarrow$ GND, with pull-up enabled.
+        \item \textbf{LEDs:} Nano digital pin $\rightarrow$ Gate/Base $\rightarrow$ Transistor $\rightarrow$ LED $\rightarrow$ 12V.
+        \item \textbf{Serial:} Nano TX/RX(pin 2,3) $\leftrightarrow$  ESP32-CAM RX/TX, common GND required.
+        \item \textbf{Power:} 12V supply for motors and LEDs; 5V regulated for Nano + ESP32.
+    \end{itemize}
+
+    \begin{figure}
 \centering
 \begin{minipage}[b]{0.48\textwidth}
     \centering
@@ -63,17 +72,6 @@
 
 \caption{ notes and wiring sketches for rail system design.}
 \end{figure}
-
-
-    \item \textbf{Connection Summary:}
-    \begin{itemize}
-        \item \textbf{DRV8825(each):} STEP $\rightarrow$ D2(X) \&  D5(Y), DIR $\rightarrow$ D3(X) \&  D6(Y), SLEEP + RESET $\rightarrow$ 10kohm → 5V(pin 7), VMOT $\rightarrow$ 12V (power) with 100 $\mu$ F capacitor.
-        \item \textbf{Limit Switches:} D8 (X), D9 (Y) $\rightarrow$ Switch $\rightarrow$ GND, with pull-up enabled.
-        \item \textbf{LEDs:} Nano digital pin $\rightarrow$ Gate/Base $\rightarrow$ Transistor $\rightarrow$ LED $\rightarrow$ 12V.
-        \item \textbf{Serial:} Nano TX/RX(pin 2,3) $\leftrightarrow$  ESP32-CAM RX/TX, common GND required.
-        \item \textbf{Power:} 12V supply for motors and LEDs; 5V regulated for Nano + ESP32.
-    \end{itemize}
-
 
 \end{enumerate}
 
