@@ -191,27 +191,27 @@ gen_gsheet_data() {
         printf "    ${Week_Dates[$i]}/${Week_Holidays[$i]}"
 
         if [[ ${Anjana[$i]} == "@" ]]; then
-            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g"
+            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         else
-            echo -n "/{${Anjana[$i]}}" | sed "s/%/\\\%/g"
+            echo -n "/{${Anjana[$i]}}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         fi
 
         if [[ ${Aswatheertha[$i]} == "@" ]]; then
-            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g"
+            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         else
-            echo -n "/{${Aswatheertha[$i]}}" | sed "s/%/\\\%/g"
+            echo -n "/{${Aswatheertha[$i]}}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         fi
 
         if [[ ${Athira[$i]} == "@" ]]; then
-            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g"
+            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         else
-            echo -n "/{${Athira[$i]}}" | sed "s/%/\\\%/g"
+            echo -n "/{${Athira[$i]}}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         fi
 
         if [[ ${Daniel[$i]} == "@" ]]; then
-            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g"
+            echo -n "/{$Empty_String}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         else
-            echo -n "/{${Daniel[$i]}}" | sed "s/%/\\\%/g"
+            echo -n "/{${Daniel[$i]}}" | sed "s/%/\\\%/g" | sed "s/_/\\\_/g"
         fi
 
         if [[ $i == $((${#Week_Days[@]} - 1)) ]] ; then
@@ -311,7 +311,7 @@ gen_p_cmp_data() {
 
     for i in $(seq 0 $((${#arr[@]} - 1)))
     do
-        str=$(sed "s/%/\\\%/g" <<<"${arr[$i]%@*}")
+        str=$(sed "s/%/\\\%/g" <<<"${arr[$i]%@*}" | sed "s/_/\\\_/g")
         cmp=${arr[$i]#*@}
         echo -n "    {$str}/$cmp"
 
