@@ -50,7 +50,7 @@ Stage 03,Week 05,02-11-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,11-11-25 (TUESDAY),,Setup kicad and started circuit design ,,Assembled both of the electronics bay side panels. 
 ,,12-11-25 (WEDNESDAY),,,,Redesigned elec bay connectors. 
 ,,13-11-25 (THURSDAY)
-,,14-11-25 (FRIDAY)
+,,14-11-25 (FRIDAY),,,,Marked and cut pieces for reservoir back panel. 
 ,,15-11-25 (SATURDAY)
 ,,Week's Objective,Create complete components list.| Install fusion 360.|,Circuit design completion of Rail system | List out components | Install and setup kicad,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | CAD Design of Top Hatch Frame.
 ,,Week's Progress,,,,"9,1,2"
