@@ -1,0 +1,93 @@
+Stage,Week,Day,Progress,,,,Stage's Objective,Stage's Progress
+,,,Anjana Roy,Aswatheertha T T,Athira Madhusoodanan,Daniel V Mathew
+Stage 01,Week 01,05-10-25 (SUNDAY),,,,,"Project Report Phase One, Sinc: Finalize overall UI design, Live feed from ESP Cam, Connect Sinc with EMCU, CAD design of Rail Mechanism, Electronics Bay, Front panels. ",Project Phase One Report
+,,06-10-25 (MONDAY),,,,Started Exhaust CAD Design.
+,,07-10-25 (TUESDAY),,,Putting together information for an improved UI.,Exhaust core block CAD done. 
+,,08-10-25 (WEDNESDAY),,,Redesigning UI of SINC.
+,,09-10-25 (THURSDAY),,,,Weekly report front page TeX templete and generator script done.
+,,10-10-25 (FRIDAY),Learned basic operations and sketching using cad.
+,,11-10-25 (SATURDAY),,,Obtained updated home screen UI. Finalized over-all UI.,Weekly report completion status TeX templete and generator script done.
+,,Week's Objective,Project phase 1 report. | Planning and detailing of Cad of linear rail.,Project phase 1 report. | Finalizing linear rail architecture design and Espcam integration.,Project phase 1 report. | Finalizing over-all UI.,"Project phase 1 Report: EMCU - figures, tables, and content. | Exhaust CAD Design."
+,,Week's Progress,,1,"1-50, 2","2-70,1-10"
+,Week 02,12-10-25 (SUNDAY),,Researched about rail mechanism,Project phase one report.,EMCU block diagram done.
+,,13-10-25 (MONDAY),,Detailed study of each components ,UI for esp cam live feed.,Weekly report table can now auto adjust the height.
+,,14-10-25 (TUESDAY),Collected details about the control of rail system. ,Study on Integration of espcam with the rail structure ,Implementing backend for getting live feed.,Report: introduction and overview done. 
+,,15-10-25 (WEDNESDAY),,Espcam specification study,Implementing backend for getting live feed.,Report: merged in relevent parts of miniproject report. 
+,,16-10-25 (THURSDAY),,Weekly report making,,Report: enclosure chapter done. 
+,,17-10-25 (FRIDAY),,Report: Gmu architecture,,Report: thermal system chapter done. 
+,,18-10-25 (SATURDAY),,Report: Block diagram,,Report: updated content here and there. 
+,,Week's Objective,Block diagram of rail mechanism. | Cad design of components for rail mechanism .,Phase 1 report | Rail mechanism actuation | Cad design of Rail system,Phase 1 report | Live feed from esp cam.,Phase 1 report - Figure | Phase 1 report - Content | Front Panel | Front Side Panel 1 | Front Side Panel 2 | Electronics Bay Base | Electronics Bay Side Panel 1 | Electronics Bay Side Panel 2
+,,Week's Progress,,1,"1, 2-50","1-80,2-80"
+Stage 02,Week 03,19-10-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live feed from ESP CAM in SINC app. Connect SINC with EMCU. CAD design of Rail Mechanism. Finalize components / items needed for Rail Mechanism. Realize circuit level design of GMU Rail and Lighting control system. Depth analysis from ESP CAM images. Implement Electronics Bay Frame, Front Side Panels, Front Panel, Back Side Panels, Back Panel. ",Front Panel. Front Side Panel 1. Front Side Panel 2. Back Side Panel 1. Back Side Panel 2. Back Panel.
+,,20-10-25 (MONDAY),Done block diagram of Rail Mechanism. ,Report: Added the block diagram ,Redoing the UI for live feed.,Report: Added air quality and hatches. Updated some figures. 
+,,21-10-25 (TUESDAY),,Finalized content in report,Implemented code for live feed.,"Finalized report, tweaked things here and there. "
+,,22-10-25 (WEDNESDAY),Learn cad Fundamentals.,Rail system specification analysis,Implemented code for live feed. Started working on weekly report.,Weekly report: Added signature template. 
+,,23-10-25 (THURSDAY),,,Set up Miktex.
+,,24-10-25 (FRIDAY)
+,,25-10-25 (SATURDAY),,,,Front panel 70 percent done. Vertical panel connectors CAD design done. 
+,,Week's Objective,Fundamentals of cad design. | Designing of linear rail.,Fundamentals of Cad design | Rail system and espcam integtation,Live feed from esp cam | Connect to both esp | Create a repo `SINC' | Update all works in it.,Finalize phase one report. | Finish weekly report templete and generator scripts. | Front Panel. | Front Side Panel 1. | Front Side Panel 2. | Vertical Panel Connectors.
+,,Week's Progress,1-20,2-30,"1-75, 2-20, 3","1,2-75,3-70,6-30"
+,Week 04,26-10-25 (SUNDAY),,,,Front panel done. 
+,,27-10-25 (MONDAY),,,,Cut and marked all the pieces for front side panels. 
+,,28-10-25 (TUESDAY),,Forked seed-incubator-major,,80 percent assembled front side panels. Cut pieces for back side panels. 
+,,29-10-25 (WEDNESDAY),,"Setup github gmu repo, cloned seed-incubator-major",,Assembled back side panel and back side hatch. Cut pieces for back panel. 
+,,30-10-25 (THURSDAY),,Created tinyml repo and added model training code,,Assembled front side panels and back panel. 
+,,31-10-25 (FRIDAY),Created git repo,Setup Miktex,Cloned git repo.
+,,01-11-25 (SATURDAY),,Study of pinout diagrams of components ,Weekly report created.,Circuit diagram of 32 bit mux done.
+,,Week's Objective,Create git repo. | Learn cad. | Create components list.,Git setup. | Circuit design of Rail System.,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Front Panel. | Front Side Panel 1. | Front Side Panel 2. | Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Back Side Panel 1. | Back Side Panel 2. | Back Panel. | Water Reservoir Frame CAD. 
+,,Week's Progress,,1,,"1,2,3,8,9,10"
+Stage 03,Week 05,02-11-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live feed from ESP CAM in SINC app. Connect SINC with EMCU. CAD design of Rail Mechanism. Finalize components / items needed for Rail Mechanism. Realize circuit level design of GMU Rail and Lighting control system. Depth analysis from ESP CAM images. Implement Electronics Bay Frame, and Reservoir Frame. CAD Design of Top Hatch Frame, Implementable Core Block, and Exhaust Branches. "
+,,03-11-25 (MONDAY)
+,,04-11-25 (TUESDAY),,"Report subfolder created in git, constructed and integrated gmu roadmap",,Vertical panel connectors done. Assembled incubator area frame. 
+,,05-11-25 (WEDNESDAY)
+,,06-11-25 (THURSDAY),Cloned git repo.,,Started working on the UI.,Elec bay base done. 
+,,07-11-25 (FRIDAY),,,Partially developed code for connecting to both esp32.,Marked and cut pieces for elec bay side panels. 
+,,08-11-25 (SATURDAY),Researched about the components for linear rail mechanism.,,Worked on the partially developed code.,Reservoir CAD design done. 
+,,Week's Objective,Start linear rail design. |Create components list.,Circuit design completion of Rail system ,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Frame CAD. | Reservoir Front Panel. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches.
+,,Week's Progress,2-30,,"1-70, 2-40, 3-60, 4-10","1,2,3-50,4-50,5"
+,Week 06,09-11-25 (SUNDAY),,Basic research and component selection.,,CAD design of top hatch frame done. 
+,,10-11-25 (MONDAY),,Started week_06 subfolder and added files.
+,,11-11-25 (TUESDAY),,Setup kicad and started circuit design ,,Assembled both of the electronics bay side panels. 
+,,12-11-25 (WEDNESDAY),,,,Redesigned elec bay connectors. 
+,,13-11-25 (THURSDAY)
+,,14-11-25 (FRIDAY),,,,Marked and cut pieces for reservoir back panel. 
+,,15-11-25 (SATURDAY),,,,Assembed reservoir back panel. 
+,,Week's Objective,Create complete components list.| Install fusion 360.|,Circuit design completion of Rail system | List out components | Install and setup kicad,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | CAD Design of Top Hatch Frame.
+,,Week's Progress,,,,"9,1,2,3"
+Stage 04,Week 07,16-11-25 (SUNDAY)
+,,17-11-25 (MONDAY)
+,,18-11-25 (TUESDAY)
+,,19-11-25 (WEDNESDAY)
+,,20-11-25 (THURSDAY)
+,,21-11-25 (FRIDAY)
+,,22-11-25 (SATURDAY)
+,,Week's Objective,,,,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
+,,Week's Progress
+,Week 08,23-11-25 (SUNDAY)
+,,24-11-25 (MONDAY)
+,,25-11-25 (TUESDAY)
+,,26-11-25 (WEDNESDAY)
+,,27-11-25 (THURSDAY)
+,,28-11-25 (FRIDAY)
+,,29-11-25 (SATURDAY)
+,,Week's Objective
+,,Week's Progress
+Stage 05,Week 09,30-11-25 (SUNDAY)
+,,01-12-25 (MONDAY)
+,,02-12-25 (TUESDAY)
+,,03-12-25 (WEDNESDAY)
+,,04-12-25 (THURSDAY)
+,,05-12-25 (FRIDAY)
+,,06-12-25 (SATURDAY)
+,,Week's Objective
+,,Week's Progress
+,Week 10,07-12-25 (SUNDAY)
+,,08-12-25 (MONDAY)
+,,09-12-25 (TUESDAY)
+,,10-12-25 (WEDNESDAY)
+,,11-12-25 (THURSDAY)
+,,12-12-25 (FRIDAY)
+,,13-12-25 (SATURDAY)
+,,Week's Objective
+,,Week's Progress
+
