@@ -81,7 +81,7 @@ And it also helps the user to control different aspects of the Incubator.
         - [ ] Base
         - [ ] Side panel 1
         - [ ] Side panel 2
-        - [ ] Back panel
+        - [x] Back panel
         - [ ] Connectors
     - [ ] Top hatch frame
     - [x] Vertical panel connectors
