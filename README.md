@@ -79,8 +79,8 @@ And it also helps the user to control different aspects of the Incubator.
         - [ ] Back bottom connector
     - [ ] Reservoir
         - [ ] Base
-        - [ ] Side panel 1
-        - [ ] Side panel 2
+        - [x] Side panel 1
+        - [x] Side panel 2
         - [x] Back panel
         - [ ] Connectors
     - [ ] Top hatch frame
