@@ -56,13 +56,13 @@ Stage 03,Week 05,02-11-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,Week's Progress,,,"4-40,5-30","9,1,2,3"
 Stage 04,Week 07,16-11-25 (SUNDAY),,,,Marked and cut pieces for reservoir side panels. 
 ,,17-11-25 (MONDAY),,,,Assembled reservoir side panels. 
-,,18-11-25 (TUESDAY)
+,,18-11-25 (TUESDAY),,,,CAD - Redesigned side hatch frame. 
 ,,19-11-25 (WEDNESDAY)
 ,,20-11-25 (THURSDAY)
 ,,21-11-25 (FRIDAY)
 ,,22-11-25 (SATURDAY)
-,,Week's Objective,,,,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
-,,Week's Progress,,,,"2,3"
+,,Week's Objective,,,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
+,,Week's Progress,,,,"2,3,8"
 ,Week 08,23-11-25 (SUNDAY)
 ,,24-11-25 (MONDAY)
 ,,25-11-25 (TUESDAY)
