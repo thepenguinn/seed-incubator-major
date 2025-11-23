@@ -59,9 +59,9 @@ Stage 04,Week 07,16-11-25 (SUNDAY),,,,Marked and cut pieces for reservoir side p
 ,,18-11-25 (TUESDAY),,,,CAD - Redesigned side hatch frame. 
 ,,19-11-25 (WEDNESDAY),,,,Finalized core block mount design. Top view of the same is done. 
 ,,20-11-25 (THURSDAY)
-,,21-11-25 (FRIDAY),,Imported necessary symbols and footprint of espcam to kicad.,,Finished core block mount base plate CAD design. 
+,,21-11-25 (FRIDAY),Studied and listed the components of Rail System.,Imported necessary symbols and footprint of espcam to kicad.,,Finished core block mount base plate CAD design. 
 ,,22-11-25 (SATURDAY),,Set up of espcam and atmega wiring. Setup of limit switches and capacitors in circuit.,,Finished core block mount top covering part CAD design. 
-,,Week's Objective,,Circuit Design of Rail system | Component list,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
+,,Week's Objective,Complete list of components.| Linear Carriage design.|,Circuit Design of Rail system | Component list,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
 ,,Week's Progress,,"1-75, 2-75",,"2,3,8,7"
 ,Week 08,23-11-25 (SUNDAY)
 ,,24-11-25 (MONDAY)
@@ -70,7 +70,7 @@ Stage 04,Week 07,16-11-25 (SUNDAY),,,,Marked and cut pieces for reservoir side p
 ,,27-11-25 (THURSDAY)
 ,,28-11-25 (FRIDAY)
 ,,29-11-25 (SATURDAY)
-,,Week's Objective
+,,Week's Objective,,,,Reservoir Base | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame. | Electronics Bay Bottom Connector. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Buy Waterproof and Paint. | Start Working on Waterproofing and Painting.
 ,,Week's Progress
 Stage 05,Week 09,30-11-25 (SUNDAY)
 ,,01-12-25 (MONDAY)
