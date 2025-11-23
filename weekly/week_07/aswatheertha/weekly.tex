@@ -1,0 +1,74 @@
+\documentclass[../weekly]{subfiles}
+
+\begin{document}
+\letAswatheertha
+
+\noindent This week’s work was focused on developing and wiring the circuit for the automated rail motion system. The schematic reached around 75\% completion and includes the major functional blocks required for reliable stepper motor control and camera-based plant imaging.
+
+\subsection{Rail System Circuit Design Progress}
+\begin{enumerate}
+
+    \item \textbf{Overview of Circuit Architecture:}
+    \begin{itemize}
+        \item The circuit consists of three core modules:
+        \begin{itemize}
+            \item \textbf{ESP32 CAM}: For camera imaging, WiFi and processing.
+            \item \textbf{ATmega328P}: Dedicated controller for precise stepper movement.
+            \item \textbf{DRV8825 Drivers }: Provide current-controlled bipolar stepper motor drive.
+        \end{itemize}
+        \item Power is distributed using a 12V input supply, regulated to 5V for logic devices.
+        \item All grounds are tied together ensuring proper reference for step signals.
+    \end{itemize}
+
+    \item \textbf{Stepper Motor Drive Section:}
+    \begin{itemize}
+        \item Two DRV8825 modules are used for X and Y axis motion.
+        \item STEP and DIR lines are connected to ATmega328P pins for precise motion pulses.
+        \item Motors receive independent power from +12V rail.
+        \item 100~$\mu$F capacitors are placed near VMOT for surge protection.
+    \end{itemize}
+
+    \item \textbf{Limit Switch Safety:}
+    \begin{itemize}
+        \item X and Y axis limit switches are connected to digital input pins.
+        \item Internal pull-ups ensure noise-free edge detection.
+    \end{itemize}
+
+    \item \textbf{Process of week:}
+    \begin{itemize}
+       \item ESPCam module was imported from snapade to kicad.
+      \item  Lighting connections and necessary resistor connections are being done.
+     \item Components list is being prepared.
+     \item ESP32 i2c connection to slave mcu and cam has to be established.
+    \end{itemize}
+
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.95\textwidth]{pic/circuit_design.png}
+\caption{Current rail motion system circuit design in KiCad (75\% completed)}
+\end{figure}
+
+\subsection{Component List}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Sl. No} & \textbf{Component} & \textbf{Quantity} \\
+\hline
+1 & ESP32 CAM and Programmer & 1 each \\
+2 & ATmega328P (DIP/Nano version) & 1 \\
+3 & DRV8825 Stepper Motor Driver & 2 \\
+4 & Bipolar NEMA Stepper Motor & 2 \\
+5 & Limit Switch (Endstop) & 2 \\
+6 & 100~$\mu$F Electrolytic Capacitor & 2 \\
+7 & 12V DC Power Supply & 1 \\
+8 & 5V Voltage Regulator & 1 \\
+9 & Supporting resistors, connectors and wires & As required \\
+\hline
+\end{tabular}
+\caption{Component list used in the rail circuit design}
+\end{table}
+
+\end{document}
