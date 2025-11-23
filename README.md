@@ -60,8 +60,10 @@ And it also helps the user to control different aspects of the Incubator.
     - [x] Electronics bay: Update connector CAD design
     - [x] Reservoir CAD design
     - [x] Top hatch CAD design
-    - [ ] Core block mount CAD design
-    - [ ] Exhaust branches mount CAD design
+    - [x] Core block mount CAD design
+    - [ ] Connectors CAD design
+        - [ ] Incubator area connectors
+        - [ ] Reservoir connectors
     - [x] Incubator area
         - [x] Front base
         - [x] Back base
@@ -87,9 +89,27 @@ And it also helps the user to control different aspects of the Incubator.
     - [x] Vertical panel connectors
     - [x] Attach different frame pieces
     - [ ] Core block mount
-    - [ ] Exhaust branches mount
+        - [ ] Base plate
+        - [ ] Top cover
+    - [ ] Drill holes for attaching
+        - [x] Incubator area
+        - [ ] Electronics bay
+        - [ ] Reservoir
+        - [ ] Top hatch and core block mount
     - [ ] Waterproof the frame
+        - [ ] Incubator area base
+        - [ ] Incubator area side panels
+        - [ ] Reservoir
+        - [ ] Electronics bay
+        - [ ] Top hatch
+        - [ ] Core block mount
     - [ ] Black paint the frame
+        - [ ] Incubator area base
+        - [ ] Incubator area side panels
+        - [ ] Reservoir
+        - [ ] Electronics bay
+        - [ ] Top hatch
+        - [ ] Core block mount
 
 ---
 
