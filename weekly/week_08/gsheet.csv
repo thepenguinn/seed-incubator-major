@@ -58,13 +58,13 @@ Stage 04,Week 07,16-11-25 (SUNDAY),,,,Marked and cut pieces for reservoir side p
 ,,17-11-25 (MONDAY),,,,Assembled reservoir side panels. 
 ,,18-11-25 (TUESDAY),,,,CAD - Redesigned side hatch frame. 
 ,,19-11-25 (WEDNESDAY),,,,Finalized core block mount design. Top view of the same is done. 
-,,20-11-25 (THURSDAY)
-,,21-11-25 (FRIDAY),,Imported necessary symbols and footprint of espcam to kicad.,,Finished core block mount base plate CAD design. 
+,,20-11-25 (THURSDAY),,,Partially developed code for improved UI.
+,,21-11-25 (FRIDAY),Studied and listed the components of Rail System.,Imported necessary symbols and footprint of espcam to kicad.,,Finished core block mount base plate CAD design. 
 ,,22-11-25 (SATURDAY),,Set up of espcam and atmega wiring. Setup of limit switches and capacitors in circuit.,,Finished core block mount top covering part CAD design. 
-,,Week's Objective,,Circuit Design of Rail system | Component list,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
-,,Week's Progress,,"1-75, 2-75",,"2,3,8,7"
+,,Week's Objective,Complete list of components.| Linear Carriage design.|,Circuit Design of Rail system | Component list,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
+,,Week's Progress,,"1-75, 2-75",4-40,"2,3,8,7"
 ,Week 08,23-11-25 (SUNDAY)
-,,24-11-25 (MONDAY)
+,,24-11-25 (MONDAY),,,,"Marked pieces for res base, top hatch, side hatch and elec bay top connectors. "
 ,,25-11-25 (TUESDAY)
 ,,26-11-25 (WEDNESDAY)
 ,,27-11-25 (THURSDAY)
