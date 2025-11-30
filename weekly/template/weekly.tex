@@ -11,12 +11,16 @@
 
 \begin{document}
 
+\pagenumbering{gobble}
+
 \IfFileExists{overview.tex} {
     \input{overview.tex}
 } {
 }
 
 \newgeometry{margin = 1in}
+
+\pagenumbering{arabic}
 
 \IfFileExists{completion.tex} {
     \input{completion.tex}
