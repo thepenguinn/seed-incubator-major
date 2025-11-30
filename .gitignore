@@ -42,6 +42,7 @@ weekly/week_*/*.pdf
 weekly/template/*.pdf
 weekly/template/*.zip
 weekly/*/sig
+weekly/progress/template/*.pdf
 *.nav
 *.out
 *.snm
