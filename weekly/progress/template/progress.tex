@@ -1,0 +1,95 @@
+\documentclass[11pt, a4paper]{article}
+
+\input{preamble.tex}
+
+% \def\AddSignature{0}
+
+% \IfFileExists{signthis} {
+%     \def\AddSignature{1}
+% } {
+% }
+
+\def\tblCellHeight{0.05\textheight}
+\def\tblDateCellWidth{0.18\textwidth}
+\def\tblWorkCellWidth{0.76\textwidth}
+\def\tblRadius{7pt}
+\def\tblCellPaddedHeight{0.100\textwidth}
+\def\tblSpace{0.014\textwidth}
+\def\tblCellPad{1.2cm}
+
+\renewcommand\arraystretch{1.5}
+
+% <Date> <Holiday 1/0> <Work>
+\newcommand\showDayWork[3] {
+    \ifthenelse {#2 = 1} {
+        \colorlet{colorTblDateColor}{colorSunLight}
+        \colorlet{colorTblWorkColor}{white!20!colorSunLight}
+    }{
+        \colorlet{colorTblDateColor}{colorNonSun}
+        \colorlet{colorTblWorkColor}{white!30!colorNonSun}
+    }
+    \begin{tikzpicture}
+        \filldraw [
+            colorTblDateColor,
+            fill = colorTblDateColor,
+            very thick,
+            rounded corners = \tblRadius,
+        ]
+        (0, 0) ++(\tblDateCellWidth / 2, \tblCellHeight / 2) coordinate (dateCenter)
+        (0, 0) rectangle ++(\tblDateCellWidth, \tblCellHeight) ++(\tblSpace, 0) coordinate (tmp)
+        ;
+
+        \filldraw [
+            colorTblWorkColor,
+            fill = colorTblWorkColor,
+            very thick,
+            rounded corners = \tblRadius,
+        ]
+        (tmp) rectangle ++(\tblWorkCellWidth, -\tblCellHeight)
+        (tmp) ++(\tblWorkCellWidth / 2, -\tblCellHeight / 2) coordinate (workCenter)
+        ;
+
+        \draw [
+        ]
+        (dateCenter)
+        node [anchor = center] {\texttt{#1}}
+        ;
+
+        \draw [
+        ]
+        (workCenter)
+        node [anchor = center] {
+            \pgfmathparse{\tblWorkCellWidth - \tblCellPad}
+            \begin{minipage} {\pgfmathresult pt}
+                \texttt{#3}
+            \end{minipage}
+        }
+        ;
+
+    \end{tikzpicture}
+}
+
+% <Week number> <Week file>
+\newcommand\showWeekWork[2] {
+    {\Large \texttt{WEEK #1}}
+
+    \begin{center}
+        \begin{xltabular} {\textwidth} {
+                c
+            }
+            \input{#2}
+
+        \end{xltabular}
+    \end{center}
+}
+
+\begin{document}
+
+\input{progress_name.tex}
+
+{\LARGE \textsc{Seed Incubation Plant: Progress} \hfill \textsc{\name}}
+\vspace{1cm}
+
+\input{progress_data.tex}
+
+\end{document}
