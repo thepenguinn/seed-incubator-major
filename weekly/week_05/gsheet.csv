@@ -44,34 +44,34 @@ Stage 03,Week 05,02-11-25 (SUNDAY),,,,,"Finalize overall UI design of SINC. Live
 ,,07-11-25 (FRIDAY),,,Partially developed code for connecting to both esp32.,Marked and cut pieces for elec bay side panels. 
 ,,08-11-25 (SATURDAY),Researched about the components for linear rail mechanism.,,Worked on the partially developed code.,Reservoir CAD design done. 
 ,,Week's Objective,Start linear rail design. |Create components list.,Circuit design completion of Rail system ,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Start working on the UI.,Vertical Panel Connectors. | Electronics Bay Base. | Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Frame CAD. | Reservoir Front Panel. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches.
-,,Week's Progress,2-30,,"1-70, 2-40, 3-60, 4-10","1,2,3-50,4-50,5"
-,Week 06,09-11-25 (SUNDAY),,,,CAD design of top hatch frame done. 
-,,10-11-25 (MONDAY)
-,,11-11-25 (TUESDAY)
-,,12-11-25 (WEDNESDAY)
+,,Week's Progress,2-30,1-30,"1-70, 2-40, 3-60, 4-10","1,2,3-50,4-50,5"
+,Week 06,09-11-25 (SUNDAY),,Basic research and component selection.,,CAD design of top hatch frame done. 
+,,10-11-25 (MONDAY),,Started week_06 subfolder and added files.,Started designing the UI.
+,,11-11-25 (TUESDAY),,Setup kicad and started circuit design ,Worked on the live feed code.,Assembled both of the electronics bay side panels. 
+,,12-11-25 (WEDNESDAY),,,,Redesigned elec bay connectors. 
 ,,13-11-25 (THURSDAY)
-,,14-11-25 (FRIDAY)
-,,15-11-25 (SATURDAY)
-,,Week's Objective,Create complete components list.| Install fusion 360.|,,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | CAD Design of Top Hatch Frame.
-,,Week's Progress,,,,9
-Stage 04,Week 07,16-11-25 (SUNDAY)
-,,17-11-25 (MONDAY)
-,,18-11-25 (TUESDAY)
-,,19-11-25 (WEDNESDAY)
-,,20-11-25 (THURSDAY)
-,,21-11-25 (FRIDAY)
-,,22-11-25 (SATURDAY)
-,,Week's Objective
-,,Week's Progress
+,,14-11-25 (FRIDAY),,,,Marked and cut pieces for reservoir back panel. 
+,,15-11-25 (SATURDAY),,,,Assembed reservoir back panel. 
+,,Week's Objective,Create complete components list.| Install fusion 360.|,Circuit design completion of Rail system | List out components | Install and setup kicad,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Electronics Bay Side Panel 1. | Electronics Bay Side Panel 2. | Reservoir Back Panel. | Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | CAD Design of Top Hatch Frame.
+,,Week's Progress,,"1-45,3-100","4-40,5-30","9,1,2,3"
+Stage 04,Week 07,16-11-25 (SUNDAY),,,,Marked and cut pieces for reservoir side panels. 
+,,17-11-25 (MONDAY),,,,Assembled reservoir side panels. 
+,,18-11-25 (TUESDAY),,,,CAD - Redesigned side hatch frame. 
+,,19-11-25 (WEDNESDAY),,,,Finalized core block mount design. Top view of the same is done. 
+,,20-11-25 (THURSDAY),,,Partially developed code for improved UI.
+,,21-11-25 (FRIDAY),Studied and listed the components of Rail System.,Imported necessary symbols and footprint of espcam to kicad.,,Finished core block mount base plate CAD design. 
+,,22-11-25 (SATURDAY),,Set up of espcam and atmega wiring. Setup of limit switches and capacitors in circuit.,,Finished core block mount top covering part CAD design. 
+,,Week's Objective,Complete list of components.| Linear Carriage design.|,Circuit Design of Rail system | Component list,Live feed from esp cam. | Connect to both esp. | Update all works in git. | Home screen UI. | Live feed screen UI. ,Reservoir Base | Reservoir Side Panel 1. | Reservoir Side Panel 2. | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | CAD Design of Core Block Mount. | Redesign Side Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame.
+,,Week's Progress,,"1-75, 2-75",4-40,"2,3,8,7"
 ,Week 08,23-11-25 (SUNDAY)
-,,24-11-25 (MONDAY)
-,,25-11-25 (TUESDAY)
-,,26-11-25 (WEDNESDAY)
-,,27-11-25 (THURSDAY)
-,,28-11-25 (FRIDAY)
-,,29-11-25 (SATURDAY)
-,,Week's Objective
-,,Week's Progress
+,,24-11-25 (MONDAY),,,,"Marked pieces for res base, top hatch, side hatch and elec bay top connectors. "
+,,25-11-25 (TUESDAY),,,,"Cut pieces for res base, top hatch, side hatch and elec bay top connectors. "
+,,26-11-25 (WEDNESDAY),,,,Aasembled 80 percent of reservoir base. 
+,,27-11-25 (THURSDAY),,,,Fully assembled reservoir base. 
+,,28-11-25 (FRIDAY),,,,Assembled top hatch and electronics bay top connector. Fixed side hatch. 
+,,29-11-25 (SATURDAY),,,,Marked and cut pieces for core block mount base plate. 
+,,Week's Objective,Linear Carriage design.|,Complete circuit and component list,Live feed from esp cam | Connect to both esp,Reservoir Base | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame. | Electronics Bay Bottom Connector. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Buy Things for Paint Work. | Start Working on Painting the Frame.
+,,Week's Progress,,,,"1,5,4,6,8-50,10-10,15"
 Stage 05,Week 09,30-11-25 (SUNDAY)
 ,,01-12-25 (MONDAY)
 ,,02-12-25 (TUESDAY)
@@ -79,7 +79,7 @@ Stage 05,Week 09,30-11-25 (SUNDAY)
 ,,04-12-25 (THURSDAY)
 ,,05-12-25 (FRIDAY)
 ,,06-12-25 (SATURDAY)
-,,Week's Objective
+,,Week's Objective,,,,CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Start Working on Painting the Frame.
 ,,Week's Progress
 ,Week 10,07-12-25 (SUNDAY)
 ,,08-12-25 (MONDAY)

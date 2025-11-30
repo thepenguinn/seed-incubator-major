@@ -11,12 +11,17 @@
 
 \begin{document}
 
+\pagenumbering{gobble}
+
 \IfFileExists{overview.tex} {
     \input{overview.tex}
 } {
 }
 
 \newgeometry{margin = 1in}
+
+\pagenumbering{arabic}
+\setcounter{page}{2}
 
 \IfFileExists{completion.tex} {
     \input{completion.tex}
@@ -33,28 +38,28 @@
     \subfile{anjana/weekly.tex}
 } {
     \letAnjana
-    \texttt{TODO: ADD WEEKLY WORK DONE.}
+    \texttt{HAVEN'T ADDED WORK YET.}
 }
 
 \IfFileExists{aswatheertha/weekly.tex} {
     \subfile{aswatheertha/weekly.tex}
 } {
     \letAswatheertha
-    \texttt{TODO: ADD WEEKLY WORK DONE.}
+    \texttt{HAVEN'T ADDED WORK YET.}
 }
 
 \IfFileExists{athira/weekly.tex} {
     \subfile{athira/weekly.tex}
 } {
     \letAthira
-    \texttt{TODO: ADD WEEKLY WORK DONE.}
+    \texttt{HAVEN'T ADDED WORK YET.}
 }
 
 \IfFileExists{daniel/weekly.tex} {
     \subfile{daniel/weekly.tex}
 } {
     \letDaniel
-    \texttt{TODO: ADD WEEKLY WORK DONE.}
+    \texttt{HAVEN'T ADDED WORK YET.}
 }
 
 \IfFileExists{signature.tex} {

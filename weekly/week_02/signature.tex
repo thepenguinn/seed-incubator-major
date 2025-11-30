@@ -133,8 +133,11 @@
     \draw
     ($(#1.north)!0.5!(sig.north)$)
     node (pic) {
-        \IfFileExists{../template/sig/#3} {
-            \includegraphics[width = #4] {../template/sig/#3}
+        \ifthenelse {\AddSignature = 1} {
+            \IfFileExists{../template/sig/#3} {
+                \includegraphics[width = #4] {../template/sig/#3}
+            } {
+            }
         } {
         }
     }
@@ -246,9 +249,9 @@
 
             \signDrawGuideContent
 
-            \draw
-            (guide.south) ++(0, \spaceLeft pt) coordinate (makeUpHeight)
-            ;
+            % \draw
+            % (guide.south) ++(0, \spaceLeft pt) coordinate (makeUpHeight)
+            % ;
 
         \end{tikzpicture}%
     % \end{center}%
@@ -271,6 +274,7 @@
 % \mbox{}
 % \vfill
 
+\vspace{1cm}
 \begin{center}
     \usebox{0}
 \end{center}

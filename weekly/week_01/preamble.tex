@@ -230,6 +230,7 @@
     \colorlet{colorAccent}{colorP#1}
     \colorlet{colorAccentDark}{colorP#1Dark}
     \color{colorP#1Dark}
+    \captionsetup{font={color=colorP#1Dark}}
     \section{#2}
     \vspace{-0.85cm}
     \begin{center}
@@ -260,3 +261,7 @@
 \newcommand\letDaniel[0] {
     \createSection{4}{Daniel}
 }
+
+\makeatletter
+\def\fps@figure{H}
+\makeatother
