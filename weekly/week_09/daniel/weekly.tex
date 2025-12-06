@@ -1,0 +1,71 @@
+\documentclass[../weekly.tex]{subfiles}
+
+\begin{document}
+
+\letDaniel
+
+\subsection{Monday: Dec 01 2025}
+
+Today, started designing implementable version of core block.
+
+\subsubsection{Core Block}
+
+See figures \ref{fig:cbRoughSketches} and \ref{fig:cbStructCAD} for the
+current progress.
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\centering \arraybackslash}m{0.49\textwidth}
+            >{\centering \arraybackslash}m{0.49\textwidth}
+        }
+
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/rough_cb.jpg}
+        &
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/structural_cb_cad.png}
+
+        \\
+        &
+        \\
+
+        \captionof{figure} {Rough sketches of core block.}
+        \label{fig:cbRoughSketches}
+        &
+        \captionof{figure} {Structural beams for the core block implemented in CAD.}
+        \label{fig:cbStructCAD}
+
+        \\
+
+    \end{tabularx}
+\end{center}
+
+\subsubsection{Air Moisture Cycler and Exhaust Branches Interface with Mid Layer}
+
+The incubator area should be isolated from the external world. AMC's interface with the
+mid layer is one of the places where there need to be made cutouts in the mid layer.
+The mid layer also should have some kind of attaching for the exhaust branches. See
+figure \ref{fig:amcEbRough} for a rough sketch.
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        width = 0.5\textwidth,
+    ] {pics/rough_amc_eb.jpg}
+    \captionof{figure} {Rough sketches showing the placement of air moisture cycler and exhaust branches.}
+    \label{fig:amcEbRough}
+\end{figure}
+
+\subsubsection{Attachment of Mid Layer to Plywood Frame}
+
+\paragraph{PVC Foam} is needed to be attached via nails, since glue won't be enough to secure it
+in place.
+
+\paragraph{Polycarbonate} can be screwed down to the frame. Then they can be waterproofed using
+silicone adhesives.
+
+\end{document}
