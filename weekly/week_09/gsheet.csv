@@ -73,13 +73,13 @@ Stage 04,Week 07,16-11-25 (SUNDAY),,,,Marked and cut pieces for reservoir side p
 ,,Week's Objective,Linear Carriage design.|,Complete circuit and component list,Live feed from esp cam | Connect to both esp,Reservoir Base | CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Top Hatch Frame. | Electronics Bay Top Connector. | Fix Side Hatch Frame. | Electronics Bay Bottom Connector. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Buy Things for Paint Work. | Start Working on Painting the Frame.
 ,,Week's Progress,,,,"1,5,4,6,8-50,10-10,15"
 Stage 05,Week 09,30-11-25 (SUNDAY)
-,,01-12-25 (MONDAY)
-,,02-12-25 (TUESDAY)
+,,01-12-25 (MONDAY),Completed components list.,Listed out the required components ,,"Started CAD design of ICB. Rough design of AMC, EB and mid layer interface. Decided how to attach PC and foam to frame. "
+,,02-12-25 (TUESDAY),Installed Fusion 360.,Studied UART & I2C protocols
 ,,03-12-25 (WEDNESDAY)
 ,,04-12-25 (THURSDAY)
 ,,05-12-25 (FRIDAY)
 ,,06-12-25 (SATURDAY)
-,,Week's Objective,,,,CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Start Working on Painting the Frame.
+,,Week's Objective,Complete the list of components.| Collect the url of the components.| Search and refer the linear carriage designs.|Start the linear carriage design.|,Final Component list .| Finding suitable sites for purchase. | Component list preparation. | Url collection for ordering. | Ordering of components. | Atmega programming research. | Specifications study of components.,Figure out how to redo the live feed screen UI. | Correct the code for live feed from esp cam. | Plan the UI for showing connection status. | Redo the existing UI | Improvise according to the updated requirements. | Figure out the code for connecting to both esp32.,"CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Start Working on Painting the Frame. | Figure out how to attach mid layer (PVC Foam and polycarbonate) to plywood. | Rough design of mid layer and air moisture cycler interface. | Rough design of mid layer and exhaust branch interface. | Figure out how to attach GMU rail to plywood, with mid layer in-between. | CAD design of core block chambers. | CAD design of core block panels. | CAD design of core block and exhaust branches interface. | CAD design of exhaust branches. | CAD design of mid layer (with PVC foam) for incubator area. | CAD design of mid layer (with polycarbonate) for incubator area base. | Mark and cut foam pieces for incubator area mid layer. | Start assembling foam mid layer."
 ,,Week's Progress
 ,Week 10,07-12-25 (SUNDAY)
 ,,08-12-25 (MONDAY)
