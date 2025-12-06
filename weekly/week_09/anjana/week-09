@@ -1,0 +1,31 @@
+\documentclass[ ../weekly]{subfiles}
+
+\begin{document}
+\letAnjana
+\subsection{Completed Components List with URLs}
+ The complete bill of materials for the linear rail system has been identified and finalized.
+ \vspace{2mm}
+\begin{table}[h!]
+
+\RaggedRight
+
+\begin{tabular}{l c c l}
+\toprule
+\textbf{Item} & \textbf{Count} & \textbf{Total Price (in rupees)} & \textbf{URL} \\
+
+\midrule
+T-slot Aluminium Extrusion (20x20) & 5 & 2065 & \href{https://robu.in/product/easymech-20x20-t-slot-aluminium-extrusion-profile-1000-mm/}{Link} \\
+\vspace{1mm}
+GT2 Pulley & 2 & 52 & \href{https://robu.in/product/gt2-6mm-belt-width-20-teeth-5mm-bore-timing-pulley/}{Link} \\
+GT2 Timing Belt (1m) & 1 & 85 & \href{https://robu.in/product/1m-gt2-width-6mm-black-open-timing-belt-for-3d-printer/}{Link} \\
+GT2 Timing Belt (2m) & 1 & 208 & \href{https://robu.in/product/2-meter-x-gt2-open-timing-belt-6mm-width/}{Link} \\
+GT2 Idler Pulley & 2 & 116 & \href{https://robu.in/product/2pcs-x-gt2-aluminium-pulley-without-20-teeth-5mm-bore-6mm-belt/}{Link} \\
+\midrule
+\textbf{Total estimated price} &  &\textbf{2526} \\
+\bottomrule
+
+\end{tabular}
+
+\end{table}
+
+\end{document}
