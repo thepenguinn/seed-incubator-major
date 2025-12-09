@@ -85,13 +85,16 @@
 
     \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Anjana}{colorP1Dark} {\pOneProgress}
-        \begin{tikzpicture}
-            \draw (0, 0) coordinate (tmp) ;
-            \foreach \obj/\cmp in \pOneCmpData {
-                \checkBoxDrawItem{\obj} {\cmp} {colorP1Dark} {colorP1LightDark} {colorP1Dark}
-            }
-        \end{tikzpicture}
     \end{minipage}
+    %%
+    \foreach \obj/\cmp in \pOneCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP1Dark} {colorP1LightDark} {colorP1Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
 
     \vspace{0.2cm}
 
@@ -101,17 +104,16 @@
 
     \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Aswatheertha}{colorP2Dark} {\pTwoProgress}
-        \begin{tikzpicture}
-            \draw (0, 0) coordinate (tmp) ;
-            \foreach \obj/\cmp in \pTwoCmpData {
-                \checkBoxDrawItem{\obj} {\cmp} {colorP2Dark} {colorP2LightDark} {colorP2Dark}
-            }
-        \end{tikzpicture}
     \end{minipage}
-
-    % {\hfill
-    % \hspace{0.02\textwidth}
-    % \hfill}
+    %%
+    \foreach \obj/\cmp in \pTwoCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP2Dark} {colorP2LightDark} {colorP2Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
 
     \vspace{0.2cm}
 
@@ -121,13 +123,16 @@
 
     \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Athira}{colorP3Dark} {\pThreeProgress}
-        \begin{tikzpicture}
-            \draw (0, 0) coordinate (tmp) ;
-            \foreach \obj/\cmp in \pThreeCmpData {
-                \checkBoxDrawItem{\obj} {\cmp} {colorP3Dark} {colorP3LightDark} {colorP3Dark}
-            }
-        \end{tikzpicture}
     \end{minipage}
+    %%
+    \foreach \obj/\cmp in \pThreeCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP3Dark} {colorP3LightDark} {colorP3Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
 
     \vspace{0.2cm}
 
@@ -137,17 +142,16 @@
 
     \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Daniel}{colorP4Dark} {\pFourProgress}
-        \begin{tikzpicture}
-            \draw (0, 0) coordinate (tmp) ;
-            \foreach \obj/\cmp in \pFourCmpData {
-                \checkBoxDrawItem{\obj} {\cmp} {colorP4Dark} {colorP4LightDark} {colorP4Dark}
-            }
-        \end{tikzpicture}
     \end{minipage}
-
-    % {\hfill
-    % \hspace{0.02\textwidth}
-    % \hfill}
+    %%
+    \foreach \obj/\cmp in \pFourCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP4Dark} {colorP4LightDark} {colorP4Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
 
     \vspace{0.3cm}
     {\color{colorP4Dark}\rule{\textwidth}{1pt}}
