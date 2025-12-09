@@ -18,7 +18,7 @@
 
 \def\textBlockHeight{\the\textblockheight}
 
-\pgfmathsetmacro{\checkBoxTextWidth}{0.46\textwidth - \checkBoxSide - \checkBoxPad}
+\pgfmathsetmacro{\checkBoxTextWidth}{0.96\textwidth - \checkBoxSide - \checkBoxPad}
 
 % text completion (0 - 100) outerColor innerColor textColor
 \newcommand\checkBoxDrawItem[5] {
@@ -83,8 +83,7 @@
     {\color{colorP1Dark}\rule{\textwidth}{1pt}}
     \vspace{-0.5cm}
 
-    {\hfill
-    \begin{minipage} [t] {0.46\textwidth}
+    \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Anjana}{colorP1Dark} {\pOneProgress}
         \begin{tikzpicture}
             \draw (0, 0) coordinate (tmp) ;
@@ -93,8 +92,14 @@
             }
         \end{tikzpicture}
     \end{minipage}
-    \hspace{0.02\textwidth}
-    \begin{minipage} [t] {0.46\textwidth}
+
+    \vspace{0.2cm}
+
+    \vspace{0.1cm}
+    {\color{colorP2Dark}\rule{\textwidth}{1pt}}
+    \vspace{-0.5cm}
+
+    \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Aswatheertha}{colorP2Dark} {\pTwoProgress}
         \begin{tikzpicture}
             \draw (0, 0) coordinate (tmp) ;
@@ -103,16 +108,18 @@
             }
         \end{tikzpicture}
     \end{minipage}
-    \hfill}
+
+    % {\hfill
+    % \hspace{0.02\textwidth}
+    % \hfill}
 
     \vspace{0.2cm}
 
     \vspace{0.1cm}
-    {\color{colorP1Dark}\rule{\textwidth}{1pt}}
+    {\color{colorP3Dark}\rule{\textwidth}{1pt}}
     \vspace{-0.5cm}
 
-    {\hfill
-    \begin{minipage} [t] {0.46\textwidth}
+    \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Athira}{colorP3Dark} {\pThreeProgress}
         \begin{tikzpicture}
             \draw (0, 0) coordinate (tmp) ;
@@ -121,8 +128,14 @@
             }
         \end{tikzpicture}
     \end{minipage}
-    \hspace{0.02\textwidth}
-    \begin{minipage} [t] {0.46\textwidth}
+
+    \vspace{0.2cm}
+
+    \vspace{0.1cm}
+    {\color{colorP4Dark}\rule{\textwidth}{1pt}}
+    \vspace{-0.5cm}
+
+    \begin{minipage} [t] {0.96\textwidth}
         \pTitle{Daniel}{colorP4Dark} {\pFourProgress}
         \begin{tikzpicture}
             \draw (0, 0) coordinate (tmp) ;
@@ -131,10 +144,13 @@
             }
         \end{tikzpicture}
     \end{minipage}
-    \hfill}
+
+    % {\hfill
+    % \hspace{0.02\textwidth}
+    % \hfill}
 
     \vspace{0.3cm}
-    {\color{colorP1Dark}\rule{\textwidth}{1pt}}
+    {\color{colorP4Dark}\rule{\textwidth}{1pt}}
     \vspace{0.1cm}
 
 \end{center}
