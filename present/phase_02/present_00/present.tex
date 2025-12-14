@@ -72,7 +72,137 @@
 
 \end{frame}
 
-\begin{frame} {Work Plan}
+% <start week num> <end week num> <start date> <end date> <content>
+\newcommand\workPlanStageShow[5] {
+    \begin{minipage}{0.207\textwidth}
+        \textbf{Week #1 - #2}
+        \vspace{0.25cm} \\
+        \texttt{START: \hfill #3 \\ END: \hfill #4}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.725\textwidth}
+        \vspace{0.75cm}
+        #5
+    \end{minipage}
+}
+
+\begin{frame}[allowframebreaks] {Work Plan}
+
+    \renewcommand\arraystretch{1.75}
+    \renewcommand\midrule{{\color{leafColorSecondary} \vspace{-8pt}\rule{\textwidth}{0.75pt}\vspace{8pt}}}
+
+    \begin{xltabular} {\textwidth} {
+            >{\raggedright \arraybackslash}X
+        }
+
+        % stage 06
+        \workPlanStageShow {11} {12}
+        {DEC 14 2025} {DEC 27 2025} {
+            \begin{itemize}
+                \item First thing.
+                \item Second thing.
+            \end{itemize}
+        }
+        \\ \midrule
+
+        % stage 07
+        \workPlanStageShow {13} {14}
+        {DEC 28 2025} {JAN 10 2026} {
+            % \begin{itemize}
+            %     \item First thing.
+            %     \item Second thing.
+            % \end{itemize}
+        }
+        \\ \midrule
+
+        % stage 08
+        \workPlanStageShow {15} {16}
+        {JAN 11 2026} {JAN 24 2026} {
+            % \begin{itemize}
+            %     \item First thing.
+            %     \item Second thing.
+            % \end{itemize}
+        }
+        \\ \midrule
+
+        % stage 09
+        \workPlanStageShow {17} {20}
+        {JAN 25 2026} {FEB 07 2026} {
+            % \begin{itemize}
+            %     \item First thing.
+            %     \item Second thing.
+            % \end{itemize}
+        }
+        \\ \midrule
+
+        % stage 10
+        \workPlanStageShow {21} {22}
+        {FEB 08 2026} {FEB 21 2026} {
+            % \begin{itemize}
+            %     \item First thing.
+            %     \item Second thing.
+            % \end{itemize}
+        }
+        \\ \midrule
+
+        % stage 11
+        \workPlanStageShow {23} {24}
+        {FEB 22 2026} {MAR 07 2026} {
+            % \begin{itemize}
+            %     \item First thing.
+            %     \item Second thing.
+            % \end{itemize}
+        }
+        \\ \midrule
+
+        % stage 12
+        \workPlanStageShow {25} {26}
+        {MAR 08 2026} {MAR 21 2026} {
+            % \begin{itemize}
+            %     \item First thing.
+            %     \item Second thing.
+            % \end{itemize}
+        }
+        \\ \midrule
+
+        % % stage 07
+        % Week 13 - 14
+        % &
+        % <++>
+        % \\ \midrule
+        %
+        % % stage 08
+        % Week 15 - 16
+        % &
+        % <++>
+        % \\ \midrule
+        %
+        % % stage 09
+        % Week 17 - 18
+        % &
+        % <++>
+        % \\ \midrule
+        %
+        % % stage 10
+        % Week 19 - 20
+        % &
+        % <++>
+        % \\ \midrule
+        %
+        % % stage 11
+        % Week 21 - 22
+        % &
+        % <++>
+        % \\ \midrule
+        %
+        % % stage 12
+        % Week 23 - 24
+        % &
+        % <++>
+
+        \\
+
+    \end{xltabular}
 
 \end{frame}
 
