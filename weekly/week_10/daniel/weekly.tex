@@ -1,0 +1,143 @@
+\documentclass[../weekly]{subfiles}
+
+\begin{document}
+
+\letDaniel
+
+This week, design for the panels and frames for the core block almost reached its
+completion. Test printed several snap fit joints. Ordered motors and limit switches for
+the core block.
+
+\subsection{Frames for Core Block}
+
+Printed frame CAD design is reaching its completion. There are 3 types of frames:
+mid frame (3 frames), bottom frame (2 frames), and side frame (2 frames). The foam
+part of these frame will be different. But the design for printed frames are similar
+for these three types. The only difference is the frame length and frame height.
+
+The design of mid frame is shown in figures \ref{fig:foamFrame} to \ref{fig:rack}. They
+are parametrically modelled, so the bottom and side frame designs can be automatically
+generated from the same.
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\centering \arraybackslash}m{0.49\textwidth}
+            >{\centering \arraybackslash}m{0.49\textwidth}
+        }
+
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/foam_frame.png}
+        &
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/printed_frame.png}
+
+        \\
+        &
+        \\
+
+        \captionof{figure} {CAD design of the foam mid panel frame.}
+        \label{fig:foamFrame}
+        &
+        \captionof{figure} {CAD design of printed mid panel frame.}
+        \label{fig:printedFrame}
+
+        \\
+
+    \end{tabularx}
+\end{center}
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\centering \arraybackslash}m{0.49\textwidth}
+            >{\centering \arraybackslash}m{0.49\textwidth}
+        }
+
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/motor_mount.png}
+        &
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/limit_switch_mount.png}
+
+        \\
+        &
+        \\
+
+        \captionof{figure} {CAD design of motor mount.}
+        \label{fig:MotorMount}
+        &
+        \captionof{figure} {CAD design of limit switch mount.}
+        \label{fig:limitSwitchMount}
+
+        \\
+
+    \end{tabularx}
+\end{center}
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\centering \arraybackslash}m{0.49\textwidth}
+            >{\centering \arraybackslash}m{0.49\textwidth}
+        }
+
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/foam_connector.png}
+        &
+        \includegraphics [
+            width = 0.48\textwidth,
+            % angle = -90,
+        ] {pics/rack.png}
+
+        \\
+        &
+        \\
+
+        \captionof{figure} {CAD design of foam and printed frame connector.}
+        \label{fig:foamConnector}
+        &
+        \captionof{figure} {CAD design of rack.}
+        \label{fig:rack}
+
+        \\
+
+    \end{tabularx}
+\end{center}
+
+\subsection{Test Prints for Snap Fit Connectors}
+
+Tested several revisions of the snap fit joints. None of them works properly. Need
+to improvise.
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        width = 0.5\textwidth,
+    ] {pics/test_prints.jpg}
+    \captionof{figure} {Test prints for snap fit joints.}
+    \label{fig:testPrint}
+\end{figure}
+
+\subsection{N20 Motors and Limit Switches}
+
+Purchased motors and limit switches for the panels. Along with the gear belt
+for GMU rail.
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        width = 0.5\textwidth,
+    ] {pics/components.jpg}
+    \captionof{figure} {N20 motors and limit switches for the core block panels.}
+    \label{fig:components}
+\end{figure}
+
+\end{document}
