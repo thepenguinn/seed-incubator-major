@@ -1,0 +1,288 @@
+\def\sigRadius{7pt}
+\def\sigSpace{0.014\textwidth}
+\def\sigCellWidth{0.240\textwidth}
+\def\sigTopPad{10pt}
+\def\sigCellHeight{50pt}
+\def\sigCellPad{0.4cm}
+
+%% <name> <corner> <oppCorner>
+\newcommand\innerSignNode[4] {
+    \filldraw [
+        #4,
+        rounded corners = \tblRadius,
+        fill = #4,
+        % draw = black,
+    ]
+    (#2) rectangle (#3)
+    ;
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$)
+    node (#1) [
+        % black,
+        % rounded corners = \tblRadius,
+        % fill = #4,
+        % draw = black,
+        inner sep = 0pt,
+        outer sep = 0pt,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+        align = center,
+    ] {
+        % \hfill
+        % \pgfmathparse{\n{TEMPDIMX} - \sigCellPad}
+        % \tblDrawCellContent {#1} {\pgfmathresult pt} {#4Dark}
+    }
+    ;
+}
+\newcommand\sigDrawRow[0] {
+
+    % \tblDrawTestCellHeight{#3} {#4} {#5} {#6}
+    %
+    % \pgfmathsetmacro{\tblCellMaxHeight}{max(\tblCellTestHeight pt, \tblCellHeight)}
+
+    \draw [
+    ]
+
+    (origin) coordinate (tmp)
+    ;
+
+    \sigDrawCell {anjana} {colorP1}
+    \sigDrawCell {aswatheertha} {colorP2}
+    \sigDrawCell {athira} {colorP3}
+    \sigDrawCell {daniel} {colorP4}
+
+}
+
+% name fgcol
+\newcommand\sigDrawCell[2] {
+
+    \fill [
+        very thick,
+        rounded corners = 14pt,
+    ]
+
+    (tmp) coordinate (start)
+    (start) ++(\sigCellWidth, -\sigCellHeight - \sigCellPad) coordinate (end)
+    ++(\sigSpace, {\sigCellHeight + \sigCellPad}) coordinate (tmp)
+
+    ;
+
+    \innerSignNode{#1}{start}{end}{#2}
+
+}
+
+\newcommand\sigDrawTop[0] {
+
+    \draw
+    (origin) coordinate (tmp)
+    % (tmp) ++(\calSide + \sigSpace, 0) coordinate (tmp)
+    ;
+
+    \footnotesize
+
+    \foreach \pName/\pColor in {
+        ANJANA/colorP1Dark,
+        ASWATHEERTHA/colorP2Dark,
+        ATHIRA/colorP3Dark,
+        DANIEL/colorP4Dark%
+    } {
+        \draw
+
+        (tmp) coordinate (start)
+        (start) ++(\sigCellWidth, 0) coordinate (end)
+        ++(\sigSpace, 0) coordinate (tmp)
+
+        ($(start)!0.5!(end)$)
+        node (tmpNameNode) [
+            inner sep = 0pt,
+            outer sep = 0pt,
+            above = \sigTopPad,
+            anchor = south,
+        ] {\color{\pColor}\texttt{\pName}}
+        ;
+    }
+
+}
+
+% <box node name> <color> <sig file> <width>
+\newcommand\sigDrawPSign[4] {
+    \draw [
+        #2Dark,
+        thick,
+        shorten > = 8pt,
+        shorten < = 8pt,
+        line cap = rounded,
+    ]
+    (#1.south)
+    node (sig) [
+        anchor = south,
+        outer sep = 4pt,
+    ] {
+        \ttfamily
+        \color{#2Dark}
+        SIGNATURE
+    }
+    (#1.west |- sig.north) -- (#1.east |- sig.north)
+
+    ;
+    \draw
+    ($(#1.north)!0.5!(sig.north)$)
+    node (pic) {
+        \ifthenelse {\AddSignature = 1} {
+            \IfFileExists{../template/sig/#3} {
+                \includegraphics[width = #4] {../template/sig/#3}
+            } {
+            }
+        } {
+        }
+    }
+    ;
+
+}
+
+\newcommand\signDrawGuideContent[0] {
+
+    \draw [
+        colorGuideSignDark,
+        thick,
+        shorten > = 8pt,
+        shorten < = 8pt,
+        line cap = rounded,
+    ]
+
+    (guide.north west)
+    node [
+        outer sep = 6pt,
+        anchor = north west,
+    ] {
+        \ttfamily
+        PROF. DAVID SOLOMON GEORGE
+    }
+
+    (guide.west)
+    node [
+        outer sep = 6pt,
+        anchor = west,
+    ] {
+        \ttfamily
+        \color{colorGuideSignDark}
+        REMARKS:
+    }
+
+    (daniel.south) coordinate (sigVert)
+    (daniel.west) coordinate (sigLeftVert)
+    (daniel.east) coordinate (sigRightVert)
+    (sigVert |- guide.south)
+    node (sig) [
+        anchor = south,
+        outer sep = 4pt,
+    ] {
+        \ttfamily
+        \color{colorGuideSignDark}
+        SIGNATURE
+    }
+    (sigVert |- guide.center) coordinate (sigVert)
+    (sigLeftVert |- guide.center) coordinate (sigLeftVert)
+    (sigRightVert |- guide.center) coordinate (sigRightVert)
+    (sigLeftVert |- sig.north) -- (sigRightVert |- sig.north)
+
+
+    ;
+}
+
+% \pagebreak
+
+% \blindtext
+%
+% \vspace{1pt}
+
+% \blindtext
+
+% \pagebreak
+
+%%%
+
+% \vspace{86pt}
+
+
+\newdimen\sigTotalHeight
+
+\newdimen\spaceleft
+\spaceleft=\dimexpr\textheight-\pagetotal\relax
+
+\def\spaceLeft{\the\spaceleft}
+\pgfmathsetmacro{\tmp}{\spaceLeft - 0pt}
+\xdef\spaceLeft{\tmp}
+
+\setbox0=\vbox{\hbox{%
+    % \begin{center}
+        \begin{tikzpicture}
+
+            \draw
+            (0, 0) coordinate (origin)
+            ;
+
+            \sigDrawTop
+
+            \sigDrawRow
+
+            \fill [
+                very thick,
+                rounded corners = 14pt,
+            ]
+            (origin) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (start)
+            (end) ++(0, -\sigCellHeight - \sigCellPad - \sigSpace) coordinate (end)
+            ;
+
+
+            \sigDrawPSign{anjana}{colorP1} {ajn.png} {1.1cm}
+            \sigDrawPSign{aswatheertha}{colorP2} {ast.png} {1.05cm}
+            \sigDrawPSign{athira}{colorP3} {ata.png} {1.2cm}
+            \sigDrawPSign{daniel}{colorP4} {dnl.png} {1.5cm}
+
+            \innerSignNode{guide}{start}{end}{colorGuideSign}
+
+            \signDrawGuideContent
+
+            % \draw
+            % (guide.south) ++(0, \spaceLeft pt) coordinate (makeUpHeight)
+            % ;
+
+        \end{tikzpicture}%
+    % \end{center}%
+}}
+
+\sigTotalHeight=\ht0
+
+\ifthenelse{\lengthtest{\spaceLeft pt > 0pt}} {
+    % \vspace{\spaceLeft pt}
+    \ifthenelse{\lengthtest{\the\sigTotalHeight > \spaceLeft pt}} {
+        % \pagetotal=\textheight
+        % \pagebreak
+        % \strut%
+    } {
+    }
+} {
+    % \pagebreak
+    % \strut%
+}
+% \mbox{}
+% \vfill
+
+\vspace{1cm}
+\begin{center}
+    \usebox{0}
+\end{center}
+
+% \begin{figure} [b!]
+% \end{figure}
+
+% \the\sigTotalHeight and \the\spaceleft \\
+% \the\pagetotal and \the\textheight
+
+%%%

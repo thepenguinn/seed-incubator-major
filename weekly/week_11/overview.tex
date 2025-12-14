@@ -1,0 +1,351 @@
+\def\calSide{0.12\textwidth}
+\def\calSpace{0.02\textwidth}
+\def\pillLength{0.017\textwidth}
+\def\pillHeight{0.8cm}
+\def\pillRadius{2pt}
+
+\def\tblRadius{7pt}
+\def\tblCellPaddedHeight{0.100\textwidth}
+\def\tblCellWidth{0.194\textwidth}
+\def\tblSpace{0.014\textwidth}
+\def\tblCellPad{0.4cm}
+
+\def\tblTopPad{10pt}
+
+% \pgfmathsetmacro{\tblCellHeight}{\tblCellPaddedHeight - \tblCellPad}
+
+\newcommand\tblDrawTop[0] {
+
+    \draw
+    (origin) coordinate (tmp)
+    (tmp) ++(\calSide + \tblSpace, 0) coordinate (tmp)
+    ;
+
+    \footnotesize
+
+    \foreach \pName/\pColor in {
+        ANJANA/colorP1Dark,
+        ASWATHEERTHA/colorP2Dark,
+        ATHIRA/colorP3Dark,
+        DANIEL/colorP4Dark%
+    } {
+        \draw
+
+        (tmp) coordinate (start)
+        (start) ++(\tblCellWidth, 0) coordinate (end)
+        ++(\tblSpace, 0) coordinate (tmp)
+
+        ($(start)!0.5!(end)$)
+        node (tmpNameNode) [
+            inner sep = 0pt,
+            outer sep = 0pt,
+            above = \tblTopPad,
+            anchor = south,
+        ] {\color{\pColor}\texttt{\pName}}
+        ;
+    }
+
+}
+
+% text width color
+\newcommand\tblDrawCellContent[3] {
+    \begin{minipage} {#2}
+        \color{#3}
+        \centering
+        \scriptsize
+        \ttfamily
+        #1
+    \end{minipage}
+}
+
+\newcommand\tblDrawTestCellHeight[4] {
+    \begin{scope}
+        \clip
+        (0, 0)
+        node (tmpTestCellHeightNode) [anchor = north west, inner sep = 0pt, outer sep = 0pt] {
+            \pgfmathparse{\tblCellWidth - \tblCellPad}
+            \begin{tabular} {
+                    cccc
+                }
+                \tblDrawCellContent{#1}{\pgfmathresult pt}{colorP4Dark} &
+                \tblDrawCellContent{#2}{\pgfmathresult pt}{colorP4Dark} &
+                \tblDrawCellContent{#3}{\pgfmathresult pt}{colorP4Dark} &
+                \tblDrawCellContent{#4}{\pgfmathresult pt}{colorP4Dark}
+                \\
+            \end{tabular}
+        }
+        ;
+        \draw
+        (tmpTestCellHeightNode.north) coordinate (A)
+        (tmpTestCellHeightNode.south) coordinate (B)
+        ;
+    \end{scope}
+    \calcLength(A,B){tblCellTestHeight}
+}
+
+%% <name> <corner> <oppCorner>
+\newcommand\innerEnclosureNode[4] {
+    \filldraw [
+        #4,
+        rounded corners = \tblRadius,
+        fill = #4,
+        % draw = black,
+    ]
+    (#2) rectangle (#3)
+    ;
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$) ++(4pt, 0)
+    node (tmpNode) [
+        % black,
+        % rounded corners = \tblRadius,
+        % fill = #4,
+        % draw = black,
+        inner sep = 0pt,
+        outer sep = 0pt,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+        align = center,
+    ] {
+        \hfill
+        \pgfmathparse{\n{TEMPDIMX} - \tblCellPad}
+        \tblDrawCellContent {#1} {\pgfmathresult pt} {#4Dark}
+    }
+    ;
+}
+
+% date dateColor p1Text p2Text p3Text p4Text
+\newcommand\tblDrawRow[6] {
+
+    \tblDrawTestCellHeight{#3} {#4} {#5} {#6}
+
+    \pgfmathsetmacro{\tblCellMaxHeight}{max(\tblCellTestHeight pt, \tblCellHeight)}
+
+    \fill [
+        #2,
+        very thick,
+        rounded corners = \tblRadius,
+    ]
+
+    (itmp) coordinate (tmp) coordinate (start)
+    (start) ++(\calSide, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    (start) rectangle (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    (end) ++(-\calSide, -\tblSpace) coordinate (itmp)
+
+    ;
+
+    \draw [
+        white,
+    ]
+    ($(start)!0.5!(end)$)
+    node [
+        font = \Large,
+        anchor = center,
+    ]
+    {\texttt{#1}}
+    ;
+
+    \tblDrawCell {#3} {colorP1}
+    \tblDrawCell {#4} {colorP2}
+    \tblDrawCell {#5} {colorP3}
+    \tblDrawCell {#6} {colorP4}
+
+}
+
+% text fgcol
+\newcommand\tblDrawCell[2] {
+
+    \fill [
+        very thick,
+        rounded corners = 14pt,
+    ]
+
+    (tmp) coordinate (start)
+    (start) ++(\tblCellWidth, -\tblCellMaxHeight pt - \tblCellPad) coordinate (end)
+    ++(\tblSpace, {\tblCellMaxHeight pt + \tblCellPad}) coordinate (tmp)
+
+    ;
+
+    \innerEnclosureNode{#1}{start}{end}{#2}
+
+}
+
+% date day fg bg dayfg p1 p2 p3 p4
+\newcommand\calDrawCell[9] {
+    \fill [
+        #4,
+        very thick,
+        rounded corners = 14pt,
+    ]
+
+    (tmp) coordinate (start)
+    (start) ++(\calSide, -\calSide) coordinate (end)
+    (start) rectangle (end)
+    ++(\calSpace, \calSide) coordinate (tmp)
+
+    ;
+
+    \draw [
+        #3,
+    ]
+    ($(start)!0.5!(end)$)
+    node [
+        font = \Large,
+        anchor = center,
+    ]
+    {\texttt{#1}}
+    ;
+
+    \draw [
+        #5,
+    ]
+    ($(start)!0.5!(end)$) ++(0, \calSide / 2)
+    node [
+        font = \large,
+        anchor = south,
+        above = 6pt,
+    ]
+    {\texttt{#2}}
+    ;
+
+    \draw (start |- end) coordinate (botLeft) ++(0, -10pt) coordinate (pillHori) ;
+
+    \draw ($(botLeft)!0.2!(end)$) coordinate (p1Vert);
+    \draw ($(botLeft)!0.4!(end)$) coordinate (p2Vert);
+    \draw ($(botLeft)!0.6!(end)$) coordinate (p3Vert);
+    \draw ($(botLeft)!0.8!(end)$) coordinate (p4Vert);
+
+    \ifthenelse {#6 = 1} {
+        \fill [
+            colorP1,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p1Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+    \ifthenelse {#7 = 1} {
+        \fill [
+            colorP2,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p2Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+    \ifthenelse {#8 = 1} {
+        \fill [
+            colorP3,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p3Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+    \ifthenelse {#9 = 1} {
+        \fill [
+            colorP4,
+            rounded corners = \pillRadius,
+        ]
+        (pillHori -| p4Vert) ++(-\pillLength / 2, 0) rectangle ++(\pillLength, -\pillHeight)
+        ;
+    }{}
+
+}
+
+\newcommand\fillTblCellHeight[0] {
+    \draw
+    (tmpNameNode.north |- origin) coordinate (end)
+    (tmpNameNode.north) coordinate (start)
+    ;
+
+    \calcLength(start,end) {tblNameHeight}
+
+    \pgfmathsetmacro{\tmp}{\spaceLeft - \tblNameHeight - (7 * \tblSpace) - (7 * \tblCellPad)}
+    \xdef\spaceLeft{\tmp}
+
+    \pgfmathsetmacro{\tblCellIdealHeight}{\spaceLeft / 7}
+
+    \xdef\dayCount{7}
+
+    \foreach \date/\holiday/\pOne/\pTwo/\pThree/\pFour in \tblData {
+        \tblDrawTestCellHeight{\pOne} {\pTwo} {\pThree} {\pFour}
+
+        \ifthenelse{\lengthtest{\tblCellTestHeight pt > \tblCellIdealHeight pt}} {
+
+            \pgfmathsetmacro{\tmp}{\spaceLeft - \tblCellTestHeight}
+            \xdef\spaceLeft{\tmp}
+            \pgfmathsetmacro{\tmp}{\dayCount - 1}
+            \xdef\dayCount{\tmp}
+
+            \pgfmathsetmacro{\tmp}{\spaceLeft / \dayCount}
+            \xdef\tblCellIdealHeight{\tmp}
+
+        } {
+        }
+    }
+
+    \pgfmathsetmacro{\tmp}{\spaceLeft / \dayCount}
+    \xdef\tblCellHeight{\tmp}
+}
+
+
+\input{gsheet_data.tex}
+
+\chapter{Seed Incubation Plant: Weekly Report}
+\vspace{-0.6cm}
+
+\begin{center}
+
+    \begin{tikzpicture} [
+        ]
+
+        \draw (0, 0) coordinate (tmp) ;
+
+        \foreach \date/\day/\holiday/\pOne/\pTwo/\pThree/\pFour in \calData {
+            \ifthenelse{\holiday = 1} {
+                \calDrawCell{\date}{\day}{white}{colorSun}{colorSun} {\pOne} {\pTwo} {\pThree} {\pFour}
+            } {
+                \calDrawCell{\date}{\day}{white}{colorNonSun}{colorNonSunDark} {\pOne} {\pTwo} {\pThree} {\pFour}
+            }
+        }
+
+    \end{tikzpicture}
+
+    \vspace{0.6cm}
+
+    \newdimen\tblHeight
+    \tblHeight=\dimexpr\textheight-\pagetotal\relax
+
+    \def\spaceLeft{\the\tblHeight}
+    \pgfmathsetmacro{\tmp}{\spaceLeft - 3pt}
+    \xdef\spaceLeft{\tmp}
+
+    \begin{tikzpicture} [
+        ]
+
+        \draw (0, 0) coordinate (origin) coordinate (itmp) ;
+
+        \tblDrawTop
+
+        \fillTblCellHeight
+
+        \foreach \date/\holiday/\pOne/\pTwo/\pThree/\pFour in \tblData {
+            \ifthenelse{\holiday = 1} {
+                \tblDrawRow {\date} {colorSun} {\pOne} {\pTwo} {\pThree} {\pFour}
+            } {
+                \tblDrawRow {\date} {colorNonSun} {\pOne} {\pTwo} {\pThree} {\pFour}
+            }
+        }
+
+    \end{tikzpicture}
+
+    \vfill
+
+\end{center}
