@@ -1,0 +1,162 @@
+\color{colorGuideSignDark}
+\section{Weekly Objectives and Completion Status}
+
+\def\checkBoxSide{0.45cm}
+\def\checkBoxRadius{3pt}
+\def\checkBoxPad{0.3cm}
+\def\checkBoxItemPad{0.4cm}
+
+\newdimen\textblockheight
+\setbox0=\hbox{
+    \begin{minipage} {\textwidth}
+        huge hai something that is so cool.
+    \end{minipage}
+}
+
+\textblockheight=\ht0
+\advance\textblockheight by \dp0
+
+\def\textBlockHeight{\the\textblockheight}
+
+\pgfmathsetmacro{\checkBoxTextWidth}{0.96\textwidth - \checkBoxSide - \checkBoxPad}
+
+% text completion (0 - 100) outerColor innerColor textColor
+\newcommand\checkBoxDrawItem[5] {
+
+    \begin{scope}
+        \clip [
+            rounded corners = \checkBoxRadius,
+        ]
+        (tmp) rectangle ++(\checkBoxSide, -\checkBoxSide)
+        ;
+
+        \fill [
+            #4,
+        ]
+        (tmp) rectangle ++(#2 / 100 * \checkBoxSide, -\checkBoxSide)
+        ;
+    \end{scope}
+
+    \draw [
+        very thick,
+        #3,
+        rounded corners = \checkBoxRadius,
+    ]
+    (tmp) rectangle ++(\checkBoxSide, -\checkBoxSide)
+    ;
+
+    \draw
+    (tmp) ++(\checkBoxSide + \checkBoxPad, 0) ++(0, - \checkBoxSide / 2 + \textBlockHeight / 2 - 1.0pt)
+    coordinate (text)
+    node (text) [
+        inner sep = 0pt,
+        outer sep = 0pt,
+        anchor = north west,
+    ] {
+        \begin{minipage} {\checkBoxTextWidth pt}
+            \color{#5}
+            #1
+        \end{minipage}
+    }
+    ;
+
+    \draw
+    (tmp |- text.south) ++(0, -\checkBoxItemPad)
+    coordinate (tmp)
+    ;
+}
+
+\input{completion_data.tex}
+
+\newcommand\pTitle[3] {
+    {\color{#2} \large \textsc{#1} \hfill \textsc{#3\% Done}}
+    \vspace{-0.0cm}
+    \vfill
+    {\color{#2} \rule{\textwidth}{0.75pt}}
+    \vfill
+    \vspace{0.3cm}
+}
+
+\begin{center}
+
+    \vspace{0.1cm}
+    {\color{colorP1Dark}\rule{\textwidth}{1pt}}
+    \vspace{-0.5cm}
+
+    \begin{minipage} [t] {0.96\textwidth}
+        \pTitle{Anjana}{colorP1Dark} {\pOneProgress}
+    \end{minipage}
+    %%
+    \foreach \obj/\cmp in \pOneCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP1Dark} {colorP1LightDark} {colorP1Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
+
+    \vspace{0.2cm}
+
+    \vspace{0.1cm}
+    {\color{colorP2Dark}\rule{\textwidth}{1pt}}
+    \vspace{-0.5cm}
+
+    \begin{minipage} [t] {0.96\textwidth}
+        \pTitle{Aswatheertha}{colorP2Dark} {\pTwoProgress}
+    \end{minipage}
+    %%
+    \foreach \obj/\cmp in \pTwoCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP2Dark} {colorP2LightDark} {colorP2Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
+
+    \vspace{0.2cm}
+
+    \vspace{0.1cm}
+    {\color{colorP3Dark}\rule{\textwidth}{1pt}}
+    \vspace{-0.5cm}
+
+    \begin{minipage} [t] {0.96\textwidth}
+        \pTitle{Athira}{colorP3Dark} {\pThreeProgress}
+    \end{minipage}
+    %%
+    \foreach \obj/\cmp in \pThreeCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP3Dark} {colorP3LightDark} {colorP3Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
+
+    \vspace{0.2cm}
+
+    \vspace{0.1cm}
+    {\color{colorP4Dark}\rule{\textwidth}{1pt}}
+    \vspace{-0.5cm}
+
+    \begin{minipage} [t] {0.96\textwidth}
+        \pTitle{Daniel}{colorP4Dark} {\pFourProgress}
+    \end{minipage}
+    %%
+    \foreach \obj/\cmp in \pFourCmpData {
+        \begin{minipage} [t] {0.96\textwidth}
+            \begin{tikzpicture}
+                \draw (0, 0) coordinate (tmp) ;
+                \checkBoxDrawItem{\obj} {\cmp} {colorP4Dark} {colorP4LightDark} {colorP4Dark}
+            \end{tikzpicture}
+        \end{minipage}
+    }
+
+    \vspace{0.3cm}
+    {\color{colorP4Dark}\rule{\textwidth}{1pt}}
+    \vspace{0.1cm}
+
+\end{center}
+
+\vspace{-0.5cm}
