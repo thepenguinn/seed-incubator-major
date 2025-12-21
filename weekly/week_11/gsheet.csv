@@ -95,10 +95,10 @@ Stage 06,Week 11,14-12-25 (SUNDAY)
 ,,16-12-25 (TUESDAY),,,,Testing printed limit switch mount and adjusted model accordingly. 
 ,,17-12-25 (WEDNESDAY),,,,Printed frame base and motor case. Tweaked model accordingly. 
 ,,18-12-25 (THURSDAY)
-,,19-12-25 (FRIDAY),,,,Switched to nut and bolt fastening from peg and hole for motor case. Test printed frame base and motor case. 
-,,20-12-25 (SATURDAY),,,,Tweaked and finalized mid frame model according tothe input from test prints. 
+,,19-12-25 (FRIDAY),,,Started learning system design.,Switched to nut and bolt fastening from peg and hole for motor case. Test printed frame base and motor case. 
+,,20-12-25 (SATURDAY),,,Started learning about TCP.,Tweaked and finalized mid frame model according tothe input from test prints. 
 ,,Week's Objective,,,Start learning about system design. | Start setting up app architecture. | Research on TCP. | Establish live feed from esp CAM. | Establish connection with two esp32.,"CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Start Working on Painting the Frame. | Figure out how to attach GMU rail to plywood, with mid layer in-between. | CAD design of core block panels. | CAD design of core block and exhaust branches interface. | CAD design of exhaust branches. | CAD design of mid layer (with PVC foam) for incubator area. | CAD design of mid layer (with polycarbonate) for incubator area base. | Mark and cut foam pieces for incubator area mid layer. | Start assembling foam mid layer. | Finalize mid frame design. | Print mid frame set 1."
-,,Week's Progress,,,2-30,"1-75,19,20"
+,,Week's Progress,,,2-30,"1-75,19,20,12-75"
 ,Week 12,21-12-25 (SUNDAY)
 ,,22-12-25 (MONDAY)
 ,,23-12-25 (TUESDAY)
@@ -106,7 +106,7 @@ Stage 06,Week 11,14-12-25 (SUNDAY)
 ,,25-12-25 (THURSDAY)
 ,,26-12-25 (FRIDAY)
 ,,27-12-25 (SATURDAY)
-,,Week's Objective,,,Start learning about system design. | Start setting up app architecture. | Research on TCP. | Establish live feed from esp CAM. | Establish connection with two esp32.
+,,Week's Objective,,,Start learning about system design. | Start setting up app architecture. | Research on TCP. | Establish live feed from esp CAM. | Establish connection with two esp32.,CAD Design of Implementable Core Block. | CAD Design of Exhaust Branches. | Core Block Mount Base Plate. | Core Block Mount Top Cover. | Reservoir Connectors. | Drill Holes for Reservoir. | Drill Holes for Electronics Bay. | Drill Holes for Top Hatch. | Drill Holes for Core Block Mount. | Start Working on Painting the Frame. | CAD design of core block panels. | CAD design of core block and exhaust branches interface. | CAD design of exhaust branches. | CAD design of mid layer (with PVC foam) for incubator area. | CAD design of mid layer (with polycarbonate) for incubator area base. | Mark and cut foam pieces for incubator area mid layer. | Start assembling foam mid layer. | Start building core block. | CAD design of AMC. | Prime the frame. | Paint the frame. | Map out auxillary system control and feeback lines. | List out immediately needed components for emcu. | Place orders.
 ,,Week's Progress
 Stage 07,Week 13,28-12-25 (SUNDAY)
 ,,29-12-25 (MONDAY)
