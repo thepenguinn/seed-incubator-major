@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+
+class StatusDetailScreen extends StatelessWidget {
+  final bool status;
+  final Color activeColor;
+
+  const StatusDetailScreen({
+    super.key,
+    required this.status,
+    required this.activeColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Connection Status")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              status ? "Connected" : "Disconnected",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: status ? activeColor : Colors.grey),
+            ),
+            SizedBox(height: 20),
+            Icon(
+              Icons.wifi,
+              size: 100,
+              color: status ? activeColor : Colors.grey,
+            ),
+            SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: status ? activeColor.withOpacity(0.8) : Colors.grey.withOpacity(0.5),
+                  child: Icon(Icons.signal_cellular_4_bar, color: Colors.white),
+                ),
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: status ? activeColor.withOpacity(0.6) : Colors.grey.withOpacity(0.5),
+                  child: Icon(Icons.power, color: Colors.white),
+                ),
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: status ? activeColor.withOpacity(0.4) : Colors.grey.withOpacity(0.5),
+                  child: Icon(Icons.settings, color: Colors.white),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

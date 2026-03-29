@@ -1,0 +1,84 @@
+import 'dart:typed_data';
+import 'dart:io';
+import 'package:flutter/material.dart';
+
+class LiveFeedScreen extends StatefulWidget {
+  const LiveFeedScreen({super.key});
+
+  @override
+  State<LiveFeedScreen> createState() => _LiveFeedScreenState();
+}
+
+class _LiveFeedScreenState extends State<LiveFeedScreen> {
+  Socket? socket;
+  Uint8List? latestImage;
+  bool connecting = true;
+
+  final String esp32Ip = '192.168.0.125'; // << your ESP32 IP
+  final int port = 8888;
+
+  @override
+  void initState() {
+    super.initState();
+    connectToESP32();
+  }
+
+  void connectToESP32() async {
+    try {
+      socket = await Socket.connect(esp32Ip, port);
+      setState(() => connecting = false);
+      print('Connected to ESP32-CAM');
+
+      socket!.listen((data) {
+        // First 4 bytes = frame length
+        if (data.length >= 4) {
+          final length = ByteData.sublistView(data).getUint32(0, Endian.little);
+          // Read subsequent bytes as JPEG
+          if (data.length >= 4 + length) {
+            latestImage = data.sublist(4, 4 + length);
+            setState(() {});
+          }
+        }
+      }, onError: (e) {
+        print("Socket error: $e");
+        reconnect();
+      }, onDone: () {
+        print("Connection closed");
+        reconnect();
+      });
+    } catch (e) {
+      print('Connection failed: $e');
+      reconnect();
+    }
+  }
+
+  void reconnect() {
+    Future.delayed(const Duration(seconds: 3), connectToESP32);
+  }
+
+  @override
+  void dispose() {
+    socket?.destroy();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Live TCP Feed'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: connecting
+            ? const CircularProgressIndicator()
+            : (latestImage != null
+            ? Image.memory(latestImage!)
+            : const Text(
+          "Waiting for frames...",
+          style: TextStyle(fontSize: 16),
+        )),
+      ),
+    );
+  }
+}
